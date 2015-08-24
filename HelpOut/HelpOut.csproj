@@ -205,6 +205,19 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201508241731032_Initial.cs" />
+    <Compile Include="Migrations\201508241731032_Initial.Designer.cs">
+      <DependentUpon>201508241731032_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201508241752334_EventsCascadeDeleteFalse.cs" />
+    <Compile Include="Migrations\201508241752334_EventsCascadeDeleteFalse.Designer.cs">
+      <DependentUpon>201508241752334_EventsCascadeDeleteFalse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201508241753559_AddingSignups.cs" />
+    <Compile Include="Migrations\201508241753559_AddingSignups.Designer.cs">
+      <DependentUpon>201508241753559_AddingSignups.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Event.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -240,7 +253,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -285,6 +300,17 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201508241731032_Initial.resx">
+      <DependentUpon>201508241731032_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508241752334_EventsCascadeDeleteFalse.resx">
+      <DependentUpon>201508241752334_EventsCascadeDeleteFalse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508241753559_AddingSignups.resx">
+      <DependentUpon>201508241753559_AddingSignups.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

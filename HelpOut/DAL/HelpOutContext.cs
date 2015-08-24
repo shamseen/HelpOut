@@ -16,7 +16,6 @@ namespace HelpOut.DAL
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-
             modelBuilder.Entity<Event>()
                 .HasMany(c => c.Attendees).WithMany(i => i.EventsAttending)
                 .Map(t => t.MapLeftKey("EventID")
