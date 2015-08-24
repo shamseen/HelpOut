@@ -16,11 +16,12 @@ namespace HelpOut.Models
         public string Description { get; set; }
 
         //foreign key for our User w/ role organization that made the event
+        [ForeignKey("Organization")]
         public int OrganizationID { get; set; }
 
 
         //navigation property
-        [ForeignKey("OrganizationID")] //workaround for the foreign key mapping issue
+        //[ForeignKey("OrganizationID")] //workaround for the foreign key mapping issue
         public User Organization { get; set; }
         public virtual ICollection<User> Attendees { get; set; }
     }

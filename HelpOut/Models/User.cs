@@ -27,6 +27,7 @@ namespace HelpOut.Models
         public string Description { get; set; }
         public string Website { get; set; }
 
+
         //navigation properties
         public ICollection<Event> EventsAttending { get; set; } //for volunteers
         public virtual ICollection<Event> EventsCreated { get; set; } //for organizations
