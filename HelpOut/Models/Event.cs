@@ -15,7 +15,7 @@ namespace HelpOut.Models
         public string Location { get; set; }
         public string Description { get; set; }
 
-        [ForeignKey("User")] //will map to User's primary key (UserID)
+        [ForeignKey("Organization")] //will map to User's primary key (UserID)
         public int OrganizationID { get; set; }
 
 
