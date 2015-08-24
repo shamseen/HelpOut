@@ -3,14 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using HelpOut.DAL;
+using HelpOut.Models;
 
 namespace HelpOut.Controllers
 {
     public class HomeController : Controller
     {
+        private HelpOutContext db = new HelpOutContext();
         public ActionResult Index()
         {
-            return View();
+            List<User> userList = new List<User>();
+            ViewBag.isLoggedIn = false;
+            LoginViewModel login = new LoginViewModel();
+            return View(login);
+
         }
 
         public ActionResult About()

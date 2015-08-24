@@ -18,7 +18,7 @@ namespace HelpOut.Controllers
         // GET: Event
         public ActionResult Index()
         {
-            var events = db.Events.Include(@ => @.Organization);
+            var events = db.Events.Include(e => e.Organization);
             return View(events.ToList());
         }
 
