@@ -40,8 +40,8 @@ namespace HelpOut.Controllers
                             select c).First();
 
                 ViewBag.isLoggedIn = true;
-                ViewBag.Username = user.Email;
-                ViewBag.Name = user.FullName;
+                ViewBag.Email = user.Email;
+                ViewBag.FullName = user.FullName;
             }
             return View();
         }
