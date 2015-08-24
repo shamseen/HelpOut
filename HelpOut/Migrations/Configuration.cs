@@ -1,6 +1,8 @@
 namespace HelpOut.Migrations
 {
+    using HelpOut.Models;
     using System;
+    using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
@@ -12,20 +14,36 @@ namespace HelpOut.Migrations
             AutomaticMigrationsEnabled = false;
         }
 
+
         protected override void Seed(HelpOut.DAL.HelpOutContext context)
         {
-            //  This method will be called after migrating to the latest version.
+            var users = new List<User>
+            {
+                new User {Email = "Carson@aol.com",
+                          Password = "Password",
+                          FullName = "Carson Alexander", 
+                          Location = "1234 Grand Circus Dr., Detroit, MI, 48197",
+                          PhoneNumber = "7347563304", 
+                          Description = "I like long walks on the beach ",
+                          Website = "",},
+                new User {Email = "Alonso@aol.com",
+                    Password = "Password",
+                    FullName = "Meredith Alsonso", 
+                    Location = "902 Water Front ct., Westland MI, 48186",
+                    PhoneNumber = "7347563304", 
+                    Description = "",
+                    Website = "",},
+                 new User {Email = "Robertson@aol.com",
+                     Password = "Password",
+                     FullName = "Ashley Robinson",
+                     Location = "12 Chirrewa Lane, Detroit, MI, 48197",
+                     PhoneNumber = "8103390948", 
+                     Description = "",
+                     Website = "",},        
+    };
+            users.ForEach(s => context.Users.AddOrUpdate(p => p.FullName, s));
+            context.SaveChanges();
 
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
         }
     }
 }
