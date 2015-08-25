@@ -9,6 +9,15 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+
+@using (Html.BeginForm())
+{
+    <p>
+        Search Events by Name, Location, or Description: @Html.TextBox("SearchString")
+        <input type="submit" value="Search" />
+    </p>
+}
+
 <table class="table">
     <tr>
         <th>
@@ -18,7 +27,8 @@
             @Html.DisplayNameFor(model => model.Name)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DateTime)
+            @Html.ActionLink("Date", "Index", new {sortOrder = ViewBag.DateSortParm})
+            @*@Html.DisplayNameFor(model => model.DateTime)*@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Location)
