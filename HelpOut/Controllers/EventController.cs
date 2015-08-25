@@ -16,10 +16,40 @@ namespace HelpOut.Controllers
         private HelpOutDBContext db = new HelpOutDBContext();
 
         // GET: Event
-        public ActionResult Index()
+        //public ActionResult Index()
+        //{
+        //    var events = db.Events.Include(e => e.Organization);
+        //    return View(events.ToList());
+        //}
+
+        public ActionResult Index(string sortOrder, string searchString)
         {
-            var events = db.Events.Include(e => e.Organization);
-            return View(events.ToList());
+           ViewBag.DateSortParm = String.IsNullOrEmpty(sortOrder) ? "Date" : "";
+           ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+           var events = from e in db.Events
+                          select e;
+
+           if (!String.IsNullOrEmpty(searchString))
+           {
+               events = events.Where(e => e.Name.ToUpper().Contains(searchString.ToUpper())
+                                      || e.Location.ToUpper().Contains(searchString.ToUpper())
+                                      || e.Description.ToUpper().Contains(searchString.ToUpper()));
+           }
+
+
+           switch (sortOrder)
+           {
+               case "Date":
+                 events = events.OrderBy(e => e.DateTime);
+                 break;
+              case "date_desc":
+                 events = events.OrderByDescending(e => e.DateTime);
+                 break;
+              default:
+                 events = events.OrderBy(e => e.DateTime);
+                 break;
+           }
+           return View(events.ToList());
         }
 
         // GET: Event/Details/5
