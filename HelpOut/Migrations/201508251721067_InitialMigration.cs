@@ -3,7 +3,7 @@ namespace HelpOut.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Initial : DbMigration
+    public partial class InitialMigration : DbMigration
     {
         public override void Up()
         {
@@ -46,7 +46,7 @@ namespace HelpOut.Migrations
                     })
                 .PrimaryKey(t => new { t.EventID, t.UserID })
                 .ForeignKey("dbo.Events", t => t.EventID, cascadeDelete: false)
-                .ForeignKey("dbo.Users", t => t.UserID, cascadeDelete: true)
+                .ForeignKey("dbo.Users", t => t.UserID, cascadeDelete: false)
                 .Index(t => t.EventID)
                 .Index(t => t.UserID);
             
@@ -54,9 +54,9 @@ namespace HelpOut.Migrations
         
         public override void Down()
         {
+            DropForeignKey("dbo.Events", "OrganizationID", "dbo.Users");
             DropForeignKey("dbo.Signups", "UserID", "dbo.Users");
             DropForeignKey("dbo.Signups", "EventID", "dbo.Events");
-            DropForeignKey("dbo.Events", "OrganizationID", "dbo.Users");
             DropIndex("dbo.Signups", new[] { "UserID" });
             DropIndex("dbo.Signups", new[] { "EventID" });
             DropIndex("dbo.Events", new[] { "OrganizationID" });

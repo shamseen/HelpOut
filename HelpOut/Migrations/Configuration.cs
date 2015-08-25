@@ -1,45 +1,44 @@
 namespace HelpOut.Migrations
 {
-    using HelpOut.Models;
+    using Models;
     using System;
     using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<HelpOut.DAL.HelpOutContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<HelpOut.DAL.HelpOutDBContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-
-        protected override void Seed(HelpOut.DAL.HelpOutContext context)
+        protected override void Seed(HelpOut.DAL.HelpOutDBContext context)
         {
             var users = new List<User>
             {
                 new User {Email = "Carson@aol.com",
                           Password = "Password",
-                          FullName = "Carson Alexander", 
+                          FullName = "Carson Alexander",
                           Location = "1234 Grand Circus Dr., Detroit, MI, 48197",
-                          PhoneNumber = "7347563304", 
+                          PhoneNumber = "7347563304",
                           Description = "I like long walks on the beach ",
                           Website = "",},
                 new User {Email = "Alonso@aol.com",
                           Password = "Password",
-                          FullName = "Meredith Alsonso", 
+                          FullName = "Meredith Alsonso",
                           Location = "902 Water Front ct., Westland MI, 48186",
-                          PhoneNumber = "7347563304", 
+                          PhoneNumber = "7347563304",
                           Description = "",
                           Website = "",},
                  new User {Email = "Robertson@aol.com",
                           Password = "Password",
                           FullName = "Ashley Robinson",
                           Location = "12 Chirrewa Lane, Detroit, MI, 48197",
-                          PhoneNumber = "8103390948", 
+                          PhoneNumber = "8103390948",
                           Description = "",
-                          Website = "",},        
+                          Website = "",},
     };
             users.ForEach(s => context.Users.AddOrUpdate(p => p.FullName, s));
             context.SaveChanges();
@@ -47,11 +46,11 @@ namespace HelpOut.Migrations
 
             var events = new List<Event>
             {
-                new Event {EventID =1 ,
-                           Name ="Polar Plunge",
+                new Event {Name =" Plunge",
                            DateTime = DateTime.Parse("02/23/26"),
-                           Location = "123 N. Normancy St.", 
-                           Description= " Join us on Feburary 23 2016 for the first Annual Polar Plunge! We will be looking for twelve Volunteers to hand out towels and give away hot chocolate." },
+                           Location = "123 N. Normancy St.",
+                           Description= " Join us on Feburary 23 2016 for the first Annual Polar Plunge! We will be looking for twelve Volunteers to hand out towels and give away hot chocolate.",
+                           OrganizationID = 1},
                 //new Event {Name ="Polar Plunge",
                 //    DateTime = DateTime.Parse("02/23/26"),
                 //    Location = "123 N. Normancy St.", 
@@ -66,9 +65,6 @@ namespace HelpOut.Migrations
     };
             events.ForEach(s => context.Events.AddOrUpdate(p => p.EventID, s));
             context.SaveChanges();
-            //Create Events 
-
-
         }
     }
 }
