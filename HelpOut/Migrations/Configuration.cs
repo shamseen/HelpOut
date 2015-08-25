@@ -47,11 +47,11 @@ namespace HelpOut.Migrations
 
             var events = new List<Event>
             {
-                new Event {EventID =1 ,
-                           Name ="Polar Plunge",
+                new Event {Name =" Plunge",
                            DateTime = DateTime.Parse("02/23/26"),
                            Location = "123 N. Normancy St.", 
-                           Description= " Join us on Feburary 23 2016 for the first Annual Polar Plunge! We will be looking for twelve Volunteers to hand out towels and give away hot chocolate." },
+                           Description= " Join us on Feburary 23 2016 for the first Annual Polar Plunge! We will be looking for twelve Volunteers to hand out towels and give away hot chocolate.",
+                           OrganizationID = 1},
                 //new Event {Name ="Polar Plunge",
                 //    DateTime = DateTime.Parse("02/23/26"),
                 //    Location = "123 N. Normancy St.", 
