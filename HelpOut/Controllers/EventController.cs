@@ -13,7 +13,7 @@ namespace HelpOut.Controllers
 {
     public class EventController : Controller
     {
-        private HelpOutContext db = new HelpOutContext();
+        private HelpOutDBContext db = new HelpOutDBContext();
 
         // GET: Event
         public ActionResult Index()

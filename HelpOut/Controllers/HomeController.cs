@@ -10,7 +10,7 @@ namespace HelpOut.Controllers
 {
     public class HomeController : Controller
     {
-        private HelpOutContext db = new HelpOutContext();
+        private HelpOutDBContext db = new HelpOutDBContext();
         public ActionResult Index()
         {
             List<User> userList = new List<User>();
