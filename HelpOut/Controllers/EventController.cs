@@ -16,39 +16,42 @@ namespace HelpOut.Controllers
         private HelpOutDBContext db = new HelpOutDBContext();
 
         // GET: Event
-        //public ActionResult Index()
-        //{
-        //    var events = db.Events.Include(e => e.Organization);
-        //    return View(events.ToList());
-        //}
 
         public ActionResult Index(string sortOrder, string searchString)
         {
-           ViewBag.DateSortParm = String.IsNullOrEmpty(sortOrder) ? "Date" : "";
-           ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
-           var events = from e in db.Events
-                          select e;
+            var events = from e in db.Events
+                         select new EventDTO()
+                         {
+                             EventID = e.EventID,
+                             Name = e.Name,
+                             DateTime = e.DateTime,
+                             Location = e.Location,
+                             OrganizationName = e.Organization.FullName
+                         };
 
-           if (!String.IsNullOrEmpty(searchString))
-           {
-               events = events.Where(e => e.Name.ToUpper().Contains(searchString.ToUpper())
-                                      || e.Location.ToUpper().Contains(searchString.ToUpper())
-                                      || e.Description.ToUpper().Contains(searchString.ToUpper()));
-           }
+            ViewBag.DateSortParm = String.IsNullOrEmpty(sortOrder) ? "Date" : "";
+            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                events = events.Where(e => e.Name.ToUpper().Contains(searchString.ToUpper())
+                                       || e.Location.ToUpper().Contains(searchString.ToUpper())
+                                       || e.OrganizationName.ToUpper().Contains(searchString.ToUpper()));
+            }
 
 
-           switch (sortOrder)
-           {
-               case "Date":
-                 events = events.OrderBy(e => e.DateTime);
-                 break;
-              case "date_desc":
-                 events = events.OrderByDescending(e => e.DateTime);
-                 break;
-              default:
-                 events = events.OrderBy(e => e.DateTime);
-                 break;
-           }
+            switch (sortOrder)
+            {
+                case "Date":
+                    events = events.OrderBy(e => e.DateTime);
+                    break;
+                case "date_desc":
+                    events = events.OrderByDescending(e => e.DateTime);
+                    break;
+                default:
+                    events = events.OrderBy(e => e.DateTime);
+                    break;
+            }
            return View(events.ToList());
         }
 
@@ -59,11 +62,24 @@ namespace HelpOut.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Event @event = db.Events.Find(id);
+
+            var @event = (from e in db.Events
+                         where e.EventID == id
+                         select new EventDetailDTO()
+                         {
+                             EventID = e.EventID,
+                             Name = e.Name,
+                             DateTime = e.DateTime,
+                             Location = e.Location,
+                             Description = e.Description,
+                             OrganizationName = e.Organization.FullName
+                         }).First();
+
             if (@event == null)
             {
                 return HttpNotFound();
             }
+
             return View(@event);
         }
 
