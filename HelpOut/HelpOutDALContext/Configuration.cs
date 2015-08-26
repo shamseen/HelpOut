@@ -1,6 +1,6 @@
-namespace HelpOut.Migrations
+namespace HelpOut.HelpOutDALContext
 {
-    using Models;
+    using HelpOut.Models;
     using System;
     using System.Collections.Generic;
     using System.Data.Entity;
@@ -12,6 +12,7 @@ namespace HelpOut.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
+            MigrationsDirectory = @"HelpOutDALContext";
         }
 
         protected override void Seed(HelpOut.DAL.HelpOutDBContext context)
