@@ -14,11 +14,12 @@ namespace HelpOut.Controllers
     public class UserController : Controller
     {
         private HelpOutDBContext db = new HelpOutDBContext();
+        private ApplicationDbContext db2 = new ApplicationDbContext();
 
         // GET: User
         public ActionResult Index()
         {
-            return View(db.Users.ToList());
+            return View(db2.Users.ToList());
         }
 
         // GET: User/Details/5
@@ -28,7 +29,7 @@ namespace HelpOut.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = db.Users.Find(id);
+            ApplicationUser user = db2.Users.Find(id);
             if (user == null)
             {
                 return HttpNotFound();
@@ -47,12 +48,12 @@ namespace HelpOut.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "UserID,Email,Password,FullName,Location,PhoneNumber,Description,Website")] User user)
+        public ActionResult Create([Bind(Include = "UserID,Email,Password,FullName,Location,PhoneNumber,Description,Website")] ApplicationUser user)
         {
             if (ModelState.IsValid)
             {
-                db.Users.Add(user);
-                db.SaveChanges();
+                db2.Users.Add(user);
+                db2.SaveChanges();
                 return RedirectToAction("Index");
             }
 
@@ -66,7 +67,7 @@ namespace HelpOut.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = db.Users.Find(id);
+            ApplicationUser user = db2.Users.Find(id);
             if (user == null)
             {
                 return HttpNotFound();
@@ -79,12 +80,12 @@ namespace HelpOut.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "UserID,Email,Password,FullName,Location,PhoneNumber,Description,Website")] User user)
+        public ActionResult Edit([Bind(Include = "UserID,Email,Password,FullName,Location,PhoneNumber,Description,Website")] ApplicationUser user)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(user).State = EntityState.Modified;
-                db.SaveChanges();
+                db2.Entry(user).State = EntityState.Modified;
+                db2.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(user);
@@ -97,7 +98,7 @@ namespace HelpOut.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = db.Users.Find(id);
+            ApplicationUser user = db2.Users.Find(id);
             if (user == null)
             {
                 return HttpNotFound();
@@ -110,9 +111,9 @@ namespace HelpOut.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            User user = db.Users.Find(id);
-            db.Users.Remove(user);
-            db.SaveChanges();
+            ApplicationUser user = db2.Users.Find(id);
+            db2.Users.Remove(user);
+            db2.SaveChanges();
             return RedirectToAction("Index");
         }
 
@@ -120,7 +121,7 @@ namespace HelpOut.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                db2.Dispose();
             }
             base.Dispose(disposing);
         }

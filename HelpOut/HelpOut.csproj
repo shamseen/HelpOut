@@ -211,6 +211,26 @@
     <Compile Include="HelpOutApplicationContext\201508260119464_Intial.Designer.cs">
       <DependentUpon>201508260119464_Intial.cs</DependentUpon>
     </Compile>
+    <Compile Include="HelpOutApplicationContext\201508261520469_AddBirthday.cs" />
+    <Compile Include="HelpOutApplicationContext\201508261520469_AddBirthday.Designer.cs">
+      <DependentUpon>201508261520469_AddBirthday.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HelpOutApplicationContext\201508261522407_RevertAddBirthday.cs" />
+    <Compile Include="HelpOutApplicationContext\201508261522407_RevertAddBirthday.Designer.cs">
+      <DependentUpon>201508261522407_RevertAddBirthday.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HelpOutApplicationContext\201508261541373_ApplicationUser.cs" />
+    <Compile Include="HelpOutApplicationContext\201508261541373_ApplicationUser.Designer.cs">
+      <DependentUpon>201508261541373_ApplicationUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HelpOutApplicationContext\201508261554566_ApplicationUser1.cs" />
+    <Compile Include="HelpOutApplicationContext\201508261554566_ApplicationUser1.Designer.cs">
+      <DependentUpon>201508261554566_ApplicationUser1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HelpOutApplicationContext\201508261724191_Keys.cs" />
+    <Compile Include="HelpOutApplicationContext\201508261724191_Keys.Designer.cs">
+      <DependentUpon>201508261724191_Keys.cs</DependentUpon>
+    </Compile>
     <Compile Include="HelpOutApplicationContext\Configuration.cs" />
     <Compile Include="HelpOutDALContext\201508260120369_Initial.cs" />
     <Compile Include="HelpOutDALContext\201508260120369_Initial.Designer.cs">
@@ -397,6 +417,21 @@
   <ItemGroup>
     <EmbeddedResource Include="HelpOutApplicationContext\201508260119464_Intial.resx">
       <DependentUpon>201508260119464_Intial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HelpOutApplicationContext\201508261520469_AddBirthday.resx">
+      <DependentUpon>201508261520469_AddBirthday.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HelpOutApplicationContext\201508261522407_RevertAddBirthday.resx">
+      <DependentUpon>201508261522407_RevertAddBirthday.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HelpOutApplicationContext\201508261541373_ApplicationUser.resx">
+      <DependentUpon>201508261541373_ApplicationUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HelpOutApplicationContext\201508261554566_ApplicationUser1.resx">
+      <DependentUpon>201508261554566_ApplicationUser1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HelpOutApplicationContext\201508261724191_Keys.resx">
+      <DependentUpon>201508261724191_Keys.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HelpOutDALContext\201508260120369_Initial.resx">
       <DependentUpon>201508260120369_Initial.cs</DependentUpon>
