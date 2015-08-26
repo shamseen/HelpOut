@@ -1,58 +1,81 @@
-﻿@model HelpOut.Models.Event
+﻿@model HelpOut.Models.EventDetailDTO
 
 @{
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h3>Event Details</h3>
 
-<div>
-    <h4>Event</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Organization.Email)
-        </dt>
+<div class="col-md-9">
+    <h1>@Model.Name</h1>
+    by @Model.OrganizationName 
 
-        <dd>
-            @Html.DisplayFor(model => model.Organization.Email)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DateTime)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DateTime)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Location)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Location)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-
-    </dl>
+    <h4>@Model.DateTime <br />
+    @Model.Location <br /> </h4>
 </div>
-<p>
+
+<div class="col-md-3">
+    <br/>
+    <input type="submit" value="RSVP!" class="btn btn-warning btn-block" /> 
+    <input type="submit" value="Edit Event" class="btn btn-default btn-block" />
+    <input type="submit" value="Delete Event" class="btn btn-danger btn-block" />
+</div>
+
+<hr/>
+<div class="row">
+    <div class="col-xs-12">
+        <h2>List of events..</h2>
+    </div>
+</div>
+
+
+@*<div>
+        <h4>Event</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                Organization
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.OrganizationName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.DateTime)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.DateTime)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Location)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Location)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+
+        </dl>
+    </div>*@
+@*<div class="row">
     @Html.ActionLink("Edit", "Edit", new { id = Model.EventID }) |
     @Html.ActionLink("Back to List", "Index")
-</p>
+</div>*@
