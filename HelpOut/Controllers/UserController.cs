@@ -13,7 +13,7 @@ namespace HelpOut.Controllers
 {
     public class UserController : Controller
     {
-        private HelpOutContext db = new HelpOutContext();
+        private HelpOutDBContext db = new HelpOutDBContext();
 
         // GET: User
         public ActionResult Index()

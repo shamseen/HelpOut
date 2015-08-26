@@ -9,8 +9,9 @@ using System.Data.Entity;
 
 namespace HelpOut.DAL
 {
-    public class HelpOutContext : DbContext
+    public class HelpOutDBContext : DbContext
     {
+        public HelpOutDBContext() : base("DefaultConnection") { }
         public DbSet<User> Users { get; set; }
         public DbSet<Event> Events { get; set; }
 

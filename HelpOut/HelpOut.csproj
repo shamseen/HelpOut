@@ -203,25 +203,28 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\UserController.cs" />
-    <Compile Include="DAL\HelpOutContext.cs" />
+    <Compile Include="DAL\HelpOutDBContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201508241731032_Initial.cs" />
-    <Compile Include="Migrations\201508241731032_Initial.Designer.cs">
-      <DependentUpon>201508241731032_Initial.cs</DependentUpon>
+    <Compile Include="HelpOutApplicationContext\201508260119464_Intial.cs" />
+    <Compile Include="HelpOutApplicationContext\201508260119464_Intial.Designer.cs">
+      <DependentUpon>201508260119464_Intial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201508241752334_EventsCascadeDeleteFalse.cs" />
-    <Compile Include="Migrations\201508241752334_EventsCascadeDeleteFalse.Designer.cs">
-      <DependentUpon>201508241752334_EventsCascadeDeleteFalse.cs</DependentUpon>
+    <Compile Include="HelpOutApplicationContext\Configuration.cs" />
+    <Compile Include="HelpOutDALContext\201508260120369_Initial.cs" />
+    <Compile Include="HelpOutDALContext\201508260120369_Initial.Designer.cs">
+      <DependentUpon>201508260120369_Initial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201508241753559_AddingSignups.cs" />
-    <Compile Include="Migrations\201508241753559_AddingSignups.Designer.cs">
-      <DependentUpon>201508241753559_AddingSignups.cs</DependentUpon>
+    <Compile Include="HelpOutDALContext\201508260122242_SeedDataAdded.cs" />
+    <Compile Include="HelpOutDALContext\201508260122242_SeedDataAdded.Designer.cs">
+      <DependentUpon>201508260122242_SeedDataAdded.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="HelpOutDALContext\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Event.cs" />
+    <Compile Include="Models\EventDetailDTO.cs" />
+    <Compile Include="Models\EventDTO.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\User.cs" />
@@ -392,14 +395,14 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201508241731032_Initial.resx">
-      <DependentUpon>201508241731032_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="HelpOutApplicationContext\201508260119464_Intial.resx">
+      <DependentUpon>201508260119464_Intial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201508241752334_EventsCascadeDeleteFalse.resx">
-      <DependentUpon>201508241752334_EventsCascadeDeleteFalse.cs</DependentUpon>
+    <EmbeddedResource Include="HelpOutDALContext\201508260120369_Initial.resx">
+      <DependentUpon>201508260120369_Initial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201508241753559_AddingSignups.resx">
-      <DependentUpon>201508241753559_AddingSignups.cs</DependentUpon>
+    <EmbeddedResource Include="HelpOutDALContext\201508260122242_SeedDataAdded.resx">
+      <DependentUpon>201508260122242_SeedDataAdded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
