@@ -13,13 +13,14 @@ namespace HelpOut.Controllers
 {
     public class EventController : Controller
     {
-        private HelpOutDBContext db = new HelpOutDBContext();
+        //private HelpOutDBContext db = new HelpOutDBContext();
+        private ApplicationDbContext db2 = new ApplicationDbContext();
 
         // GET: Event
 
         public ActionResult Index(string sortOrder, string searchString)
         {
-            var events = from e in db.Events
+            var events = from e in db2.Events
                          select new EventDTO()
                          {
                              EventID = e.EventID,
@@ -63,7 +64,7 @@ namespace HelpOut.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var @event = (from e in db.Events
+            var @event = (from e in db2.Events
                          where e.EventID == id
                          select new EventDetailDTO()
                          {
@@ -86,7 +87,7 @@ namespace HelpOut.Controllers
         // GET: Event/Create
         public ActionResult Create()
         {
-            ViewBag.OrganizationID = new SelectList(db.Users, "UserID", "Email");
+            ViewBag.OrganizationID = new SelectList(db2.Users, "UserID", "Email");
             return View();
         }
 
@@ -99,12 +100,12 @@ namespace HelpOut.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Events.Add(@event);
-                db.SaveChanges();
+                db2.Events.Add(@event);
+                db2.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.OrganizationID = new SelectList(db.Users, "UserID", "Email", @event.OrganizationID);
+            ViewBag.OrganizationID = new SelectList(db2.Users, "UserID", "Email", @event.OrganizationID);
             return View(@event);
         }
 
@@ -115,12 +116,12 @@ namespace HelpOut.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Event @event = db.Events.Find(id);
+            Event @event = db2.Events.Find(id);
             if (@event == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.OrganizationID = new SelectList(db.Users, "UserID", "Email", @event.OrganizationID);
+            ViewBag.OrganizationID = new SelectList(db2.Users, "UserID", "Email", @event.OrganizationID);
             return View(@event);
         }
 
@@ -133,11 +134,11 @@ namespace HelpOut.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(@event).State = EntityState.Modified;
-                db.SaveChanges();
+                db2.Entry(@event).State = EntityState.Modified;
+                db2.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.OrganizationID = new SelectList(db.Users, "UserID", "Email", @event.OrganizationID);
+            ViewBag.OrganizationID = new SelectList(db2.Users, "UserID", "Email", @event.OrganizationID);
             return View(@event);
         }
 
@@ -148,7 +149,7 @@ namespace HelpOut.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Event @event = db.Events.Find(id);
+            Event @event = db2.Events.Find(id);
             if (@event == null)
             {
                 return HttpNotFound();
@@ -161,9 +162,9 @@ namespace HelpOut.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Event @event = db.Events.Find(id);
-            db.Events.Remove(@event);
-            db.SaveChanges();
+            Event @event = db2.Events.Find(id);
+            db2.Events.Remove(@event);
+            db2.SaveChanges();
             return RedirectToAction("Index");
         }
 
@@ -171,7 +172,7 @@ namespace HelpOut.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                db2.Dispose();
             }
             base.Dispose(disposing);
         }

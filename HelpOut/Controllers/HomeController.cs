@@ -10,10 +10,10 @@ namespace HelpOut.Controllers
 {
     public class HomeController : Controller
     {
-        private HelpOutDBContext db = new HelpOutDBContext();
+        private ApplicationDbContext db = new ApplicationDbContext();
         public ActionResult Index()
         {
-            List<User> userList = new List<User>();
+            List<ApplicationUser> userList = new List<ApplicationUser>();
             ViewBag.isLoggedIn = false;
             LoginViewModel login = new LoginViewModel();
             return View(login);
@@ -23,26 +23,26 @@ namespace HelpOut.Controllers
         [HttpPost]
         public ActionResult Index(LoginViewModel login)
         {
-            ViewBag.Message = "This log in didn't break anything.";
+            //ViewBag.Message = "This log in didn't break anything.";
 
-            ViewBag.isLoggedIn = false;
+            //ViewBag.isLoggedIn = false;
 
-            var q = from c in db.Users
-                    where login.Email == c.Email
-                    select c;
-            q = q.Where(u => u.Email.Equals(login.Email));
+            //var q = from c in db.Users
+            //        where login.Email == c.Email
+            //        select c;
+            //q = q.Where(u => u.Email.Equals(login.Email));
 
-            int count = q.Count(u => u.Email == u.Email);
+            //int count = q.Count(u => u.Email == u.Email);
 
-            if (count == 1 && q.First().Password == login.Password)
-            {
-                User user = (from c in q
-                            select c).First();
+            //if (count == 1 && q.First().Password == login.Password)
+            //{
+            //    User user = (from c in q
+            //                 select c).First();
 
-                ViewBag.isLoggedIn = true;
-                ViewBag.Email = user.Email;
-                ViewBag.FullName = user.FullName;
-            }
+            //    ViewBag.isLoggedIn = true;
+            //    ViewBag.Email = user.Email;
+            //    ViewBag.FullName = user.FullName;
+            //}
             return View();
         }
 
