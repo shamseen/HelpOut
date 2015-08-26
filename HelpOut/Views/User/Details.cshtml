@@ -4,69 +4,74 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>User Profile</h2>
 
 <div>
-    <h4>User</h4>
+
+
+    <div class="row"> <h1>@Model.FullName</h1> </div>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
+    <div class="row text-center">
+        <div class="col-md-4" style="box-decoration-break: slice"><h2>[holder for image]</h2></div>
+        <div class="col-md-4">
+            <h3>Info</h3> Location: @Model.Location <br />[Website] @*<a href="@Url.Content(Model.Website)">Website</a>*@
+            <br />@Model.PhoneNumber
+        </div>
+        <div class="col-md-4"><h3>Description</h3>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis id pretium nisl, imperdiet aliquam erat. Etiam sed metus eget libero ultrices convallis vitae in nulla</div>
+    </div>
+    <hr />
 
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
+    <h2>List of events..</h2>
+    @*<dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Password)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Password)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Password)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.FullName)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Password)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.FullName)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Location)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Location)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Location)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Location)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PhoneNumber)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.PhoneNumber)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.PhoneNumber)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Website)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Website)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Website)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Website)
-        </dd>
-
-    </dl>
+        </dl>*@
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.UserID }) |
