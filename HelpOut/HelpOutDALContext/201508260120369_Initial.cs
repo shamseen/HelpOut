@@ -1,9 +1,9 @@
-namespace HelpOut.Migrations
+namespace HelpOut.HelpOutDALContext
 {
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialMigration : DbMigration
+    public partial class Initial : DbMigration
     {
         public override void Up()
         {
@@ -45,7 +45,7 @@ namespace HelpOut.Migrations
                         UserID = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => new { t.EventID, t.UserID })
-                .ForeignKey("dbo.Events", t => t.EventID, cascadeDelete: false)
+                .ForeignKey("dbo.Events", t => t.EventID, cascadeDelete: true)
                 .ForeignKey("dbo.Users", t => t.UserID, cascadeDelete: false)
                 .Index(t => t.EventID)
                 .Index(t => t.UserID);
