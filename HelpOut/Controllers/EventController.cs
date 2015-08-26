@@ -13,7 +13,7 @@ namespace HelpOut.Controllers
 {
     public class EventController : Controller
     {
-        private HelpOutDBContext db = new HelpOutDBContext();
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Event
 
@@ -26,7 +26,7 @@ namespace HelpOut.Controllers
                              Name = e.Name,
                              DateTime = e.DateTime,
                              Location = e.Location,
-                             OrganizationName = e.Organization.FullName
+                             OrganizationName = e.Organization.FirstName
                          };
 
             ViewBag.DateSortParm = String.IsNullOrEmpty(sortOrder) ? "Date" : "";
@@ -72,7 +72,7 @@ namespace HelpOut.Controllers
                              DateTime = e.DateTime,
                              Location = e.Location,
                              Description = e.Description,
-                             OrganizationName = e.Organization.FullName
+                             OrganizationName = e.Organization.FirstName
                          }).First();
 
             if (@event == null)
@@ -86,7 +86,7 @@ namespace HelpOut.Controllers
         // GET: Event/Create
         public ActionResult Create()
         {
-            ViewBag.OrganizationID = new SelectList(db.Users, "UserID", "Email");
+            ViewBag.OrganizationID = new SelectList(db.Users, "id", "Email");
             return View();
         }
 

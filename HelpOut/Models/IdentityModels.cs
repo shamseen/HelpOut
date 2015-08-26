@@ -5,6 +5,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Collections.Generic;
 
 namespace HelpOut.Models
 {
@@ -17,6 +18,10 @@ namespace HelpOut.Models
         public string Location { get; set; }
         public string Description { get; set; }
         public string usertype { get; set; }
+
+        public ICollection<Event> EventsAttending { get; set; } //for volunteers
+        public virtual ICollection<Event> EventsCreated { get; set; } //for organizations
+
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
@@ -33,10 +38,19 @@ namespace HelpOut.Models
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
+        public DbSet<Event> Events { get; set; }
 
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
+        }
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Event>()
+                .HasMany(c => c.Attendees).WithMany(i => i.EventsAttending)
+                .Map(t => t.MapLeftKey("EventID")
+                    .MapRightKey("UserID")
+                    .ToTable("Signups"));
         }
     }
 }

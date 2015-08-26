@@ -223,6 +223,10 @@
     <Compile Include="HelpOutApplicationContext\201508261620480_appmodelchange3.Designer.cs">
       <DependentUpon>201508261620480_appmodelchange3.cs</DependentUpon>
     </Compile>
+    <Compile Include="HelpOutApplicationContext\201508261911065_changedmodels.cs" />
+    <Compile Include="HelpOutApplicationContext\201508261911065_changedmodels.Designer.cs">
+      <DependentUpon>201508261911065_changedmodels.cs</DependentUpon>
+    </Compile>
     <Compile Include="HelpOutApplicationContext\Configuration.cs" />
     <Compile Include="HelpOutDALContext\201508260120369_Initial.cs" />
     <Compile Include="HelpOutDALContext\201508260120369_Initial.Designer.cs">
@@ -418,6 +422,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="HelpOutApplicationContext\201508261620480_appmodelchange3.resx">
       <DependentUpon>201508261620480_appmodelchange3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HelpOutApplicationContext\201508261911065_changedmodels.resx">
+      <DependentUpon>201508261911065_changedmodels.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HelpOutDALContext\201508260120369_Initial.resx">
       <DependentUpon>201508260120369_Initial.cs</DependentUpon>
