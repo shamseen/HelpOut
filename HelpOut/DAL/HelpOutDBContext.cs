@@ -12,8 +12,8 @@ namespace HelpOut.DAL
     public class HelpOutDBContext : DbContext
     {
         public HelpOutDBContext() : base("DefaultConnection") { }
-        public DbSet<User> Users { get; set; }
-        public DbSet<Event> Events { get; set; }
+        //public DbSet<User> Users { get; set; }
+        //public DbSet<Event> Events { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -22,6 +22,7 @@ namespace HelpOut.DAL
                 .Map(t => t.MapLeftKey("EventID")
                     .MapRightKey("UserID")
                     .ToTable("Signups"));
+
         }
     }
 }
