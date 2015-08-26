@@ -14,11 +14,11 @@ namespace HelpOut.Controllers
     public class UserController : Controller
     {
         private HelpOutDBContext db = new HelpOutDBContext();
-
+        private ApplicationDbContext db2 = new ApplicationDbContext();
         // GET: User
         public ActionResult Index()
         {
-            return View(db.Users.ToList());
+            return View(db2.Users.ToList());
         }
 
         // GET: User/Details/5
