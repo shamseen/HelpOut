@@ -65,6 +65,15 @@ namespace HelpOut.Models
     public class RegisterViewModel
     {
         [Required]
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Location { get; set; }
+        public string Description { get; set; }
+        [Required]
+        public string usertype { get; set; }
+        public string PhoneNumber { get; set; }
+
+        [Required]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }

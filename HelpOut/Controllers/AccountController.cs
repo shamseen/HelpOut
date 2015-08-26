@@ -151,7 +151,16 @@ namespace HelpOut.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser {
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                     PhoneNumber = model.PhoneNumber,
+                      Location = model.Location,
+                    Description = model.Description,
+                    usertype = model.usertype,
+                    UserName = model.Email, 
+                    Email = model.Email,
+                    };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
