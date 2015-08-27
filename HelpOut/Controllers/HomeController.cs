@@ -44,6 +44,12 @@ namespace HelpOut.Controllers
             //}
             return View();
         }
+        public ActionResult userprofile()
+        {
+            ViewBag.Message = "Volunteer or Organization Profile will go on this page";
+
+            return View();
+        }
 
         public ActionResult About()
         {

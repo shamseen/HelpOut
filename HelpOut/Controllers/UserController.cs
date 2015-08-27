@@ -35,28 +35,28 @@ namespace HelpOut.Controllers
             return View(user);
         }
 
-        // GET: User/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
+        //// GET: User/Create
+        //public ActionResult Create()
+        //{
+        //    return View();
+        //}
 
-        // POST: User/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "UserID,Email,Password,FullName,Location,PhoneNumber,Description,Website")] ApplicationUser user)
-        {
-            if (ModelState.IsValid)
-            {
-                db2.Users.Add(user);
-                db2.SaveChanges();
-                return RedirectToAction("Index");
-            }
+        //// POST: User/Create
+        //// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        //// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Create([Bind(Include = "UserID,Email,Password,FullName,Location,PhoneNumber,Description,Website")] ApplicationUser user)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        db2.Users.Add(user);
+        //        db2.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
 
-            return View(user);
-        }
+        //    return View(user);
+        //}
 
         // GET: User/Edit/5
         public ActionResult Edit(int? id)
@@ -89,31 +89,31 @@ namespace HelpOut.Controllers
             return View(user);
         }
 
-        // GET: User/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            ApplicationUser user = db2.Users.Find(id);
-            if (user == null)
-            {
-                return HttpNotFound();
-            }
-            return View(user);
-        }
+        //// GET: User/Delete/5
+        //public ActionResult Delete(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    ApplicationUser user = db2.Users.Find(id);
+        //    if (user == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(user);
+        //}
 
-        // POST: User/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            ApplicationUser user = db2.Users.Find(id);
-            db2.Users.Remove(user);
-            db2.SaveChanges();
-            return RedirectToAction("Index");
-        }
+        //// POST: User/Delete/5
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult DeleteConfirmed(int id)
+        //{
+        //    ApplicationUser user = db2.Users.Find(id);
+        //    db2.Users.Remove(user);
+        //    db2.SaveChanges();
+        //    return RedirectToAction("Index");
+        //}
 
         protected override void Dispose(bool disposing)
         {
