@@ -83,9 +83,10 @@ namespace HelpOut.Controllers
         }
 
         // GET: Event/Create
+        [Authorize (Roles="Organization")]
         public ActionResult Create()
         {
-            ViewBag.OrganizationID = new SelectList(db2.Users, "UserID", "Email");
+            ViewBag.OrganizationID = new SelectList(db2.Users, "Id", "Email");
             return View();
         }
 
@@ -103,11 +104,12 @@ namespace HelpOut.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.OrganizationID = new SelectList(db2.Users, "UserID", "Email", @event.OrganizationID);
+            ViewBag.OrganizationID = new SelectList(db2.Users, "Id", "Email", @event.OrganizationID);
             return View(@event);
         }
 
         // GET: Event/Edit/5
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -119,7 +121,7 @@ namespace HelpOut.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.OrganizationID = new SelectList(db2.Users, "UserID", "Email", @event.OrganizationID);
+            ViewBag.OrganizationID = new SelectList(db2.Users, "Id", "Email", @event.OrganizationID);
             return View(@event);
         }
 
@@ -136,7 +138,7 @@ namespace HelpOut.Controllers
                 db2.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.OrganizationID = new SelectList(db2.Users, "UserID", "Email", @event.OrganizationID);
+            ViewBag.OrganizationID = new SelectList(db2.Users, "Id", "Email", @event.OrganizationID);
             return View(@event);
         }
 

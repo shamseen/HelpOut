@@ -72,11 +72,6 @@ namespace HelpOut.Controllers
             {
                 return View(model);
             }
-
-            if (!ModelState.IsValid)
-            {
-                return View(model);
-            }
             //ADDED THIS BECAUSE USERNAME != EMAIL AND METHODS ONLY CHECK WITH USERNAME
             var user = await UserManager.FindByEmailAsync(model.Email);
             var result = SignInStatus.Failure;
