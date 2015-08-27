@@ -45,5 +45,14 @@ namespace HelpOut.Models
         {
             return new ApplicationDbContext();
         }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Event>()
+                .HasMany(e => e.Attendees).WithMany(i => i.EventsAttending)
+                .Map(t => t.MapLeftKey("EventID")
+                    .MapRightKey("UserID")
+                    .ToTable("SignUps"));
+        }
     }
 }
