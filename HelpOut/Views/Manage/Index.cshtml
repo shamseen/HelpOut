@@ -9,6 +9,13 @@
 <div>
     <h4>Change your account settings</h4>
     <hr />
+
+    <h3>
+        Account: @User.Identity.Name <br />
+        Organization: @User.IsInRole("Organization") <br />
+        Volunteer: @User.IsInRole("Volunteer")
+    </h3>
+
     <dl class="dl-horizontal">
         <dt>Password:</dt>
         <dd>

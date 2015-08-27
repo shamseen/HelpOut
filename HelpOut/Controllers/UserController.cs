@@ -6,14 +6,12 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using HelpOut.DAL;
 using HelpOut.Models;
 
 namespace HelpOut.Controllers
 {
     public class UserController : Controller
     {
-        private HelpOutDBContext db = new HelpOutDBContext();
         private ApplicationDbContext db2 = new ApplicationDbContext();
 
         // GET: User
