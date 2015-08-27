@@ -3,7 +3,7 @@ namespace HelpOut.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class userroleseed : DbMigration
+    public partial class seedandregister : DbMigration
     {
         public override void Up()
         {
@@ -37,7 +37,7 @@ namespace HelpOut.Migrations
                         Location = c.String(),
                         Description = c.String(),
                         Website = c.String(),
-                        Email = c.String(maxLength: 256),
+                        Email = c.String(nullable: false, maxLength: 256),
                         EmailConfirmed = c.Boolean(nullable: false),
                         PasswordHash = c.String(),
                         SecurityStamp = c.String(),
@@ -48,6 +48,9 @@ namespace HelpOut.Migrations
                         LockoutEnabled = c.Boolean(nullable: false),
                         AccessFailedCount = c.Int(nullable: false),
                         UserName = c.String(nullable: false, maxLength: 256),
+                        Password = c.String(maxLength: 100),
+                        ConfirmPassword = c.String(),
+                        Discriminator = c.String(nullable: false, maxLength: 128),
                         Event_EventID = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)

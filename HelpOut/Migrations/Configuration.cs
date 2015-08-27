@@ -12,7 +12,7 @@ namespace HelpOut.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(HelpOut.Models.ApplicationDbContext context)

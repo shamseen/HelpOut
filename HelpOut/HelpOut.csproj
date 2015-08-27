@@ -206,9 +206,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201508271515280_userroleseed.cs" />
-    <Compile Include="Migrations\201508271515280_userroleseed.Designer.cs">
-      <DependentUpon>201508271515280_userroleseed.cs</DependentUpon>
+    <Compile Include="Migrations\201508271555291_seedandregister.cs" />
+    <Compile Include="Migrations\201508271555291_seedandregister.Designer.cs">
+      <DependentUpon>201508271555291_seedandregister.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -385,8 +385,8 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201508271515280_userroleseed.resx">
-      <DependentUpon>201508271515280_userroleseed.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201508271555291_seedandregister.resx">
+      <DependentUpon>201508271555291_seedandregister.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
