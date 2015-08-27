@@ -38,12 +38,14 @@ namespace HelpOut.Models
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
-
+        //public DbSet<ApplicationUser> ApplicationUsers { get; set; }
         public  DbSet<Event> Events { get; set; }
 
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
         }
+
+        //public System.Data.Entity.DbSet<HelpOut.Models.ApplicationUser> ApplicationUsers { get; set; }
     }
 }
