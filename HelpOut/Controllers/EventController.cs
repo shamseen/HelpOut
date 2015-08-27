@@ -85,7 +85,7 @@ namespace HelpOut.Controllers
         // GET: Event/Create
         public ActionResult Create()
         {
-            ViewBag.OrganizationID = new SelectList(db2.Users, "UserID", "Email");
+            ViewBag.OrganizationID = new SelectList(db2.Users, "Id", "Email");
             return View();
         }
 

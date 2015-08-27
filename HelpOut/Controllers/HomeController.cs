@@ -4,11 +4,13 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using HelpOut.Models;
+using System.Net;
 
 namespace HelpOut.Controllers
 {
     public class HomeController : Controller
     {
+        
         private ApplicationDbContext db = new ApplicationDbContext();
         public ActionResult Index()
         {
@@ -44,12 +46,34 @@ namespace HelpOut.Controllers
             //}
             return View();
         }
-        public ActionResult userprofile()
-        {
-            ViewBag.Message = "Volunteer or Organization Profile will go on this page";
+        //public ActionResult userprofile(string? id)
+        //{
+        //    if (id = null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
 
-            return View();
-        }
+        //    var myuser = (from e in db.Users
+        //                  where e.Id = id
+        //                  select new EventDetailDTO()
+        //                  {
+        //                      EventID = e.EventID,
+        //                      Name = e.Name,
+        //                      DateTime = e.DateTime,
+        //                      Location = e.Location,
+        //                      Description = e.Description,
+        //                      OrganizationName = e.Organization.FullName
+        //                  }).First();
+
+        //    if (myuser == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+
+        //    return View(@event);
+
+           
+        //}
 
         public ActionResult About()
         {
