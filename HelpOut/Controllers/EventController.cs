@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using HelpOut.Models;
+using Microsoft.AspNet.Identity;
 
 namespace HelpOut.Controllers
 {
@@ -95,10 +96,12 @@ namespace HelpOut.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "EventID,Name,DateTime,Location,Description,OrganizationID")] Event @event)
+        public ActionResult Create([Bind(Include = "EventID,Name,DateTime,Location,Description")] Event @event)
         {
+            
             if (ModelState.IsValid)
             {
+                @event.OrganizationID = User.Identity.GetUserId();
                 db2.Events.Add(@event);
                 db2.SaveChanges();
                 return RedirectToAction("Index");
