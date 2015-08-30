@@ -8,24 +8,43 @@ using System.Web;
 using System.Web.Mvc;
 using HelpOut.Models;
 using HelpOut.ModelViews;
-
+using Microsoft.AspNet.Identity;
 namespace HelpOut.Controllers
 {
     public class ApplicationUsersController : Controller
     {
+          /// <summary>
+    /// Application DB context
+    /// </summary>
+    protected ApplicationDbContext ApplicationDbContext { get; set; }
+
+    /// <summary>
+    /// User manager - attached to application DB context
+    /// </summary>
+    protected UserManager<ApplicationUser> UserManager { get; set; }
+    
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: ApplicationUsers
         public ActionResult Index()
         {
-            var users = from e in db.Users
+
+            string currentUserId = User.Identity.GetUserId();
+            ApplicationUser currentUser = db.Users.FirstOrDefault(x => x.Id == currentUserId);
+            ViewBag.FullName = currentUser.FullName;
+            var @users = (from e in db.Users
                          select new UserProfileDTO()
                          {
                              Name = e.FullName,
                              
-                         };
+                         });
 
-            return View(db.Users.ToList());
+
+            //if (@users == null)
+            //{
+            //    return HttpNotFound();
+            //}
+            return View();
         }
 
         //// GET: ApplicationUsers/Details/5

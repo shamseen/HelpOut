@@ -12,7 +12,7 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.FullName)
+            @ViewBag.FullName
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Location)
@@ -36,7 +36,7 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@*@foreach (var item in Model) {
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.FullName)
@@ -65,7 +65,7 @@
             @Html.ActionLink("Details", "Details", new { id=item.Id }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.Id })
         </td>
-    </tr>
+    </tr>*@
 }
 
 </table>
