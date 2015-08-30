@@ -16,15 +16,33 @@
 
 <div class="col-md-3">
     <br/>
+
+    
     <input type="submit" value="RSVP!" class="btn btn-warning btn-block" /> 
-    <input type="submit" value="Edit Event" class="btn btn-default btn-block" />
-    <input type="submit" value="Delete Event" class="btn btn-danger btn-block" />
+
+    @if (User.IsInRole("Organization"))
+    {
+        @Html.ActionLink("Edit Event", "Edit", new { id = Model.EventID }, new { @class = "btn btn-default btn-block" })
+        @Html.ActionLink("Delete Event", "Delete", new { id = Model.EventID }, new { @class = "btn btn-danger btn-block" })
+        @*using (Html.BeginForm("Edit", "Event", FormMethod.Get, new { id = Model.EventID }))
+        {
+            <input type="submit" value="Edit Event" class="btn btn-default btn-block" />
+            <button type="button" class="btn btn-default btn-block">@Html.ActionLink("Edit", "Edit", new { id = Model.EventID }, )</button>
+            <p class="btn btn-default btn-block" >@Html.ActionLink("Edit", "Edit", new { id = Model.EventID })</p>
+        }
+
+        using (Html.BeginForm("Delete", "Event", FormMethod.Get, new { id = Model.EventID }))
+        {
+            <input type="submit" value="Delete Event" class="btn btn-danger btn-block" />
+            <button type="button" class="btn btn-danger btn-block">Delete Event</button>
+        }*@
+    }
 </div>
 
 <hr/>
 <div class="row">
     <div class="col-xs-12">
-        <h2>List of events..</h2>
+        <h2>Empty space we have no idea what to use for..</h2>
     </div>
 </div>
 
@@ -75,7 +93,7 @@
 
         </dl>
     </div>*@
-@*<div class="row">
+<div class="row">
     @Html.ActionLink("Edit", "Edit", new { id = Model.EventID }) |
     @Html.ActionLink("Back to List", "Index")
-</div>*@
+</div>
