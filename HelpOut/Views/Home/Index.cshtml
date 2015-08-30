@@ -1,5 +1,7 @@
 ﻿@using HelpOut.Models
-@model LoginViewModel
+@using Microsoft.AspNet.Identity
+
+@model ApplicationUser
 
 @{
     ViewBag.Title = "Home Page";
@@ -9,7 +11,33 @@
     <h1>HelpOut Skeleton</h1>
     <p class="lead">Hopefully this will look less like shit later</p>
 </div>
-<div class="col-md-4">
+
+@if (Request.IsAuthenticated)
+{
+    if (User.IsInRole("Organization"))
+    {
+        <h2>Events Created:</h2>
+
+        <ul>
+        @foreach (Event e in Model.EventsCreated)
+        {
+            <li>@Html.ActionLink(e.Name, "Details", new { controller = "Event", id = e.EventID} ) </li>         
+        }
+        </ul>
+    }
+
+    else
+    {
+        <h2>Events Attending:</h2>
+        <ul>
+            @foreach (Event e in Model.EventsAttending)
+            {
+                <li>@Html.ActionLink(e.Name, "Details", new { controller = "Event", id = e.EventID }) </li>
+            }
+        </ul>
+    }
+}
+@*<div class="col-md-4">
     <h2>Get more libraries</h2>
     <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
     <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
@@ -18,5 +46,4 @@
     <h2>Web Hosting</h2>
     <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
     <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-</div>
-</div>
+</div>*@
