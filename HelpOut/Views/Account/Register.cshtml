@@ -66,15 +66,24 @@
         </div>
     </div>
 
-    <div>
-        Account type
-    </div>
-    <label class="radio-inline">
-        <input type="radio" value="option1"/> Organization
+    <p>
+        Account type: @*@Html.DropDownList("Roles", "Both")*@
+    </p>
+
+    @Html.RadioButton("selectedRole", "Organization") <h5>Org</h5>
+    @Html.RadioButton("selectedRole", "Volunteer") <h5>Vol</h5>
+
+    @*@foreach (var r in ViewBag.Roles)
+    {
+        @Html.RadioButton(r.Name, ViewBag.Role)
+    }*@
+
+    @*<label class="radio-inline">
+        <input type="radio" id="selectedRole" value="Organization"/> Org
     </label>
     <label class="radio-inline">
-        <input type="radio" value="option2" /> Volunteer
-    </label>
+        <input type="radio" id="selectedRole" value="Volunteer" /> Vol
+    </label>*@
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
