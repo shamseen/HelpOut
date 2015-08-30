@@ -7,6 +7,7 @@ namespace HelpOut.Migrations
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
+    using System.Collections.Generic;
 
     internal sealed class Configuration : DbMigrationsConfiguration<HelpOut.Models.ApplicationDbContext>
     {
@@ -47,7 +48,7 @@ namespace HelpOut.Migrations
                     FullName = "Habitat for Humanity",
                     Location = "270 Peachtree Street NW, Atlanta, GA 30303",
                     Description = "Habitat for Humanity’s vision is a world where everyone has a decent place to live. Our mission is to put God’s love into action by bringing people together to build homes, communities and hope.",
-                    Website = "http://www.habitat.org/"
+                    Website = "http://www.habitat.org/",
                 };
 
                 manager.Create(user, "Password1!");
@@ -89,6 +90,46 @@ namespace HelpOut.Migrations
                 manager.Create(user, "Password1!");
                 manager.AddToRole(user.Id, "Volunteer");
             }
+
+            //seeding events
+            var events = new List<Event> {
+
+                new Event
+                {
+                    EventID = 1,
+                    Name = "First Ever Fundraiser to Build Seed!",
+                    DateTime = DateTime.ParseExact("06/15/2015 13:45:00", "MM/dd/yyyy HH:mm:ss", null),
+                    Location = "Shamseen's house",
+                    Description = "We're praying this will actually work and we can show users' events.",
+                    OrganizationID = "67ef0428-03df-4e1e-88e2-f9a589fbbfcf", //habitat for humanity
+                },
+
+                new Event
+                {
+                    EventID = 2,
+                    Name = "George-Only Party",
+                    DateTime = DateTime.ParseExact("01/15/2020 09:15:00", "MM/dd/yyyy HH:mm:ss", null),
+                    Location = "White House",
+                    Description = "Spreading the seed. JOHN IS NOT ALLOWED. JUST LEAVE, JOHN.",
+                    OrganizationID = "67ef0428-03df-4e1e-88e2-f9a589fbbfcf", //habitat for humanity
+                },
+
+                new Event
+                {
+                    EventID = 3,
+                    Name = "Kennedy Family Reunion",
+                    DateTime = DateTime.ParseExact("11/11/2011 11:11:11", "MM/dd/yyyy HH:mm:ss", null),
+                    Location = "The nearest bar",
+                    Description = "Hopefully this will work.",
+                    OrganizationID = "67ef0428-03df-4e1e-88e2-f9a589fbbfcf", //habitat for humanity
+                }
+                };
+
+            events.ForEach(ev => context.Events.AddOrUpdate(e => e.EventID, ev));
+            context.SaveChanges();
+            
         }
     }
 }
+
+
