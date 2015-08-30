@@ -3,7 +3,7 @@ namespace HelpOut.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class UsersRolesSeed_Signups : DbMigration
+    public partial class userRoleSeed : DbMigration
     {
         public override void Up()
         {

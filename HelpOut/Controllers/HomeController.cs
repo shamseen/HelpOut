@@ -14,9 +14,11 @@ namespace HelpOut.Controllers
         {
             string currentUserID = User.Identity.GetUserId();
 
-            ApplicationUser user = (from u in db.Users
-                   where u.Id == currentUserID
-                   select u).First();
+            //ApplicationUser user = (from u in db.Users
+            //       where u.Id == currentUserID
+            //       select u).First();
+
+            ApplicationUser user = new ApplicationUser();
 
             return View(user);
 

@@ -7,13 +7,13 @@ namespace HelpOut.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class UsersRolesSeed_Signups : IMigrationMetadata
+    public sealed partial class userRoleSeed : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(UsersRolesSeed_Signups));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(userRoleSeed));
         
         string IMigrationMetadata.Id
         {
-            get { return "201508292304561_UsersRolesSeed_Signups"; }
+            get { return "201508301502510_userRoleSeed"; }
         }
         
         string IMigrationMetadata.Source
