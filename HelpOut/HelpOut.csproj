@@ -206,9 +206,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201508292304561_UsersRolesSeed_Signups.cs" />
-    <Compile Include="Migrations\201508292304561_UsersRolesSeed_Signups.Designer.cs">
-      <DependentUpon>201508292304561_UsersRolesSeed_Signups.cs</DependentUpon>
+    <Compile Include="Migrations\201508301601395_SeedRolesUsers.cs" />
+    <Compile Include="Migrations\201508301601395_SeedRolesUsers.Designer.cs">
+      <DependentUpon>201508301601395_SeedRolesUsers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201508301608258_SeedEvents.cs" />
+    <Compile Include="Migrations\201508301608258_SeedEvents.Designer.cs">
+      <DependentUpon>201508301608258_SeedEvents.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -385,8 +389,11 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201508292304561_UsersRolesSeed_Signups.resx">
-      <DependentUpon>201508292304561_UsersRolesSeed_Signups.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201508301601395_SeedRolesUsers.resx">
+      <DependentUpon>201508301601395_SeedRolesUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508301608258_SeedEvents.resx">
+      <DependentUpon>201508301608258_SeedEvents.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -12,11 +12,15 @@ namespace HelpOut.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
         public ActionResult Index()
         {
+            ApplicationUser user = new ApplicationUser();
             string currentUserID = User.Identity.GetUserId();
 
-            ApplicationUser user = (from u in db.Users
-                   where u.Id == currentUserID
-                   select u).First();
+            if (Request.IsAuthenticated)
+            {
+                user = (from u in db.Users
+                        where u.Id == currentUserID
+                        select u).First();
+            }
 
             return View(user);
 
