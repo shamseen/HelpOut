@@ -164,19 +164,17 @@ namespace HelpOut.Migrations
             context.SaveChanges();
 
             //seeding events
-            var events = new List<Event> {
-
+            context.Events.AddOrUpdate(e => e.EventID,
                 new Event
                 {
                     EventID = 1,
                     Name = "First Ever Fundraiser to Build Seed!",
                     DateTime = DateTime.ParseExact("06/15/2015 13:45:00", "MM/dd/yyyy HH:mm:ss", null),
                     Location = "Shamseen's house",
-                    Description = "We're praying this will actually work and we can show users' events.",
-                    //OrganizationID = "67ef0428-03df-4e1e-88e2-f9a589fbbfcf", //habitat for humanity
+                    Description = "Nunc cursus in purus sit amet maximus. Nam a nulla ac arcu iaculis accumsan non ac lectus. Curabitur turpis mi, pharetra pulvinar commodo vel, efficitur et lorem. Ut fermentum egestas felis, consectetur rutrum nunc molestie sit amet. Pellentesque pretium erat et mi hendrerit vehicula.",
                     OrganizationID = (from u in context.Users
-                                     where u.Email == "h4h@gmail.com"
-                                     select u.Id).First().ToString()
+                                      where u.Email == "h4h@gmail.com"
+                                      select u.Id).First().ToString()
                 },
 
                 new Event
@@ -185,11 +183,10 @@ namespace HelpOut.Migrations
                     Name = "George-Only Party",
                     DateTime = DateTime.ParseExact("01/15/2020 09:15:00", "MM/dd/yyyy HH:mm:ss", null),
                     Location = "White House",
-                    Description = "Spreading the seed. JOHN IS NOT ALLOWED. JUST LEAVE, JOHN.",
-                    //OrganizationID = "67ef0428-03df-4e1e-88e2-f9a589fbbfcf", //habitat for humanity
+                    Description = "Vivamus eget placerat neque. In hac habitasse platea dictumst. Pellentesque sollicitudin leo eget est congue, sit amet cursus ipsum interdum. Nulla id mi ut nisi mattis vulputate in ut lacus. Sed nulla est, condimentum et vehicula ut, gravida quis dolor. Aenean quis molestie urna. ",
                     OrganizationID = (from u in context.Users
-                                     where u.Email == "h4h@gmail.com"
-                                     select u.Id).First().ToString()
+                                      where u.Email == "h4h@gmail.com"
+                                      select u.Id).First().ToString()
                 },
 
                 new Event
@@ -198,17 +195,12 @@ namespace HelpOut.Migrations
                     Name = "Kennedy Family Reunion",
                     DateTime = DateTime.ParseExact("11/11/2011 11:11:11", "MM/dd/yyyy HH:mm:ss", null),
                     Location = "The nearest bar",
-                    Description = "Hopefully this will work.",
-                    //OrganizationID = "67ef0428-03df-4e1e-88e2-f9a589fbbfcf", //habitat for humanity
+                    Description = "Vivamus viverra risus tellus, at bibendum sapien venenatis nec. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer blandit cursus ex eu luctus. Cras interdum purus eget tempus dictum. Aenean pretium molestie urna, eu cursus lacus mattis nec.",
                     OrganizationID = (from u in context.Users
-                                     where u.Email == "redcross@gmail.com"
-                                     select u.Id).First().ToString()
+                                      where u.Email == "redcross@gmail.com"
+                                      select u.Id).First().ToString()
                 }
-                };
-
-            //adding each event to actual database
-            events.ForEach(ev => context.Events.AddOrUpdate(e => e.EventID, ev));
-            context.SaveChanges();
+                );
 
         }
     }
