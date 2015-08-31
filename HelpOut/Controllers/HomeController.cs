@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using HelpOut.Models;
-
+using Microsoft.AspNet.Identity;
 namespace HelpOut.Controllers
 {
     public class HomeController : Controller
@@ -12,10 +12,17 @@ namespace HelpOut.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
         public ActionResult Index()
         {
-            List<ApplicationUser> userList = new List<ApplicationUser>();
-            ViewBag.isLoggedIn = false;
-            LoginViewModel login = new LoginViewModel();
-            return View(login);
+            ApplicationUser user = new ApplicationUser();
+            string currentUserID = User.Identity.GetUserId();
+
+            if (Request.IsAuthenticated)
+            {
+                user = (from u in db.Users
+                        where u.Id == currentUserID
+                        select u).First();
+            }
+
+            return View(user);
 
         }
 

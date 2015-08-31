@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using HelpOut.Models;
+using Microsoft.AspNet.Identity;
 
 namespace HelpOut.Controllers
 {
@@ -79,7 +80,45 @@ namespace HelpOut.Controllers
                 return HttpNotFound();
             }
 
+            ViewBag.rsvpText = "RSVP!";
             return View(@event);
+        }
+
+        
+        [HttpPost, ActionName("Details")]
+        [Authorize(Roles = "Volunteer")]
+        [ValidateAntiForgeryToken]
+        public ActionResult UpdateSignups(int eventID, string volunteerID)
+        {
+            ApplicationUser volunteer = (from u in db2.Users
+                             where u.Id == volunteerID
+                             select u).Include("EventsAttending").Single();
+
+
+            Event @event = (from e in db2.Events
+                            where e.EventID == eventID
+                            select e).Include("Attendees").Include("Organization").Single();
+            //if (volunteer.EventsAttending == null)
+            //    ViewBag.rsvpText = "Vol List";
+
+            //else if (@event.Attendees == null)
+            //    ViewBag.rsvpText = "Event List";
+            volunteer.EventsAttending.Add(@event);
+            @event.Attendees.Add(volunteer);
+
+            EventDetailDTO dto = new EventDetailDTO() {
+                EventID = @event.EventID,
+                Name = @event.Name,
+                DateTime = @event.DateTime,
+                Location = @event.Location,
+                Description = @event.Description,
+                OrganizationName = @event.Organization.FullName
+            };
+
+            ViewBag.rsvpText = "Attending!";
+
+            return View(dto);
+
         }
 
         // GET: Event/Create
@@ -95,10 +134,12 @@ namespace HelpOut.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "EventID,Name,DateTime,Location,Description,OrganizationID")] Event @event)
+        public ActionResult Create([Bind(Include = "EventID,Name,DateTime,Location,Description")] Event @event)
         {
+            
             if (ModelState.IsValid)
             {
+                @event.OrganizationID = User.Identity.GetUserId();
                 db2.Events.Add(@event);
                 db2.SaveChanges();
                 return RedirectToAction("Index");
@@ -141,6 +182,7 @@ namespace HelpOut.Controllers
             ViewBag.OrganizationID = new SelectList(db2.Users, "Id", "Email", @event.OrganizationID);
             return View(@event);
         }
+
 
         // GET: Event/Delete/5
         public ActionResult Delete(int? id)
