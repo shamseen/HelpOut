@@ -1,95 +1,60 @@
 ﻿@using Microsoft.AspNet.Identity
-@model HelpOut.Models.EventDetailDTO
+@model HelpOut.Models.Event
 
 @{
     ViewBag.Title = "Details";
+    
 }
 
 <h3>Event Details</h3>
 
-<div class="col-md-9">
-    <h1>@Model.Name</h1>
-    by @Model.OrganizationName 
+<div class="row">
+    <div class="col-md-3">
+        <h1>@Model.Name</h1>
+        by @Model.Organization.FullName
 
-    <h4>When: @Model.DateTime <br />
-    Where: @Model.Location <br /> </h4>
-</div>
+        <h4>
+            When: @Model.DateTime <br />
+            Where: @Model.Location <br />
+        </h4>
+    </div>
 
-<div class="col-md-3">
-    <br/>
+    <div class="col-md-3">
+        <h3>placeholder <br />/for <br /> map or image</h3>
+    </div>
+    <div class="col-md-3">
+        <br />
 
-    @if (User.IsInRole("Organization"))
-    {
-        @Html.ActionLink("Edit Event", "Edit", new { id = Model.EventID }, new { @class = "btn btn-default btn-block" })
-        @Html.ActionLink("Delete Event", "Delete", new { id = Model.EventID }, new { @class = "btn btn-danger btn-block" })
-    }
-
-    else
-    {
-        @*<button type="button" class="btn btn-warning btn-block">RSVP! (Empty Button)</button>*@
-        @*@Html.ActionLink("RSVP!", "UpdateSignups", new { eventID = Model.EventID, volunteerID = User.Identity.GetUserId() }, new { @class = "btn btn-default btn-block" })*@
-        using (@Html.BeginForm("Details", "Event", new { eventID = Model.EventID, volunteerID = User.Identity.GetUserId() }))
-        { 
-        @Html.AntiForgeryToken()
-        <input type="submit" class = "btn btn-default btn-block" value=@ViewBag.rsvpText /> 
+        @if (Model.OrganizationID == User.Identity.GetUserId())
+        {
+            @Html.ActionLink("Edit Event", "Edit", new { id = Model.EventID }, new { @class = "btn btn-default btn-block" })
+            @Html.ActionLink("Delete Event", "Delete", new { id = Model.EventID }, new { @class = "btn btn-danger btn-block" })
         }
-    }
+
+        else if (!User.IsInRole("Organization"))
+        {
+            using (@Html.BeginForm("Details", "Event", new { eventID = Model.EventID, volunteerID = User.Identity.GetUserId() }))
+            {
+                @Html.AntiForgeryToken()
+
+                ViewBag.rsvpText = ViewBag.Attending ? "Attending!" : "RSVP!";
+                <input type="submit" class="btn btn-default btn-block" value=@ViewBag.rsvpText />
+            }
+        }
+    </div>
+
 </div>
 
-<hr/>
+<hr />
 <div class="row">
     <div class="col-xs-12">
-        <h2>Empty space we have no idea what to use for..</h2>
+        <h2>Description</h2>
+        @Model.Description
     </div>
 </div>
-
-
-@*<div>
-        <h4>Event</h4>
-        <hr />
-        <dl class="dl-horizontal">
-            <dt>
-                Organization
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.OrganizationName)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Name)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Name)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.DateTime)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.DateTime)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Location)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Location)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Description)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Description)
-            </dd>
-
-        </dl>
-    </div>*@
-<div class="row">
+<br />
+<br />
+<hr />
+<div class="row col-xs-12">
     @Html.ActionLink("List of Events", "Index")
 </div>
