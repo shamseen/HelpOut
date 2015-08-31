@@ -13,6 +13,5 @@ namespace HelpOut.Models
         public string Location { get; set; }
         public string Description { get; set; }
         public string OrganizationName { get; set; }
-        public string OrganizationID { get; internal set; }
     }
 }

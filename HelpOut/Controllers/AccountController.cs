@@ -180,8 +180,7 @@ namespace HelpOut.Controllers
                 switch (selectedRole)
                 {
                     case "Organization": user.EventsCreated = new List<Event>(); break;
-                    case "Vounteer": user.EventsAttending = new List<Event>(); break;
-                    default: break;
+                    default: user.EventsAttending = new List<Event>(); break;
                 }
 
 

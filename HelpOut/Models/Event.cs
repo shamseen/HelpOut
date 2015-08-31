@@ -23,7 +23,7 @@ namespace HelpOut.Models
 
         //navigation property
         //[ForeignKey("OrganizationID")] //workaround for the foreign key mapping issue
-        public ApplicationUser Organization { get; set; }
+        public virtual ApplicationUser Organization { get; set; }
         public virtual ICollection<ApplicationUser> Attendees { get; set; }
     }
 }

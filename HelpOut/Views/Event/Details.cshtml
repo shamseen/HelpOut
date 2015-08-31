@@ -20,7 +20,7 @@
     </div>
 
     <div class="col-md-3">
-        <h3>placeholder <br />/for <br /> map/image</h3>
+        <h3>placeholder <br />/for <br /> map or image</h3>
     </div>
     <div class="col-md-3">
         <br />
@@ -33,8 +33,6 @@
 
         else if (!User.IsInRole("Organization"))
         {
-            @*<button type="button" class="btn btn-warning btn-block">RSVP! (Empty Button)</button>*@
-            @*@Html.ActionLink("RSVP!", "UpdateSignups", new { eventID = Model.EventID, volunteerID = User.Identity.GetUserId() }, new { @class = "btn btn-default btn-block" })*@
             using (@Html.BeginForm("Details", "Event", new { eventID = Model.EventID, volunteerID = User.Identity.GetUserId() }))
             {
                 @Html.AntiForgeryToken()

@@ -100,16 +100,14 @@ namespace HelpOut.Controllers
             Event @event = (from e in db2.Events
                             where e.EventID == eventID
                             select e).Include("Attendees").Include("Organization").Single();
-            //if (volunteer.EventsAttending == null)
-            //    ViewBag.rsvpText = "Vol List";
-
-            //else if (@event.Attendees == null)
-            //    ViewBag.rsvpText = "Event List";
+            
+            //adding to respective lists ==> automatically updates signup table
             volunteer.EventsAttending.Add(@event);
             @event.Attendees.Add(volunteer);
+
+            //changing RSVP btn text to "Attending!"
             ViewBag.Attending = true;
             db2.SaveChanges();
-            //ViewBag.rsvpText = "Attending!";
 
             return View(@event);
 
