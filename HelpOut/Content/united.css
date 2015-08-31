@@ -18,6 +18,7 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 body {
+  padding-top: 36px;
   margin: 0;
 }
 article,
