@@ -203,16 +203,13 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\VMController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201508301601395_SeedRolesUsers.cs" />
-    <Compile Include="Migrations\201508301601395_SeedRolesUsers.Designer.cs">
-      <DependentUpon>201508301601395_SeedRolesUsers.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201508301608258_SeedEvents.cs" />
-    <Compile Include="Migrations\201508301608258_SeedEvents.Designer.cs">
-      <DependentUpon>201508301608258_SeedEvents.cs</DependentUpon>
+    <Compile Include="Migrations\201508311431177_Intial.cs" />
+    <Compile Include="Migrations\201508311431177_Intial.Designer.cs">
+      <DependentUpon>201508311431177_Intial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -226,6 +223,14 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\ASPNETDB.MDF" />
+    <Content Include="App_Data\aspnetdb_log.ldf">
+      <DependentUpon>ASPNETDB.MDF</DependentUpon>
+    </Content>
+    <Content Include="App_Data\HelpOut.mdf" />
+    <Content Include="App_Data\HelpOut_log.ldf">
+      <DependentUpon>HelpOut.mdf</DependentUpon>
+    </Content>
     <Content Include="bin\Antlr3.Runtime.dll" />
     <Content Include="bin\Antlr3.Runtime.pdb" />
     <Content Include="bin\EntityFramework.dll" />
@@ -380,20 +385,17 @@
     <Content Include="Views\User\Details.cshtml" />
     <Content Include="Views\User\Edit.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
+    <Content Include="Views\VM\Details.cshtml" />
+    <Content Include="Views\VM\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201508301601395_SeedRolesUsers.resx">
-      <DependentUpon>201508301601395_SeedRolesUsers.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201508301608258_SeedEvents.resx">
-      <DependentUpon>201508301608258_SeedEvents.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201508311431177_Intial.resx">
+      <DependentUpon>201508311431177_Intial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

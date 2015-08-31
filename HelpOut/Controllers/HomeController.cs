@@ -17,7 +17,7 @@ namespace HelpOut.Controllers
 
             if (Request.IsAuthenticated)
             {
-                user = (from u in db.Users
+                    user = (from u in db.Users
                         where u.Id == currentUserID
                         select u).First();
             }
