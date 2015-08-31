@@ -1,4 +1,5 @@
-﻿@model HelpOut.Models.EventDetailDTO
+﻿@using Microsoft.AspNet.Identity
+@model HelpOut.Models.EventDetailDTO
 
 @{
     ViewBag.Title = "Details";
@@ -10,21 +11,35 @@
     <h1>@Model.Name</h1>
     by @Model.OrganizationName 
 
-    <h4>@Model.DateTime <br />
-    @Model.Location <br /> </h4>
+    <h4>When: @Model.DateTime <br />
+    Where: @Model.Location <br /> </h4>
 </div>
 
 <div class="col-md-3">
     <br/>
-    <input type="submit" value="RSVP!" class="btn btn-warning btn-block" /> 
-    <input type="submit" value="Edit Event" class="btn btn-default btn-block" />
-    <input type="submit" value="Delete Event" class="btn btn-danger btn-block" />
+
+    @if (User.IsInRole("Organization"))
+    {
+        @Html.ActionLink("Edit Event", "Edit", new { id = Model.EventID }, new { @class = "btn btn-default btn-block" })
+        @Html.ActionLink("Delete Event", "Delete", new { id = Model.EventID }, new { @class = "btn btn-danger btn-block" })
+    }
+
+    else
+    {
+        @*<button type="button" class="btn btn-warning btn-block">RSVP! (Empty Button)</button>*@
+        @*@Html.ActionLink("RSVP!", "UpdateSignups", new { eventID = Model.EventID, volunteerID = User.Identity.GetUserId() }, new { @class = "btn btn-default btn-block" })*@
+        using (@Html.BeginForm("Details", "Event", new { eventID = Model.EventID, volunteerID = User.Identity.GetUserId() }))
+        { 
+        @Html.AntiForgeryToken()
+        <input type="submit" class = "btn btn-default btn-block" value=@ViewBag.rsvpText /> 
+        }
+    }
 </div>
 
 <hr/>
 <div class="row">
     <div class="col-xs-12">
-        <h2>List of events..</h2>
+        <h2>Empty space we have no idea what to use for..</h2>
     </div>
 </div>
 
@@ -75,7 +90,6 @@
 
         </dl>
     </div>*@
-@*<div class="row">
-    @Html.ActionLink("Edit", "Edit", new { id = Model.EventID }) |
-    @Html.ActionLink("Back to List", "Index")
-</div>*@
+<div class="row">
+    @Html.ActionLink("List of Events", "Index")
+</div>

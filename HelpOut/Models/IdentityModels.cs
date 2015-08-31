@@ -38,14 +38,30 @@ namespace HelpOut.Models
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
+
         //public DbSet<ApplicationUser> ApplicationUsers { get; set; }
         public  DbSet<Event> Events { get; set; }
+
+
 
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
         }
 
+
         //public System.Data.Entity.DbSet<HelpOut.Models.ApplicationUser> ApplicationUsers { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Event>()
+                .HasMany(e => e.Attendees).WithMany(u => u.EventsAttending)
+                .Map(t => t.MapLeftKey("EventID")
+                    .MapRightKey("UserID")
+                    .ToTable("Signups"));
+        }
+
     }
 }
