@@ -41,7 +41,7 @@ namespace HelpOut.Models
 
         //public DbSet<ApplicationUser> ApplicationUsers { get; set; }
         public  DbSet<Event> Events { get; set; }
-
+        
 
 
         public static ApplicationDbContext Create()
@@ -62,6 +62,8 @@ namespace HelpOut.Models
                     .MapRightKey("UserID")
                     .ToTable("Signups"));
         }
+
+        public System.Data.Entity.DbSet<HelpOut.Models.RegisterViewModel> ApplicationUsers { get; set; }
 
     }
 }

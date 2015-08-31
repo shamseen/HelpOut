@@ -199,9 +199,11 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ApplicationUserController.cs" />
     <Compile Include="Controllers\EventController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\RegisterViewModelsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -221,6 +223,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Models\UserProfiles.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -374,6 +377,17 @@
     <Content Include="Views\Event\Details.cshtml" />
     <Content Include="Views\Event\Edit.cshtml" />
     <Content Include="Views\Event\Index.cshtml" />
+    <Content Include="Views\Manage\Edit.cshtml" />
+    <Content Include="Views\ApplicationUser\Create.cshtml" />
+    <Content Include="Views\ApplicationUser\Delete.cshtml" />
+    <Content Include="Views\ApplicationUser\Details.cshtml" />
+    <Content Include="Views\ApplicationUser\Edit.cshtml" />
+    <Content Include="Views\ApplicationUser\Index.cshtml" />
+    <Content Include="Views\RegisterViewModels\Create.cshtml" />
+    <Content Include="Views\RegisterViewModels\Delete.cshtml" />
+    <Content Include="Views\RegisterViewModels\Details.cshtml" />
+    <Content Include="Views\RegisterViewModels\Edit.cshtml" />
+    <Content Include="Views\RegisterViewModels\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
