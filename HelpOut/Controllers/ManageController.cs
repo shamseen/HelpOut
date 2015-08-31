@@ -33,9 +33,9 @@ namespace HelpOut.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -82,7 +82,8 @@ namespace HelpOut.Controllers
                 ViewData.Add("Location", currentUser.Location);
                 ViewData.Add("Description", currentUser.Description);
                 ViewData.Add("Website", currentUser.Website);
-              
+                ViewData.Add("Email", currentUser.Email);
+
             }
             return View(model);
         }
@@ -343,7 +344,7 @@ namespace HelpOut.Controllers
             base.Dispose(disposing);
         }
 
-#region Helpers
+        #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
 
@@ -394,6 +395,6 @@ namespace HelpOut.Controllers
             Error
         }
 
-#endregion
+        #endregion
     }
 }
