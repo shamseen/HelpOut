@@ -62,12 +62,12 @@ namespace HelpOut.Models
         public bool RememberMe { get; set; }
     }
 
-    public class RegisterViewModel
+    public class RegisterViewModel : ApplicationUser
     {
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
-        public string Email { get; set; }
+        public override string Email { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
@@ -79,6 +79,12 @@ namespace HelpOut.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+        
+        
+        public string FullName { get; set; }
+        public string Location { get; set; }
+        public string Description { get; set; }
+        public string Website { get; set; }
     }
 
     public class ResetPasswordViewModel

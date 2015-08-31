@@ -3,20 +3,31 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using HelpOut.DAL;
 using HelpOut.Models;
+
+using System.Net;
+
+using Microsoft.AspNet.Identity;
 
 namespace HelpOut.Controllers
 {
     public class HomeController : Controller
     {
+        
         private ApplicationDbContext db = new ApplicationDbContext();
         public ActionResult Index()
         {
-            List<ApplicationUser> userList = new List<ApplicationUser>();
-            ViewBag.isLoggedIn = false;
-            LoginViewModel login = new LoginViewModel();
-            return View(login);
+            ApplicationUser user = new ApplicationUser();
+            string currentUserID = User.Identity.GetUserId();
+
+            if (Request.IsAuthenticated)
+            {
+                user = (from u in db.Users
+                        where u.Id == currentUserID
+                        select u).First();
+            }
+
+            return View(user);
 
         }
 
@@ -45,6 +56,34 @@ namespace HelpOut.Controllers
             //}
             return View();
         }
+        //public ActionResult userprofile(string? id)
+        //{
+        //    if (id = null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+
+        //    var myuser = (from e in db.Users
+        //                  where e.Id = id
+        //                  select new EventDetailDTO()
+        //                  {
+        //                      EventID = e.EventID,
+        //                      Name = e.Name,
+        //                      DateTime = e.DateTime,
+        //                      Location = e.Location,
+        //                      Description = e.Description,
+        //                      OrganizationName = e.Organization.FullName
+        //                  }).First();
+
+        //    if (myuser == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+
+        //    return View(@event);
+
+           
+        //}
 
         public ActionResult About()
         {

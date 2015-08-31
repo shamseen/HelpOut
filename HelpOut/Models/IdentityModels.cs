@@ -13,22 +13,15 @@ namespace HelpOut.Models
     public class ApplicationUser : IdentityUser
     {
 
-        //public int ApplicationUserID { get; set;}
         public string FullName { get; set; }
         public string Location { get; set; }
-
-        [Required(ErrorMessage = "Your must provide a PhoneNumber")]
-        [Display(Name = "PhoneNumber")]
-        [DataType(DataType.PhoneNumber)]
-        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Not a valid Phone number")]
-        //another regular expression: @"^(?:\d{8}|00\d{10}|\+\d{2}\d{8})$"
-        public string PhoneNumber { get; set; }
         public string Description { get; set; }
         public string Website { get; set; }
 
         //navigation properties
         public ICollection<Event> EventsAttending { get; set; } //for volunteers
         public virtual ICollection<Event> EventsCreated { get; set; } //for organizations
+
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
@@ -45,12 +38,30 @@ namespace HelpOut.Models
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
-        
-        public DbSet<Event> Events { get; set; }
+
+        //public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+        public  DbSet<Event> Events { get; set; }
+
+
 
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
         }
+
+
+        //public System.Data.Entity.DbSet<HelpOut.Models.ApplicationUser> ApplicationUsers { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Event>()
+                .HasMany(e => e.Attendees).WithMany(u => u.EventsAttending)
+                .Map(t => t.MapLeftKey("EventID")
+                    .MapRightKey("UserID")
+                    .ToTable("Signups"));
+        }
+
     }
 }

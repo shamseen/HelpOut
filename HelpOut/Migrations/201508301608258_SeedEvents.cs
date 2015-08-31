@@ -1,9 +1,9 @@
-namespace HelpOut.HelpOutDALContext
+namespace HelpOut.Migrations
 {
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class SeedDataAdded : DbMigration
+    public partial class SeedEvents : DbMigration
     {
         public override void Up()
         {
