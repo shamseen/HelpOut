@@ -76,31 +76,40 @@
     <p class="lead">Connecting volunteers to the causes that need them</p>
 </div>*@
 
-@*@if (Request.IsAuthenticated)
+@if (Request.IsAuthenticated)
 {
     if (User.IsInRole("Organization"))
     {
         <h2>Events Created:</h2>
 
-        <ul>
-        @foreach (Event e in Model.EventsCreated)
+        
+
+        if (Model.EventsCreated.Count > 0)
         {
-            <li>@Html.ActionLink(e.Name, "Details", new { controller = "Event", id = e.EventID} ) </li>         
+            <ul>
+                @foreach (Event e in Model.EventsCreated)
+                {
+                <li>@Html.ActionLink(e.Name, "Details", new { controller = "Event", id = e.EventID }) </li>
+                }
+            </ul>
         }
-        </ul>
     }
 
     else if (User.IsInRole("Volunteer"))
     {
         <h2>Events Attending:</h2>
+
+        if (Model.EventsAttending.Count > 0)
+        {
         <ul>
             @foreach (Event e in Model.EventsAttending)
             {
                 <li>@Html.ActionLink(e.Name, "Details", new { controller = "Event", id = e.EventID }) </li>
             }
         </ul>
+        }
     }
-}*@
+}
 @*<div class="col-md-4">
     <h2>Get more libraries</h2>
     <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
