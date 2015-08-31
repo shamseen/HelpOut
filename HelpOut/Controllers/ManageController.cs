@@ -7,6 +7,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using HelpOut.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace HelpOut.Controllers
 {
@@ -32,9 +33,9 @@ namespace HelpOut.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -72,6 +73,18 @@ namespace HelpOut.Controllers
                 Logins = await UserManager.GetLoginsAsync(userId),
                 BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
             };
+
+            if (ModelState.IsValid)
+            {
+                var currentUserID = User.Identity.GetUserId();
+                var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+                var currentUser = manager.FindById(User.Identity.GetUserId());
+                ViewData.Add("Location", currentUser.Location);
+                ViewData.Add("Description", currentUser.Description);
+                ViewData.Add("Website", currentUser.Website);
+                ViewData.Add("Email", currentUser.Email);
+
+            }
             return View(model);
         }
 
@@ -331,7 +344,7 @@ namespace HelpOut.Controllers
             base.Dispose(disposing);
         }
 
-#region Helpers
+        #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
 
@@ -382,6 +395,6 @@ namespace HelpOut.Controllers
             Error
         }
 
-#endregion
+        #endregion
     }
 }

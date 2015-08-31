@@ -79,6 +79,12 @@ namespace HelpOut.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+        
+        
+        public string FullName { get; set; }
+        public string Location { get; set; }
+        public string Description { get; set; }
+        public string Website { get; set; }
     }
 
     public class ResetPasswordViewModel

@@ -164,6 +164,9 @@ namespace HelpOut.Controllers
         {
             if (ModelState.IsValid)
             {
+
+               // var user = new ApplicationUser { FullName = model.FullName ,UserName = model.Email, Email = model.Email };
+
                 var user = new ApplicationUser { 
                     FullName = model.FullName,
                     Location = model.Location,
@@ -180,6 +183,7 @@ namespace HelpOut.Controllers
                     case "Vounteer": user.EventsAttending = new List<Event>(); break;
                     default: break;
                 }
+
 
                 var result = await UserManager.CreateAsync(user, model.Password);
 
