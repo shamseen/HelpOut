@@ -1,4 +1,5 @@
-﻿@model HelpOut.Models.EventDetailDTO
+﻿@using Microsoft.AspNet.Identity
+@model HelpOut.Models.EventDetailDTO
 
 @{
     ViewBag.Title = "Details";
@@ -10,8 +11,8 @@
     <h1>@Model.Name</h1>
     by @Model.OrganizationName 
 
-    <h4>@Model.DateTime <br />
-    @Model.Location <br /> </h4>
+    <h4>When: @Model.DateTime <br />
+    Where: @Model.Location <br /> </h4>
 </div>
 
 <div class="col-md-3">
@@ -25,8 +26,13 @@
 
     else
     {
-        <button type="button" class="btn btn-warning btn-block">RSVP! (Empty Button)</button>
-        @*@Html.ActionLink("RSVP", "Edit", new { id = Model.EventID }, new { @class = "btn btn-default btn-block" })*@
+        @*<button type="button" class="btn btn-warning btn-block">RSVP! (Empty Button)</button>*@
+        @*@Html.ActionLink("RSVP!", "UpdateSignups", new { eventID = Model.EventID, volunteerID = User.Identity.GetUserId() }, new { @class = "btn btn-default btn-block" })*@
+        using (@Html.BeginForm("Details", "Event", new { eventID = Model.EventID, volunteerID = User.Identity.GetUserId() }))
+        { 
+        @Html.AntiForgeryToken()
+        <input type="submit" class = "btn btn-default btn-block" value=@ViewBag.rsvpText /> 
+        }
     }
 </div>
 
