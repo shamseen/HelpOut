@@ -190,8 +190,11 @@ namespace HelpOut.Controllers
                 var context = new ApplicationDbContext();
                 var userStore = new UserStore<ApplicationUser>(context);
                 var userManager = new UserManager<ApplicationUser>(userStore);
-                user.FullName = "itWorked";
-                userManager.AddToRole(user.Id, selectedRole);
+                //user.FullName = "itWorked";
+
+                userManager.AddToRolesAsync(user.Id, selectedRole);
+
+               // userManager.AddToRole(user.Id, selectedRole);
 
                 //************************************************************************
 
