@@ -46,6 +46,18 @@
 </div>
 
 <hr />
+
+<aside>
+    <div class="sidebar bg-grayDark" style="overflow: hidden; outline: none; margin-left: -210px;">
+        <ul>
+            @foreach (var u in Model.Attendees)
+            {
+                <li>@u.FullName</li>
+            }
+        </ul>
+    </div>
+</aside>
+
 <div class="row">
     <div class="col-xs-12">
         <h2>Description</h2>
