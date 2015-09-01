@@ -62,25 +62,27 @@ namespace HelpOut.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-
+            
             var @event = (from e in db2.Events
-                         where e.EventID == id
-                         select new EventDetailDTO()
-                         {
-                             EventID = e.EventID,
-                             Name = e.Name,
-                             DateTime = e.DateTime,
-                             Location = e.Location,
-                             Description = e.Description,
-                             OrganizationName = e.Organization.FullName
-                         }).First();
+                          where e.EventID == id
+                          select e).Include("Organization").Include("Attendees").Single();
 
             if (@event == null)
             {
                 return HttpNotFound();
             }
 
-            ViewBag.rsvpText = "RSVP!";
+            string userID = User.Identity.GetUserId();
+            var user = (from u in db2.Users
+                        where u.Id == userID
+                        select u).SingleOrDefault();
+
+            if (user == null || !@event.Attendees.Contains(user))
+                ViewBag.Attending = false;
+            else
+                ViewBag.Attending = true;
+                    
+            ViewBag.rsvpText = "";
             return View(@event);
         }
 
@@ -98,26 +100,16 @@ namespace HelpOut.Controllers
             Event @event = (from e in db2.Events
                             where e.EventID == eventID
                             select e).Include("Attendees").Include("Organization").Single();
-            //if (volunteer.EventsAttending == null)
-            //    ViewBag.rsvpText = "Vol List";
-
-            //else if (@event.Attendees == null)
-            //    ViewBag.rsvpText = "Event List";
+            
+            //adding to respective lists ==> automatically updates signup table
             volunteer.EventsAttending.Add(@event);
             @event.Attendees.Add(volunteer);
 
-            EventDetailDTO dto = new EventDetailDTO() {
-                EventID = @event.EventID,
-                Name = @event.Name,
-                DateTime = @event.DateTime,
-                Location = @event.Location,
-                Description = @event.Description,
-                OrganizationName = @event.Organization.FullName
-            };
+            //changing RSVP btn text to "Attending!"
+            ViewBag.Attending = true;
+            db2.SaveChanges();
 
-            ViewBag.rsvpText = "Attending!";
-
-            return View(dto);
+            return View(@event);
 
         }
 
