@@ -9,6 +9,7 @@ using System.Net;
 
 using Microsoft.AspNet.Identity;
 using HelpOut.ModelViews;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace HelpOut.Controllers
 {
@@ -57,28 +58,41 @@ namespace HelpOut.Controllers
             //}
             return View();
         }
-        public ActionResult userprofile(string userid)
-        {
-            if (userid.Equals(null))
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+        //public ActionResult userprofile(string userid)
+        //{
+            //if (userid.Equals(null))
+            //{
+            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            //}
 
-            var myuser = (from e in db.Users
-                          where e.Id.Equals(userid)                          
-                          select new UserProfileDTO()
-                          {
-                              Name = e.FullName,
-                                                   
-                          }).Single();
+            //var myuser = (from e in db.Users
+            //              where e.Id.Equals(userid)
+            //              select new UserProfileDTO()
+            //              {
+            //                  Name = e.FullName,
 
-            if (myuser == null)
-            {
-                return HttpNotFound();
-            }
+            //              }).Single();
 
-            return View(myuser);
-        }
+
+            //var model = new UserProfileDTO
+            //{
+            //    Name="Zaman"
+            //};
+            //if (ModelState.IsValid)
+            //{
+            //    var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+            //    var currentUser = manager.FindById(userid);
+            //    ViewData.Add("Location", currentUser.Location);
+            //    ViewData.Add("Description", currentUser.Description);
+            //}
+
+            //if (myuser == null)
+            //{
+            //    return HttpNotFound();
+            //}
+
+        //    return View();
+        //}
 
         public ActionResult About()
         {
