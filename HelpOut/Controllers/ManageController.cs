@@ -279,7 +279,7 @@ namespace HelpOut.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "FullName,Location,Description,Website,Email,UserName")] RegisterViewModel applicationUser)
+        public ActionResult Edit([Bind(Include = "FullName,Location,Description,Website,Email,UserName")] ApplicationUser applicationUser)
         {
             if (ModelState.IsValid)
             {
