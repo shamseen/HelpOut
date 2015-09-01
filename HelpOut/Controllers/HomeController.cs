@@ -8,6 +8,7 @@ using HelpOut.Models;
 using System.Net;
 
 using Microsoft.AspNet.Identity;
+using HelpOut.ModelViews;
 
 namespace HelpOut.Controllers
 {
@@ -56,34 +57,28 @@ namespace HelpOut.Controllers
             //}
             return View();
         }
-        //public ActionResult userprofile(string? id)
-        //{
-        //    if (id = null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
+        public ActionResult userprofile(string userid)
+        {
+            if (userid.Equals(null))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
 
-        //    var myuser = (from e in db.Users
-        //                  where e.Id = id
-        //                  select new EventDetailDTO()
-        //                  {
-        //                      EventID = e.EventID,
-        //                      Name = e.Name,
-        //                      DateTime = e.DateTime,
-        //                      Location = e.Location,
-        //                      Description = e.Description,
-        //                      OrganizationName = e.Organization.FullName
-        //                  }).First();
+            var myuser = (from e in db.Users
+                          where e.Id.Equals(userid)                          
+                          select new UserProfileDTO()
+                          {
+                              Name = e.FullName,
+                                                   
+                          }).Single();
 
-        //    if (myuser == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
+            if (myuser == null)
+            {
+                return HttpNotFound();
+            }
 
-        //    return View(@event);
-
-           
-        //}
+            return View(myuser);
+        }
 
         public ActionResult About()
         {
