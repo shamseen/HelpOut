@@ -185,13 +185,14 @@ namespace HelpOut.Controllers
 
 
                 var result = await UserManager.CreateAsync(user, model.Password);
-
+                
                 //adding the user to a role here because it won't work in the if statement
                 var context = new ApplicationDbContext();
                 var userStore = new UserStore<ApplicationUser>(context);
                 var userManager = new UserManager<ApplicationUser>(userStore);
                 user.FullName = "itWorked";
                 userManager.AddToRole(user.Id, selectedRole);
+
                 //************************************************************************
 
                 if (result.Succeeded)
