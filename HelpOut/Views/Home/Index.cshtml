@@ -12,7 +12,11 @@
     <p class="lead">Hopefully this will look less like shit later</p>
 </div>
 
-Name: @Model.FullName
+<div class="jumbotron">
+    @Model.EventsAttending
+    @Model.Location
+
+</div>
 
 @*@if (Request.IsAuthenticated)
 {
