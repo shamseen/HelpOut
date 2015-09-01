@@ -1,22 +1,24 @@
 ﻿@model IEnumerable<HelpOut.Models.EventDTO>
 
-@{
-    ViewBag.Title = "Index";
-}
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+<div>
+    <img class="img-responsive" src="~/Content/Images/EventSearchLogo.png" alt="About Us" style="max-height: 100px; margin-top: 30px; margin-bottom: 30px">
+</div>
 
 @using (Html.BeginForm())
 {
     <p>
-        Search Events by Name, Location, or Organization: @Html.TextBox("SearchString")
-        <input type="submit" value="Search" />
+        <b>
+            Search Events by Name, Location, or Organization: @Html.TextBox("SearchString")
+            <input type="submit" value="Search" />
+        </b>
     </p>
 }
+
+<p>
+    @Html.ActionLink("Create New Event", "Create")
+</p>
 
 <table class="table">
     <tr>
@@ -27,7 +29,7 @@
             @Html.DisplayNameFor(model => model.Name)
         </th>
         <th>
-            @Html.ActionLink("Date", "Index", new {sortOrder = ViewBag.DateSortParm})
+            @Html.ActionLink("Date", "Index", new { sortOrder = ViewBag.DateSortParm })
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Location)
@@ -35,28 +37,29 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.OrganizationName)
-            @*@Html.ActionLink(item.OrganizationName, "Details", "User")*@
-        </td>
-        <td>
-            @*@Html.DisplayFor(modelItem => item.Name)*@
-            @Html.ActionLink(item.Name, "Details", new { id = item.EventID })
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateTime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Location)
-        </td>
-        <td>
-            @*@Html.ActionLink("Edit", "Edit", new { id=item.EventID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.EventID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.EventID })*@
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrganizationName)
+                @*@Html.ActionLink(item.OrganizationName, "Details", "User")*@
+            </td>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.Name)*@
+                @Html.ActionLink(item.Name, "Details", new { id = item.EventID })
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Location)
+            </td>
+            <td>
+                @*@Html.ActionLink("Edit", "Edit", new { id=item.EventID }) |
+                    @Html.ActionLink("Details", "Details", new { id=item.EventID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id=item.EventID })*@
+            </td>
+        </tr>
+    }
 
 </table>
