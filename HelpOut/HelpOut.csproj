@@ -217,6 +217,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ApplicationUsersController.cs" />
     <Compile Include="Models\Event.cs" />
     <Compile Include="Models\EventDetailDTO.cs" />
     <Compile Include="Models\EventDTO.cs" />
@@ -381,17 +382,17 @@
     <Content Include="Views\Event\Details.cshtml" />
     <Content Include="Views\Event\Edit.cshtml" />
     <Content Include="Views\Event\Index.cshtml" />
-    <Content Include="Views\Manage\Edit.cshtml" />
-    <Content Include="Views\ApplicationUser\Create.cshtml" />
-    <Content Include="Views\ApplicationUser\Delete.cshtml" />
-    <Content Include="Views\ApplicationUser\Details.cshtml" />
-    <Content Include="Views\ApplicationUser\Edit.cshtml" />
-    <Content Include="Views\ApplicationUser\Index.cshtml" />
     <Content Include="Views\RegisterViewModels\Create.cshtml" />
     <Content Include="Views\RegisterViewModels\Delete.cshtml" />
     <Content Include="Views\RegisterViewModels\Details.cshtml" />
     <Content Include="Views\RegisterViewModels\Edit.cshtml" />
     <Content Include="Views\RegisterViewModels\Index.cshtml" />
+    <Content Include="Views\Manage\Edit.cshtml" />
+    <Content Include="Views\ApplicationUsers\Create.cshtml" />
+    <Content Include="Views\ApplicationUsers\Delete.cshtml" />
+    <Content Include="Views\ApplicationUsers\Details.cshtml" />
+    <Content Include="Views\ApplicationUsers\Edit.cshtml" />
+    <Content Include="Views\ApplicationUsers\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -257,16 +257,31 @@ namespace HelpOut.Controllers
             AddErrors(result);
             return View(model);
         }
+
         private ApplicationDbContext db = new ApplicationDbContext();
         // GET: ApplicationUsers/Edit/5
-        public ActionResult Edit(string id)
+        //public ActionResult Edit(string id)
+        //{
+        //    var userid = User.Identity.GetUserId();
+        //    if (userid == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    ApplicationUser applicationUser = db.Users.Find(userid);
+        //    if (applicationUser == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(applicationUser);
+        //}
+        public async Task<ActionResult> Edit(string id)
         {
             var userid = User.Identity.GetUserId();
             if (userid == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ApplicationUser applicationUser = db.Users.Find(userid);
+            ApplicationUser applicationUser =  db.Users.Find(userid);
             if (applicationUser == null)
             {
                 return HttpNotFound();
@@ -279,16 +294,100 @@ namespace HelpOut.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "FullName,Location,Description,Website,Email,UserName")] ApplicationUser applicationUser)
+        public async Task<ActionResult> Edit([Bind(Include = "Id,FullName,Location,Description,Website,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName")] ApplicationUser applicationUser)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(applicationUser).State = EntityState.Modified;
-                db.SaveChanges();
+                await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
             return View(applicationUser);
         }
+  
+////        [HttpPost]
+////[ActionName("Edit")]
+////[ValidateAntiForgeryToken]
+////public async Task<ActionResult> Edit (ManagerUserViewModel model)
+////        {
+////            if (ModelState.IsValid)
+////            {
+////                //// Get the current application user
+////                var userid = User.Identity.GetUserId();
+////                ApplicationUser user = db.Users.Find(userid);
+
+////                // Update the details
+////                user = new ApplicationUser
+////                {
+////                    FullName = applicationUser.FullName,
+////                    Location = applicationUser.Location,
+////                    Description = applicationUser.Description,
+////                    Website = applicationUser.Website,
+////                    Email = applicationUser.Email,
+////                    UserName = applicationUser.UserName
+////                };
+       
+////                // This is the part that doesn't work
+////                var context = new ApplicationDbContext();
+////                var store = new UserStore<ApplicationUser>(context);
+////                var manager = new UserManager<ApplicationUser>(store);
+
+////                var result = await UserManager.UpdateAsync(user);
+
+////                // However, it always succeeds inspite of not updating the database
+////                if (!result.Succeeded)
+////                {
+////                    AddErrors(result);
+////                }
+////            }
+
+////            return RedirectToAction("Edit");
+////        }
+
+
+//        [HttpPost]
+//        [ValidateAntiForgeryToken]
+//        public ActionResult Edit([Bind(Include = "FullName,Location,Description,Website,Email,UserName")] ApplicationUser applicationUser)
+//        {
+//            //{
+//            //    if (ModelState.IsValid)
+//            //    {
+//            //        // Get the current application user
+//            //        var userid = User.Identity.GetUserId();
+//            //        ApplicationUser user = db.Users.Find(userid);
+
+
+//            //        // Update the details
+//            //        user = new ApplicationUser
+//            //        {
+//            //            FullName = applicationUser.FullName,
+//            //            Location = applicationUser.Location,
+//            //            Description = applicationUser.Description,
+//            //            Website = applicationUser.Website,
+//            //            Email = applicationUser.Email,
+//            //            UserName = applicationUser.Email
+//            //        };
+
+
+//            //        // This is the part that doesn't work
+//            //        var context = new ApplicationDbContext();
+//            //        var store = new UserStore<ApplicationUser>(context);
+//            //        var manager = new UserManager<ApplicationUser>(store);
+//            //        // However, it always succeeds inspite of not updating the database
+//            //        manager.UpdateAsync(applicationUser);
+//            //        var ctx = store.Context;
+                    
+//            //        return View();
+//            //    }
+//            //}
+//            if (ModelState.IsValid)
+//            {
+//                db.Entry(applicationUser).State = EntityState.Modified;
+//                db.SaveChanges();
+//                return RedirectToAction("Index");
+//            }
+//            return View();
+//        }
 
         //
         // GET: /Manage/SetPassword
