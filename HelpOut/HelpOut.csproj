@@ -205,9 +205,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201508311523313_newModel.cs" />
-    <Compile Include="Migrations\201508311523313_newModel.Designer.cs">
-      <DependentUpon>201508311523313_newModel.cs</DependentUpon>
+    <Compile Include="Migrations\201508311919001_seedUsersRoles.cs" />
+    <Compile Include="Migrations\201508311919001_seedUsersRoles.Designer.cs">
+      <DependentUpon>201508311919001_seedUsersRoles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201508311925586_seedEVents.cs" />
+    <Compile Include="Migrations\201508311925586_seedEVents.Designer.cs">
+      <DependentUpon>201508311925586_seedEVents.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -290,10 +294,16 @@
     <Content Include="bin\System.Web.WebPages.Razor.xml" />
     <Content Include="bin\System.Web.WebPages.xml" />
     <Content Include="bin\WebGrease.dll" />
-    <Content Include="Content\bootstrap-theme.css" />
-    <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\imageCarousel\volunteer1.jpg" />
+    <Content Include="Content\imageCarousel\volunteer2.jpg" />
+    <Content Include="Content\imageCarousel\volunteer3.jpg" />
+    <Content Include="Content\imageCarousel\volunteer4.jpg" />
+    <Content Include="Content\imageCarousel\volunteer5.jpg" />
+    <Content Include="Content\Images\Logo1.png" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Content\united.css" />
     <Content Include="Controllers\Content\bootstrap.css" />
     <Content Include="Controllers\Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
@@ -312,8 +322,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\bootstrap-theme.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
     <Content Include="bin\ApplicationInsights.config" />
     <Content Include="bin\HelpOut.dll.config" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -370,7 +378,6 @@
     <Content Include="Views\Event\Details.cshtml" />
     <Content Include="Views\Event\Edit.cshtml" />
     <Content Include="Views\Event\Index.cshtml" />
-    <Content Include="Views\Home\userprofile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -380,8 +387,11 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201508311523313_newModel.resx">
-      <DependentUpon>201508311523313_newModel.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201508311919001_seedUsersRoles.resx">
+      <DependentUpon>201508311919001_seedUsersRoles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508311925586_seedEVents.resx">
+      <DependentUpon>201508311925586_seedEVents.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

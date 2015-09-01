@@ -28,10 +28,11 @@ namespace HelpOut.Controllers
                         where u.Id == currentUserID
                         select u).First();
             }
-
+            
             return View(user);
 
         }
+
 
         [HttpPost]
         public ActionResult Index(LoginViewModel login)
@@ -59,6 +60,9 @@ namespace HelpOut.Controllers
             return View();
         }
         //public ActionResult userprofile(string userid)
+
+        //public ActionResult userprofile(string? id)
+
         //{
             //if (userid.Equals(null))
             //{
