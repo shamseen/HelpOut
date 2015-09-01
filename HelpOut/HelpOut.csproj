@@ -294,10 +294,15 @@
     <Content Include="bin\System.Web.WebPages.Razor.xml" />
     <Content Include="bin\System.Web.WebPages.xml" />
     <Content Include="bin\WebGrease.dll" />
-    <Content Include="Content\bootstrap-theme.css" />
-    <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\imageCarousel\volunteer1.jpg" />
+    <Content Include="Content\imageCarousel\volunteer2.jpg" />
+    <Content Include="Content\imageCarousel\volunteer3.jpg" />
+    <Content Include="Content\imageCarousel\volunteer4.jpg" />
+    <Content Include="Content\imageCarousel\volunteer5.jpg" />
+    <Content Include="Content\Images\Logo1.png" />
+    <Content Include="Content\Site.css" />
     <Content Include="Content\united.css" />
     <Content Include="Controllers\Content\bootstrap.css" />
     <Content Include="Controllers\Content\bootstrap.min.css" />
@@ -317,8 +322,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\bootstrap-theme.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
     <Content Include="bin\ApplicationInsights.config" />
     <Content Include="bin\HelpOut.dll.config" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
