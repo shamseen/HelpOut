@@ -9,6 +9,7 @@ namespace HelpOut
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
+
         }
     }
 }
