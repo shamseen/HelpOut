@@ -25,7 +25,11 @@ namespace HelpOut.Controllers
                              EventID = e.EventID,
                              Name = e.Name,
                              DateTime = e.DateTime,
-                             Location = e.Location,
+                             Address = e.Address,
+                             City = e.City,
+                             Country = e.Country,
+                             ZipCode = e.ZipCode,
+                             Description = e.Description,
                              OrganizationName = e.Organization.FullName
                          };
 
@@ -35,7 +39,10 @@ namespace HelpOut.Controllers
             if (!String.IsNullOrEmpty(searchString))
             {
                 events = events.Where(e => e.Name.ToUpper().Contains(searchString.ToUpper())
-                                       || e.Location.ToUpper().Contains(searchString.ToUpper())
+                                       || e.Address.ToUpper().Contains(searchString.ToUpper())
+                                       || e.City.ToUpper().Contains(searchString.ToUpper())
+                                       || e.Country.ToUpper().Contains(searchString.ToUpper())
+                                       || e.State.ToUpper().Contains(searchString.ToUpper())
                                        || e.OrganizationName.ToUpper().Contains(searchString.ToUpper()));
             }
 
@@ -126,7 +133,7 @@ namespace HelpOut.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "EventID,Name,DateTime,Location,Description")] Event @event)
+        public ActionResult Create([Bind(Include = "EventID,Name,DateTime,Address,City,State,ZipCode,Country,Description")] Event @event)
         {
             
             if (ModelState.IsValid)
@@ -163,7 +170,7 @@ namespace HelpOut.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "EventID,Name,DateTime,Location,Description,OrganizationID")] Event @event)
+        public ActionResult Edit([Bind(Include = "EventID,Name,DateTime,Address,City,State,ZipCode,Country,Description,OrganizationID")] Event @event)
         {
             if (ModelState.IsValid)
             {
