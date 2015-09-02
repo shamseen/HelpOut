@@ -27,6 +27,7 @@ namespace HelpOut.Controllers
                              DateTime = e.DateTime,
                              Address = e.Address,
                              City = e.City,
+                             State = e.State,
                              Country = e.Country,
                              ZipCode = e.ZipCode,
                              Description = e.Description,
@@ -41,8 +42,9 @@ namespace HelpOut.Controllers
                 events = events.Where(e => e.Name.ToUpper().Contains(searchString.ToUpper())
                                        || e.Address.ToUpper().Contains(searchString.ToUpper())
                                        || e.City.ToUpper().Contains(searchString.ToUpper())
-                                       || e.Country.ToUpper().Contains(searchString.ToUpper())
                                        || e.State.ToUpper().Contains(searchString.ToUpper())
+                                       || e.ZipCode.Contains(searchString)
+                                       || e.Country.ToUpper().Contains(searchString.ToUpper())
                                        || e.OrganizationName.ToUpper().Contains(searchString.ToUpper()));
             }
 
