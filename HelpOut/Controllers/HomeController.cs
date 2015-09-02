@@ -8,6 +8,8 @@ using HelpOut.Models;
 using System.Net;
 
 using Microsoft.AspNet.Identity;
+using HelpOut.ModelViews;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace HelpOut.Controllers
 {
@@ -31,33 +33,69 @@ namespace HelpOut.Controllers
 
         }
 
+
+        [HttpPost]
+        public ActionResult Index(LoginViewModel login)
+        {
+            //ViewBag.Message = "This log in didn't break anything.";
+
+            //ViewBag.isLoggedIn = false;
+
+            //var q = from c in db.Users
+            //        where login.Email == c.Email
+            //        select c;
+            //q = q.Where(u => u.Email.Equals(login.Email));
+
+            //int count = q.Count(u => u.Email == u.Email);
+
+            //if (count == 1 && q.First().Password == login.Password)
+            //{
+            //    User user = (from c in q
+            //                 select c).First();
+
+            //    ViewBag.isLoggedIn = true;
+            //    ViewBag.Email = user.Email;
+            //    ViewBag.FullName = user.FullName;
+            //}
+            return View();
+        }
+        //public ActionResult userprofile(string userid)
+
         //public ActionResult userprofile(string? id)
+
         //{
-        //    if (id = null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
+            //if (userid.Equals(null))
+            //{
+            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            //}
 
-        //    var myuser = (from e in db.Users
-        //                  where e.Id = id
-        //                  select new EventDetailDTO()
-        //                  {
-        //                      EventID = e.EventID,
-        //                      Name = e.Name,
-        //                      DateTime = e.DateTime,
-        //                      Location = e.Location,
-        //                      Description = e.Description,
-        //                      OrganizationName = e.Organization.FullName
-        //                  }).First();
+            //var myuser = (from e in db.Users
+            //              where e.Id.Equals(userid)
+            //              select new UserProfileDTO()
+            //              {
+            //                  Name = e.FullName,
 
-        //    if (myuser == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
+            //              }).Single();
 
-        //    return View(@event);
 
-           
+            //var model = new UserProfileDTO
+            //{
+            //    Name="Zaman"
+            //};
+            //if (ModelState.IsValid)
+            //{
+            //    var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+            //    var currentUser = manager.FindById(userid);
+            //    ViewData.Add("Location", currentUser.Location);
+            //    ViewData.Add("Description", currentUser.Description);
+            //}
+
+            //if (myuser == null)
+            //{
+            //    return HttpNotFound();
+            //}
+
+        //    return View();
         //}
 
         public ActionResult About()
