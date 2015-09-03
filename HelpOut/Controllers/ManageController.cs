@@ -87,6 +87,19 @@ namespace HelpOut.Controllers
                 ViewData.Add("FullName", currentUser.FullName);
                 ViewData.Add("PhoneNumber", currentUser.PhoneNumber);
 
+                if (User.IsInRole("Organization"))
+                {
+                    ViewBag.Role = "Organization";
+                    ViewBag.EventsLabel = "Events Created:";
+                    ViewData.Add("EventsCreated", currentUser.EventsCreated);
+                }
+                else
+                {
+                    ViewBag.Role = "Volunteer";
+                    ViewBag.EventsLabel = "Events Attending:";
+                    ViewData.Add("EventsAttending", currentUser.EventsAttending);
+                }
+
             }
             return View(model);
         }
