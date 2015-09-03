@@ -211,6 +211,15 @@ namespace HelpOut.Controllers
             return RedirectToAction("Index");
         }
 
+
+        //public ActionResult GetAttendanceRoster()
+        //{
+        //    List<Person> persons = new List<Person>();
+        //    persons.Add(new Person() { Age = 29, Name = "Rami1", Email = "Rami1@abc.com" });
+        //    persons.Add(new Person() { Age = 28, Name = "Rami2", Email = "Rami2@abc.com" });
+        //    return View(persons);
+        //}
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
