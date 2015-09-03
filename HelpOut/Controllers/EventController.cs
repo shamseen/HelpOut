@@ -211,6 +211,24 @@ namespace HelpOut.Controllers
             return RedirectToAction("Index");
         }
 
+        //Print event roster to PDF
+        public ActionResult EventRoster(int? EventID)
+        {
+            var @event = (from e in db2.Events
+                             where e.EventID == EventID
+                            select e).Include("Attendees").Single();
+
+            var volunteerAttendance = new AttendanceRoster
+            {
+                Name = @event.Name,
+                Attendees = @event.Attendees
+            };
+            
+            return new RazorPDF.PdfResult(volunteerAttendance, "EventRoster");
+        }
+
+
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

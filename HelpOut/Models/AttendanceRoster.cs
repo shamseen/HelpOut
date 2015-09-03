@@ -10,6 +10,7 @@ namespace HelpOut.Models
 {
     public class AttendanceRoster
     {
+        public int AttendanceRosterID { get; set; }
         public string Name { get; set; }
         public virtual ICollection<ApplicationUser> Attendees { get; set; }
         public bool? Present { get; set; }
