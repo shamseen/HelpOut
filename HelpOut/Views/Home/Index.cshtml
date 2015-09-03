@@ -1,14 +1,13 @@
 ﻿@using HelpOut.Models
 @using Microsoft.AspNet.Identity
 
-@*@model ApplicationUser*@
-@model IEnumerable<HelpOut.Models.EventDTO>
+@model ApplicationUser
 
 @{
     ViewBag.Title = "Home Page";
 }
-<div class="container">
-    <div class="col-md-6" style="margin-top: 30px">
+<div class="container" style="margin-top: 30px">
+    <div class="col-md-8">
         <!-- Code for image carousel -->
         <div id="myCarousel" class="carousel slide" data-ride="carousel">
             <!-- Indicators -->
@@ -62,7 +61,6 @@
                     </div>
                 </div>
             </div>
-
             <!-- Left and right controls -->
             <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
                 <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
@@ -74,56 +72,25 @@
             </a>
         </div>
     </div>
-    <div class="col-md-6" style="margin-top: 30px">
-        <div class="container-fluid" style="background-color:#e5f1c3;border:groove 1px; border-color:#e5f1c3;">
-            <h1 style="text-align:center">
-                <b>
-                    Trending Events!
-                </b>
-            </h1>
-            <table class="table table-hover">
-                <tr style="text-transform: uppercase">
-                    <th>
-                        Who
-                    </th>
-                    <th>
-                        What
-                    </th>
-                    <th>
-                        When
-                    </th>
-                    <th>
-                        Where
-                    </th>
-                </tr>
+    <div id="fb-root"></div>
+    <script>
+(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.4&appId=419634328227070";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+    <div class="fb-like" data-href="https://Helpout.azurewebsites.net" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+    <div class="col-md-4">
+        <h1 style="text-align:center">
+            <b>
+                Upcoming Events
+            </b>
+        </h1>
 
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.OrganizationName)
-                        </td>
-                        <td>
-                            @Html.ActionLink(item.Name, "Details", "Event", new { id = item.EventID }, null)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.DateTime)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.City)
-                        </td>
-                    </tr>
-                }
-
-            </table>
-        </div>
     </div>
 </div>
-
-
-
-
-
 
 @*@if (Request.IsAuthenticated)
     {
@@ -169,3 +136,8 @@
         <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
         <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
     </div>*@
+<meta property="og:url" content="https://Helpout.azurewebsites.net" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Help Out!!" />
+<meta property="og:description" content="HelpOut is a sit where organizations and volunteers can come together to create and signup for events!" />
+<meta property="og:image" content="http://helpout.azurewebsites.net/Content/imageCarousel/volunteer3.jpgg" />
