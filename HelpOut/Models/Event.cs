@@ -21,6 +21,10 @@ namespace HelpOut.Models
         [Display(Name = "Description")]
         public string Description { get; set; }
 
+
+        public string image { get; set; }
+
+
         [StringLength(50, ErrorMessage = "Address cannot be longer than 50 characters ")]
         [Display(Name = "Address")]
         public string Address { get; set; }
@@ -28,6 +32,8 @@ namespace HelpOut.Models
         [StringLength(30, ErrorMessage = "Enter a valid City")]
         [Display(Name = "City")]
         public string City { get; set; }
+
+
 
         [StringLength(20, ErrorMessage = "Enter a valid State")]
         [Display(Name = "State")]
