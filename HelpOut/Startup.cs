@@ -9,6 +9,8 @@ namespace HelpOut
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
+            Hangfire.ConfigureHangfire(app);
+            Hangfire.InitializaJobs();
 
         }
     }
