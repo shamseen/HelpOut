@@ -8,6 +8,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using HelpOut.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.Net;
 
 namespace HelpOut.Controllers
 {
@@ -83,6 +84,8 @@ namespace HelpOut.Controllers
                 ViewData.Add("Description", currentUser.Description);
                 ViewData.Add("Website", currentUser.Website);
                 ViewData.Add("Email", currentUser.Email);
+                ViewData.Add("FullName", currentUser.FullName);
+                ViewData.Add("PhoneNumber", currentUser.PhoneNumber);
 
             }
             return View(model);
@@ -171,6 +174,49 @@ namespace HelpOut.Controllers
                 await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
             }
             return RedirectToAction("Index", "Manage");
+        }
+        private ApplicationDbContext db = new ApplicationDbContext();
+        // GET: ApplicationUsers/Edit/5
+        public ActionResult Edit()
+        {
+            var userid = User.Identity.GetUserId();
+            if (userid == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            ApplicationUser applicationUser = db.Users.Find(userid);
+            if (applicationUser == null)
+            {
+                return HttpNotFound();
+            }
+            return View(applicationUser);
+
+        }
+
+
+        [HttpPost]
+        [ActionName("Edit")]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(ApplicationUser model)
+        {
+
+                if (ModelState.IsValid)
+                {
+                    var userid = User.Identity.GetUserId();
+                    ApplicationUser user = db.Users.Find(userid);
+
+                    user.FullName = model.FullName;
+                    user.Location = model.Location;
+                    user.Description = model.Description;
+                    user.Website = model.Website;
+                    user.PhoneNumber = model.PhoneNumber;
+
+                    
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+
+            return View(model);
         }
 
         //
