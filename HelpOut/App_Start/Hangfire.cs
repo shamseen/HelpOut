@@ -21,7 +21,7 @@ namespace HelpOut.App_Start
 
         public static void InitializeJobs()
         {
-            RecurringJob.AddOrUpdate<Workers.SendNotificationsJob>
+            RecurringJob.AddOrUpdate<Workers.SendNotificationsJob>(job => job.Execute(), Cron.Minutely);
         }
     }
 }
