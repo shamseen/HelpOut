@@ -21,6 +21,7 @@ namespace HelpOut.Models
         [Display(Name = "Description")]
         public string Description { get; set; }
 
+        //adding an image.
 
         public string image { get; set; }
 
