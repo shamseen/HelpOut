@@ -230,7 +230,6 @@
     <Compile Include="Domain\SMSNotificationPolicy.cs" />
     <Compile Include="Domain\TimeConverter.cs" />
     <Compile Include="Domain\Twilio\RestClient.cs" />
-    <Compile Include="Domain\UpcomingEventFinder.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
