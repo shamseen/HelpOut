@@ -21,13 +21,10 @@ namespace HelpOut.Migrations
                         ZipCode = c.String(maxLength: 9),
                         Country = c.String(maxLength: 20),
                         OrganizationID = c.String(maxLength: 128),
-                        UserProfileDTO_Id = c.String(maxLength: 128),
                     })
                 .PrimaryKey(t => t.EventID)
                 .ForeignKey("dbo.AspNetUsers", t => t.OrganizationID)
-                .ForeignKey("dbo.UserProfileDTOes", t => t.UserProfileDTO_Id)
-                .Index(t => t.OrganizationID)
-                .Index(t => t.UserProfileDTO_Id);
+                .Index(t => t.OrganizationID);
             
             CreateTable(
                 "dbo.AspNetUsers",
@@ -105,16 +102,6 @@ namespace HelpOut.Migrations
                 .Index(t => t.Name, unique: true, name: "RoleNameIndex");
             
             CreateTable(
-                "dbo.UserProfileDTOes",
-                c => new
-                    {
-                        Id = c.String(nullable: false, maxLength: 128),
-                        Name = c.String(),
-                        image = c.String(),
-                    })
-                .PrimaryKey(t => t.Id);
-            
-            CreateTable(
                 "dbo.Signups",
                 c => new
                     {
@@ -131,7 +118,6 @@ namespace HelpOut.Migrations
         
         public override void Down()
         {
-            DropForeignKey("dbo.Events", "UserProfileDTO_Id", "dbo.UserProfileDTOes");
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
             DropForeignKey("dbo.Events", "OrganizationID", "dbo.AspNetUsers");
             DropForeignKey("dbo.Signups", "UserID", "dbo.AspNetUsers");
@@ -147,10 +133,8 @@ namespace HelpOut.Migrations
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
-            DropIndex("dbo.Events", new[] { "UserProfileDTO_Id" });
             DropIndex("dbo.Events", new[] { "OrganizationID" });
             DropTable("dbo.Signups");
-            DropTable("dbo.UserProfileDTOes");
             DropTable("dbo.AspNetRoles");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetUserLogins");
