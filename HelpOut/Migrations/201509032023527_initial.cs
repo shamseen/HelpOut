@@ -3,7 +3,7 @@ namespace HelpOut.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Intial : DbMigration
+    public partial class initial : DbMigration
     {
         public override void Up()
         {
@@ -109,8 +109,8 @@ namespace HelpOut.Migrations
                         UserID = c.String(nullable: false, maxLength: 128),
                     })
                 .PrimaryKey(t => new { t.EventID, t.UserID })
-                .ForeignKey("dbo.Events", t => t.EventID, cascadeDelete: true)
-                .ForeignKey("dbo.AspNetUsers", t => t.UserID, cascadeDelete: true)
+                .ForeignKey("dbo.Events", t => t.EventID, cascadeDelete: false)
+                .ForeignKey("dbo.AspNetUsers", t => t.UserID, cascadeDelete: false)
                 .Index(t => t.EventID)
                 .Index(t => t.UserID);
             
