@@ -188,49 +188,15 @@ namespace HelpOut.Controllers
                 return HttpNotFound();
             }
             return View(applicationUser);
-            //return View();
-        }
-        //public async Task<ActionResult> Edit(string id)
-        //{
-        //    var userid = User.Identity.GetUserId();
-        //    if (userid == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    ApplicationUser applicationUser =  db.Users.Find(userid);
-        //    if (applicationUser == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-            //return View(applicationUser);
-        //}
 
-        // POST: ApplicationUsers/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<ActionResult> Edit([Bind(Include = "Id,FullName,Location,Description,Website,UserName")] ApplicationUser applicationUser)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.Entry(applicationUser).State = EntityState.Modified;
-        //        await db.SaveChangesAsync();
-        //        return RedirectToAction("Index");
-        //    }
-        //    return View(applicationUser);
-        //}
+        }
+
 
         [HttpPost]
         [ActionName("Edit")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(ApplicationUser model)
+        public ActionResult Edit(ApplicationUser model)
         {
-            if (ModelState.IsValid)
-            {
-                //// Get the current application user
-                //var userid = User.Identity.GetUserId();
-                //ApplicationUser user = db.Users.Find(userid);
 
                 if (ModelState.IsValid)
                 {
@@ -242,26 +208,12 @@ namespace HelpOut.Controllers
                     user.Description = model.Description;
                     user.Website = model.Website;
 
-                    UserManager.Update(user);
+                    
                     db.SaveChanges();
                     return RedirectToAction("Index");
                 }         
-              
-
-                //// This is the part that doesn't work
-                //var context = new ApplicationDbContext();
-                //var store = new UserStore<ApplicationUser>(context);
-                //var manager = new UserManager<ApplicationUser>(store);
-
-
-                //// However, it always succeeds inspite of not updating the database
-                //if (!result.Succeeded)
-                //{
-                //    AddErrors(result);
-                //}
-            }
-
-            //return RedirectToAction("Edit");
+          
+            
             return View(model);
         }
 
