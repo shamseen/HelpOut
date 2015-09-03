@@ -212,10 +212,10 @@ namespace HelpOut.Controllers
         }
 
         //Print event roster to PDF
-        public ActionResult EventRoster(int? EventID)
+        public ActionResult EventRoster(int? id)
         {
             var @event = (from e in db2.Events
-                             where e.EventID == EventID
+                             where e.EventID == id
                             select e).Include("Attendees").Single();
 
             var volunteerAttendance = new AttendanceRoster
