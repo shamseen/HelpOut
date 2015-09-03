@@ -11,6 +11,7 @@ namespace HelpOut.Models
         public string FullName { get; set; }
         public string Description { get; set; }
         public string Website { get; set; }
+        public string PhoneNumber { get; set; }
     }
 
     public class ExternalLoginListViewModel
