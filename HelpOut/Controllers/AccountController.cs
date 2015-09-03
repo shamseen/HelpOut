@@ -193,6 +193,7 @@ namespace HelpOut.Controllers
                 //user.FullName = "itWorked";
 
                 userManager.AddToRolesAsync(user.Id, selectedRole);
+                
 
                // userManager.AddToRole(user.Id, selectedRole);
 

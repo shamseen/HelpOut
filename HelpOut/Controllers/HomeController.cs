@@ -61,21 +61,16 @@ namespace HelpOut.Controllers
         }
         //public ActionResult userprofile(string userid)
 
-        //public ActionResult userprofile(string? id)
+        public ActionResult userprofile(string userid)
+        {
+            if (userid==null )
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
 
-        //{
-            //if (userid.Equals(null))
-            //{
-            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            //}
-
-            //var myuser = (from e in db.Users
-            //              where e.Id.Equals(userid)
-            //              select new UserProfileDTO()
-            //              {
-            //                  Name = e.FullName,
-
-            //              }).Single();
+            var myuser = (from e in db.Users
+                          where e.Id.Equals(userid)
+                          select e).Single();
 
 
             //var model = new UserProfileDTO
@@ -90,13 +85,13 @@ namespace HelpOut.Controllers
             //    ViewData.Add("Description", currentUser.Description);
             //}
 
-            //if (myuser == null)
-            //{
-            //    return HttpNotFound();
-            //}
+            if (myuser == null)
+            {
+                return HttpNotFound();
+            }
 
-        //    return View();
-        //}
+            return View(myuser);
+        }
 
         public ActionResult About()
         {

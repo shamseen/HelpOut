@@ -1,31 +1,32 @@
 ﻿@using Microsoft.AspNet.Identity
 @model HelpOut.Models.Event
 
+
 @{
     ViewBag.Title = "Details";
-    
+
 }
 
-<h3>Event Details</h3>
+    <h3>Event Details</h3>
 
-<div class="row">
-    <div class="col-md-3">
-        <h1>@Model.Name</h1>
-        by @Model.Organization.FullName
+    <div class="row">
+        <div class="col-md-3">
+            <h1>@Model.Name</h1>
+    by @Model.Organization.FullName
 
-        <h4>
-            When: @Model.DateTime <br />
-            Where: @Model.Location <br />
-        </h4>
-    </div>
+    <h4>
+    When: @Model.DateTime <br />
+    Where: @Model.Location <br />
+</h4>
+</div>
 
-    <div class="col-md-3">
-        <h3>placeholder <br />/for <br /> map or image</h3>
-    </div>
-    <div class="col-md-3">
-        <br />
+<div class="col-md-3">
+    <h3>placeholder <br />/for <br /> map or image</h3>
+</div>
+<div class="col-md-3">
+    <br />
 
-        @if (Model.OrganizationID == User.Identity.GetUserId())
+    @if (Model.OrganizationID == User.Identity.GetUserId())
         {
             @Html.ActionLink("Edit Event", "Edit", new { id = Model.EventID }, new { @class = "btn btn-default btn-block" })
             @Html.ActionLink("Delete Event", "Delete", new { id = Model.EventID }, new { @class = "btn btn-danger btn-block" })
@@ -40,22 +41,46 @@
                 ViewBag.rsvpText = ViewBag.Attending ? "Attending!" : "RSVP!";
                 <input type="submit" class="btn btn-default btn-block" value=@ViewBag.rsvpText />
             }
+            
+            <br/>
+             
+
+            <button id="modal-opener" value="Invite a Friend">open</button>
+
+            <div id="dialog-modal" title="Basic modal dialog">
+                @using (Ajax.BeginForm("Index", new AjaxOptions { UpdateTargetId = "ID", OnSuccess = "onSuccess" }))
+                {
+                    <div>
+                        <fieldset>
+                            <legend>Invite a Friend</legend>
+
+                            
+
+                            <p>
+                                <input type="submit" value="Submit" />
+                            </p>
+                        </fieldset>
+                    </div>
+                }
+            </div>
+
+
         }
-    </div>
+</div>
 
 </div>
 
 <hr />
 
 <aside>
-    <div class="sidebar bg-grayDark" style="overflow: hidden; outline: none; margin-left: -210px;">
-        <ul>
-            @foreach (var u in Model.Attendees)
+<div class="sidebar bg-grayDark" style="overflow: hidden; outline: none; margin-left: -210px;">
+    <ul>
+        @foreach (var u in Model.Attendees)
             {
                 <li>@u.FullName</li>
             }
-        </ul>
-    </div>
+    </ul>
+</div>
 </aside>
 
 <div class="row">
@@ -67,6 +92,8 @@
 <br />
 <br />
 <hr />
+
+
 <div class="row col-xs-12">
     @Html.ActionLink("List of Events", "Index")
 </div>
