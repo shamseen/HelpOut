@@ -13,17 +13,19 @@
     <h3>
         @if (Roles.IsUserInRole("Organization"))
         {
-            <span>Account Type: Organization <br /></span>
+            <span>Organization: @ViewBag.FullName<br /></span>
         }
 
         @if (Roles.IsUserInRole("Volunteer"))
         {
-            <span> Account Type: Volunteer <br /></span>
+            <span> Volunteer: @ViewBag <br /></span>
         }
         Email: @ViewBag.Email<br />
         Location: @ViewBag.Location<br />
-        Description: <h4>  @ViewBag.Description</h4>
+        Description: @ViewBag.Description<br />
+        Phone Number: @ViewBag.PhoneNumber <br />
     </h3>
+    <div>@Html.ActionLink("Edit Your Profile", "Edit")</div>
 
     <dl class="dl-horizontal">
         <dt>Password:</dt>
@@ -43,7 +45,7 @@
             <dd>
                 @Model.Logins.Count [
                 @Html.ActionLink("Manage", "ManageLogins") ]
-            </dd>   
+            </dd>
         @*
             Phone Numbers can used as a second factor of verification in a two-factor authentication system.
 

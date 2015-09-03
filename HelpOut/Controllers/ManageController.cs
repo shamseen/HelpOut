@@ -84,6 +84,8 @@ namespace HelpOut.Controllers
                 ViewData.Add("Description", currentUser.Description);
                 ViewData.Add("Website", currentUser.Website);
                 ViewData.Add("Email", currentUser.Email);
+                ViewData.Add("FullName", currentUser.FullName);
+                ViewData.Add("Contact Number", currentUser.PhoneNumber);
 
             }
             return View(model);
