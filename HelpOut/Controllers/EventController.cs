@@ -126,7 +126,6 @@ namespace HelpOut.Controllers
         [Authorize (Roles="Organization")]
         public ActionResult Create()
         {
-            ViewBag.OrganizationID = new SelectList(db2.Users, "Id", "Email");
             return View();
         }
 
@@ -146,7 +145,6 @@ namespace HelpOut.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.OrganizationID = new SelectList(db2.Users, "Id", "Email", @event.OrganizationID);
             return View(@event);
         }
 
@@ -158,12 +156,16 @@ namespace HelpOut.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Event @event = db2.Events.Find(id);
+            //Event @event = db2.Events.Find(id);
+            Event @event = (from e in db2.Events
+                            where e.EventID == id
+                            select e).Include("Attendees").Include("Organization").Single();
+
             if (@event == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.OrganizationID = new SelectList(db2.Users, "Id", "Email", @event.OrganizationID);
+            //ViewBag.OrganizationID = new SelectList(db2.Users, "Id", "Email", @event.OrganizationID);
             return View(@event);
         }
 
@@ -192,7 +194,12 @@ namespace HelpOut.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Event @event = db2.Events.Find(id);
+            //Event @event = (from e in db2.Events
+            //                where e.EventID == id
+            //                select e).Include("Attendees").Include("Organization").Single();
+
             if (@event == null)
             {
                 return HttpNotFound();

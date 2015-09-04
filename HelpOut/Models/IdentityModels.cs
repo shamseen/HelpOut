@@ -39,7 +39,6 @@ namespace HelpOut.Models
         {
         }
 
-        //public DbSet<ApplicationUser> ApplicationUsers { get; set; }
         public  DbSet<Event> Events { get; set; }
 
 
@@ -63,11 +62,8 @@ namespace HelpOut.Models
                     .ToTable("Signups"));
         }
 
+
         public System.Data.Entity.DbSet<HelpOut.ModelViews.UserProfileDTO> UserProfileDTOes { get; set; }
-
-        //public System.Data.Entity.DbSet<HelpOut.Models.ApplicationUser> ApplicationUsers { get; set; }
-
-       // public System.Data.Entity.DbSet<HelpOut.ModelViews.UserProfileDTO> UserProfileDTOs { get; set; }
 
     }
 }
