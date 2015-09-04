@@ -22,6 +22,7 @@ namespace HelpOut.Models
         public virtual ICollection<Event> EventsAttending { get; set; } //for volunteers
         public virtual ICollection<Event> EventsCreated { get; set; } //for organizations
 
+        //
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
