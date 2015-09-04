@@ -217,6 +217,12 @@ namespace HelpOut.Controllers
                 {
                     var userid = User.Identity.GetUserId();
                     ApplicationUser user = db.Users.Find(userid);
+                    
+                    //Code below doese the same thing with a linq expressions
+                    
+                    //var user = (from u in db.Users
+                    //            where u.Id == userid
+                    //            select u).SingleOrDefault();
 
                     user.FullName = model.FullName;
                     user.Location = model.Location;
