@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using HelpOut.Models;
+using System.IO;
 using Microsoft.AspNet.Identity;
 
 namespace HelpOut.Controllers
@@ -135,12 +136,37 @@ namespace HelpOut.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "EventID,Name,DateTime,Address,City,State,ZipCode,Country,Description")] Event @event)
+        public ActionResult Create([Bind(Include = "EventID,Name,DateTime,Address,City,State,ZipCode,Country,Description")] Event @event, HttpPostedFileBase upload)
         {
             
             if (ModelState.IsValid)
             {
                 @event.OrganizationID = User.Identity.GetUserId();
+                //check if image is there
+                if (upload != null && upload.ContentLength > 0)
+                {
+                    //make an image path
+                    var photo = new FilePath
+                   {
+                       FileName = System.IO.Path.GetFileName(upload.FileName),
+                       FileType = FileType.Photo
+                   };
+                    //adding paths to event
+                    @event.FilePaths = new List<FilePath>();
+                    @event.FilePaths.Add(photo);
+                    //save image file to project directory
+                    try
+                    {
+                        string directory = Server.MapPath("/Content/Images/");
+                        var fileName = Path.GetFileName(upload.FileName);
+                        upload.SaveAs(Path.Combine(directory, fileName));
+                    }
+                    catch (Exception e)
+                    {
+                        return View("Error");
+                    }
+                }
+                //add event to dbcontext and save to DB
                 db2.Events.Add(@event);
                 db2.SaveChanges();
                 return RedirectToAction("Index");

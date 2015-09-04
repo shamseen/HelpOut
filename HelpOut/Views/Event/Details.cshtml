@@ -20,7 +20,14 @@
     </div>
 
     <div class="col-md-3">
-        <h3>placeholder <br />/for <br /> map or image</h3>
+        @if (Model.FilePaths.Any(f => f.FileType == FileType.Photo))
+        {
+            
+                @Model.FilePaths.FirstOrDefault(f => f.FileType == FileType.Photo).FileName
+                <br />
+                <img src="~/Content/Images/@Model.FilePaths.FirstOrDefault(f => f.FileType == FileType.Photo).FileName" 
+                     style="height:200px; width:200px" alt="img" />
+        }  
     </div>
     <div class="col-md-3">
         <br />

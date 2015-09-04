@@ -71,6 +71,8 @@ namespace HelpOut.Models
         //[ForeignKey("OrganizationID")] //workaround for the foreign key mapping issue
         public virtual ApplicationUser Organization { get; set; }
         public virtual ICollection<ApplicationUser> Attendees { get; set; }
+
+        public virtual ICollection<FilePath> FilePaths { get; set; }
     }
 }
 
