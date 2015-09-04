@@ -13,7 +13,7 @@ namespace HelpOut.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201509032023527_initial"; }
+            get { return "201509041756074_initial"; }
         }
         
         string IMigrationMetadata.Source
