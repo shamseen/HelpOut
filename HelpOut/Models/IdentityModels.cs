@@ -65,9 +65,6 @@ namespace HelpOut.Models
 
         public System.Data.Entity.DbSet<HelpOut.ModelViews.UserProfileDTO> UserProfileDTOes { get; set; }
 
-        //public System.Data.Entity.DbSet<HelpOut.Models.ApplicationUser> ApplicationUsers { get; set; }
-
-       // public System.Data.Entity.DbSet<HelpOut.ModelViews.UserProfileDTO> UserProfileDTOs { get; set; }
 
     }
 }
