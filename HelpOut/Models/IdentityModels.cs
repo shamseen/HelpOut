@@ -40,7 +40,6 @@ namespace HelpOut.Models
         {
         }
 
-       
         public  DbSet<Event> Events { get; set; }
         public DbSet<FilePath> FilePaths { get; set; }
 
@@ -64,9 +63,6 @@ namespace HelpOut.Models
                     .ToTable("Signups"));
         }
 
-        public System.Data.Entity.DbSet<HelpOut.ModelViews.UserProfileDTO> UserProfileDTOes { get; set; }
-
-       
 
     }
 }
