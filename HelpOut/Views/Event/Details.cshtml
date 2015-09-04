@@ -101,3 +101,6 @@
 <div class="row col-xs-12">
     @Html.ActionLink("List of Events", "Index")
 </div>
+
+    @Html.ActionLink("Print Attendance Roster", "GeneratePDF", new { id = Model.EventID })
+</div>

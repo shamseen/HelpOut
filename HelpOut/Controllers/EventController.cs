@@ -218,6 +218,42 @@ namespace HelpOut.Controllers
             return RedirectToAction("Index");
         }
 
+
+        public ActionResult GetAttendanceRoster(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var @event = (from e in db2.Events
+                          where e.EventID == id
+                          select e).Include("Attendees").Single();
+
+            if (@event == null)
+            {
+                return HttpNotFound();
+            }
+
+            string userID = User.Identity.GetUserId();
+            var user = (from u in db2.Users
+                        where u.Id == userID
+                        select u).SingleOrDefault();
+
+            if (user == null || !@event.Attendees.Contains(user))
+                ViewBag.Attending = false;
+            else
+                ViewBag.Attending = true;
+
+            ViewBag.rsvpText = "";
+            return View(@event);
+        }
+
+        public ActionResult GeneratePDF(int? id)
+        {
+            return new Rotativa.ActionAsPdf("GetAttendanceRoster", new { id = id });
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
