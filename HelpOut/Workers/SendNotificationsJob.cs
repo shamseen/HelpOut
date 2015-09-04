@@ -33,10 +33,19 @@ namespace HelpOut.Workers
         private static List<Event> UpcomingEvents()
         {
             var db = new ApplicationDbContext();
-            var upcoming = (from e in db.Events
-                            where new SMSNotificationPolicy(e)
-                                .NeedsToBeSent(DateTime.Now)
-                            select e).Include("Attendees").ToList();
+            var allEvents = (from e in db.Events
+                            select e).Include("Attendees");
+            
+            var upcoming = new List<Event>();
+
+            foreach(Event e in allEvents)
+            {
+                var willSend = new SMSNotificationPolicy(e).NeedsToBeSent(DateTime.Now);
+                if (willSend)
+                {
+                    upcoming.Add(e);
+                }
+            }
 
             return upcoming;
                                       
