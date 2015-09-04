@@ -23,7 +23,7 @@ namespace HelpOut.Models
 
         //adding an image.
 
-        public string image { get; set; }
+        //public string image { get; set; }
 
 
         [StringLength(50, ErrorMessage = "Address cannot be longer than 50 characters ")]
