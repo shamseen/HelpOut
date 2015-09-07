@@ -164,9 +164,6 @@ namespace HelpOut.Controllers
         {
             if (ModelState.IsValid)
             {
-
-               // var user = new ApplicationUser { FullName = model.FullName ,UserName = model.Email, Email = model.Email };
-
                 var user = new ApplicationUser { 
                     FullName = model.FullName,
                     Location = model.Location,
@@ -186,17 +183,15 @@ namespace HelpOut.Controllers
 
                 var result = await UserManager.CreateAsync(user, model.Password);
 
-                //adding the user to a role here because it won't work in the if statement
-                var context = new ApplicationDbContext();
-                var userStore = new UserStore<ApplicationUser>(context);
-                var userManager = new UserManager<ApplicationUser>(userStore);
-                user.FullName = "itWorked";
-                userManager.AddToRole(user.Id, selectedRole);
-                //************************************************************************
 
                 if (result.Succeeded)
                 {
-                    
+                    //adding the user to a role
+                    var context = new ApplicationDbContext();
+                    var userStore = new UserStore<ApplicationUser>(context);
+                    var userManager = new UserManager<ApplicationUser>(userStore);
+                    userManager.AddToRole(user.Id, selectedRole);
+
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
 
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
@@ -409,7 +404,7 @@ namespace HelpOut.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email,FullName = model.FullName, Description=model.Description, Website=model.Website, PhoneNumber= model.PhoneNumber};
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {

@@ -13,10 +13,35 @@
     <h4>Please fill out the form below.</h4>
 
     @Html.ValidationSummary("", new { @class = "text-danger" })
+    
     <div class="form-group">
         @Html.LabelFor(m => m.FullName, "Full Name", new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
             @Html.TextBoxFor(m => m.FullName, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.UserName, "User Name", new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.ConfirmPassword, "Confirm Password", new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
         </div>
     </div>
     <div class="form-group">
@@ -38,56 +63,22 @@
         </div>
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.UserName, "User Name", new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
         @Html.LabelFor(m => m.PhoneNumber, "Phone Number", new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
             @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control" })
         </div>
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+        <label class="col-md-2 control-label">Account Type: </label>
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+            <div class="radio-inline">
+                @Html.RadioButton("selectedRole", "Organization") <strong>Organization</strong>
+            </div>
+            <div class="radio-inline">
+                @Html.RadioButton("selectedRole", "Volunteer", true) <strong>Volunteer</strong>
+            </div>
         </div>
     </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.ConfirmPassword, "Confirm Password", new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
-        </div>
-    </div>
-
-    <div>
-        <h4>Select Account Type:</h4>
-        <p>
-            <label for="option_org">Organization</label>
-            @Html.RadioButton("selectedRole", "Organization", new { id = "option_org" })
-            <label for="option_vol">Volunteer</label>
-            @Html.RadioButton("selectedRole", "Volunteer", true, new { id = "option_vol" })
-        </p>
-    </div>
-    @*@foreach (var r in ViewBag.Roles)
-        {
-            @Html.RadioButton(r.Name, ViewBag.Role)
-        }*@
-
-    @*<label class="radio-inline">
-            <input type="radio" id="selectedRole" value="Organization"/> Org
-        </label>
-        <label class="radio-inline">
-            <input type="radio" id="selectedRole" value="Volunteer" /> Vol
-        </label>*@
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
