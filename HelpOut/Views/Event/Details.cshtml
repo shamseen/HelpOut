@@ -82,13 +82,21 @@
         var elementValue = "";
 
     }
-
     google.maps.event.addDomListener(window, 'load', initialize);
+    function showValue() {
+        var elem = document.getElementById("googleMapButton")
+        if (elem.value == "Show Map")
+            elem.value = "Hide Map";
+        else
+            elem.value = "Hide Map";
+    }
 </script>
-<input type="button" id="googleMapButton" value="Show Map" onclick="" data-toggle="collapse" data-target="#googleMapCollapse" />
+
+<input type="button" onclick="showValue()" id="googleMapButton" value="Show Map" data-toggle="collapse" data-target="#googleMapCollapse" style="background-color:brown" />
 <div id="googleMapCollapse" class="collapse in">
+
     <div id="googleMap" style="width:500px;height:380px;"></div>
-    </div>
+</div>
 <aside>
     <div class="sidebar bg-grayDark" style="overflow: hidden; outline: none; margin-left: -210px;">
         <ul>
