@@ -22,7 +22,6 @@ namespace HelpOut.Models
         public virtual ICollection<Event> EventsAttending { get; set; } //for volunteers
         public virtual ICollection<Event> EventsCreated { get; set; } //for organizations
 
-        //
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
@@ -40,8 +39,9 @@ namespace HelpOut.Models
         {
         }
 
+        //public DbSet<ApplicationUser> ApplicationUsers { get; set; }
         public  DbSet<Event> Events { get; set; }
-        public DbSet<FilePath> FilePaths { get; set; }
+
 
 
         public static ApplicationDbContext Create()
@@ -63,6 +63,11 @@ namespace HelpOut.Models
                     .ToTable("Signups"));
         }
 
+        public System.Data.Entity.DbSet<HelpOut.ModelViews.UserProfileDTO> UserProfileDTOes { get; set; }
+
+        //public System.Data.Entity.DbSet<HelpOut.Models.ApplicationUser> ApplicationUsers { get; set; }
+
+       // public System.Data.Entity.DbSet<HelpOut.ModelViews.UserProfileDTO> UserProfileDTOs { get; set; }
 
     }
 }

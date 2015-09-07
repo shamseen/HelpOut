@@ -82,10 +82,6 @@
       <HintPath>..\packages\RestSharp.105.2.2\lib\net45\RestSharp.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Rotativa, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Rotativa.1.6.4\lib\net40\Rotativa.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -237,30 +233,17 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-<<<<<<< HEAD
     <Compile Include="Migrations\201509072052524_initial.cs" />
     <Compile Include="Migrations\201509072052524_initial.Designer.cs">
       <DependentUpon>201509072052524_initial.cs</DependentUpon>
-=======
-    <Compile Include="Migrations\201509041756074_initial.cs" />
-    <Compile Include="Migrations\201509041756074_initial.Designer.cs">
-      <DependentUpon>201509041756074_initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201509040230145_newModel.cs" />
-    <Compile Include="Migrations\201509040230145_newModel.Designer.cs">
-      <DependentUpon>201509040230145_newModel.cs</DependentUpon>
->>>>>>> master
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Event.cs" />
     <Compile Include="Models\EventDetailDTO.cs" />
     <Compile Include="Models\EventDTO.cs" />
-    <Compile Include="Models\FilePath.cs" />
-    <Compile Include="Models\FileType.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\UserDto.cs" />
     <Compile Include="ModelViews\UserProfileDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -287,7 +270,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Controllers\Content\Site.css" />
-    <Content Include="Rotativa\wkhtmltopdf.exe" />
     <Content Include="Scripts\ai.0.15.0-build41087.js" />
     <Content Include="Scripts\ai.0.15.0-build41087.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -300,12 +282,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
-<<<<<<< HEAD
     <None Include="Properties\PublishProfiles\HelpOut - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\HelpOut - Web Deploy.pubxml" />
-=======
-    <Content Include="App_Browsers\qt.browser" />
->>>>>>> master
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -360,10 +338,6 @@
     <Content Include="Views\Event\Details.cshtml" />
     <Content Include="Views\Event\Edit.cshtml" />
     <Content Include="Views\Event\Index.cshtml" />
-    <Content Include="Views\Manage\Edit.cshtml" />
-    <Content Include="Views\Event\GetAttendanceRoster.cshtml">
-      <SubType>Code</SubType>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -373,16 +347,8 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
     <EmbeddedResource Include="Migrations\201509072052524_initial.resx">
       <DependentUpon>201509072052524_initial.cs</DependentUpon>
-=======
-    <EmbeddedResource Include="Migrations\201509041756074_initial.resx">
-      <DependentUpon>201509041756074_initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201509040230145_newModel.resx">
-      <DependentUpon>201509040230145_newModel.cs</DependentUpon>
->>>>>>> master
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
@@ -403,7 +369,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>51182</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:56910/</IISUrl>
+          <IISUrl>https://localhost:44301/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
