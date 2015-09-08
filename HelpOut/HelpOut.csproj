@@ -270,6 +270,7 @@
     <Content Include="Content\Images\ContactLogoFix.png" />
     <Content Include="Content\Images\EventSearchLogo.png" />
     <Content Include="Content\Images\Logo1.png" />
+    <Content Include="Content\Images\NewEventSearch.png" />
     <Content Include="Content\Images\RegisterLogo.png" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\united.css" />
