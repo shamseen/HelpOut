@@ -3,7 +3,7 @@ namespace HelpOut.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Intial : DbMigration
+    public partial class intial : DbMigration
     {
         public override void Up()
         {
@@ -35,11 +35,11 @@ namespace HelpOut.Migrations
                         Location = c.String(maxLength: 150),
                         Description = c.String(maxLength: 500),
                         Website = c.String(),
+                        PhoneNumber = c.String(nullable: false),
                         Email = c.String(nullable: false, maxLength: 256),
                         EmailConfirmed = c.Boolean(nullable: false),
                         PasswordHash = c.String(),
                         SecurityStamp = c.String(),
-                        PhoneNumber = c.String(maxLength: 10),
                         PhoneNumberConfirmed = c.Boolean(nullable: false),
                         TwoFactorEnabled = c.Boolean(nullable: false),
                         LockoutEndDateUtc = c.DateTime(),
