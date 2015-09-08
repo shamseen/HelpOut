@@ -86,16 +86,16 @@
     function showValue() {
         var elem = document.getElementById("googleMapButton")
         if (elem.value == "Hide Map")
-        elem.value = "Show Map";
+            elem.value = "Show Map";
         else
             elem.value = "Hide Map";
     }
 </script>
 
 <input type="button" onclick="showValue()" id="googleMapButton" value="Show Map" data-toggle="collapse" data-target="#googleMapCollapse" class="btn btn-success" />
-        <div id="googleMapCollapse" class="collapse in" >
-            <div id="googleMap" style="width:500px;height:380px;"></div>
-          </div>
+<div id="googleMapCollapse" class="collapse in">
+    <div id="googleMap" style="width:500px;height:380px;"></div>
+</div>
 <aside>
     <div class="sidebar bg-grayDark" style="overflow: hidden; outline: none; margin-left: -210px;">
         <ul>
