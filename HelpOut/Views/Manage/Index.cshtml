@@ -23,18 +23,18 @@
     <br />
 @if (ViewBag.Role == "Organization")
 {
-    <span>Email: @ViewBag.Email<br /><br /></span>
-    <span>Head Quarters: @ViewBag.Location<br /><br /></span>
-    <span>Mission Statement: @ViewBag.Description<br /><br /></span>
-    <span>Primary Contact Number: @ViewBag.PhoneNumber<br /><br /></span>
-            }
-            @if (ViewBag.Role == "Organization")
-            {
-                <span>Email: @ViewBag.Email<br /><br /></span>
-                <span>Head Quarters: @ViewBag.Location<br /><br /></span>
-                <span>Mission Statement: @ViewBag.Description<br /><br /></span>
-                <span>Primary Contact Number: @ViewBag.PhoneNumber<br /><br /></span>
-            }
+    <span><b>Email:</b> @ViewBag.Email<br /><br /></span>
+    <span><b>Head Quarters:</b> @ViewBag.Location<br /><br /></span>
+    <span><b>Mission Statement:</b> @ViewBag.Description<br /><br /></span>
+    <span><b>Primary Contact Number:</b> @ViewBag.PhoneNumber<br /><br /></span>
+}
+ @if (ViewBag.Role == "Organization")
+ {
+     <span><b>Email:</b> @ViewBag.Email<br /><br /></span>
+    <span><b>Primary Address:</b> @ViewBag.Location<br /><br /></span>
+    <span><b>Interests:</b> @ViewBag.Description<br /><br /></span>
+    <span><b>Primary Phone Number:</b> @ViewBag.PhoneNumber<br /><br /></span>
+ }
 
     @{
         if (ViewBag.Role == "Organization")
