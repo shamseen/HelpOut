@@ -288,5 +288,56 @@ namespace HelpOut.Controllers
             }
             base.Dispose(disposing);
         }
+
+        // Advanced Search
+
+        public ActionResult AdvancedSearch(string sortOrder, string searchString)
+        {
+            var events = from e in db2.Events
+                         select new EventDTO()
+                         {
+                             EventID = e.EventID,
+                             Name = e.Name,
+                             DateTime = e.DateTime,
+                             Address = e.Address,
+                             City = e.City,
+                             State = e.State,
+                             Country = e.Country,
+                             ZipCode = e.ZipCode,
+                             Description = e.Description,
+                             OrganizationName = e.Organization.FullName
+                         };
+
+            ViewBag.DateSortParm = String.IsNullOrEmpty(sortOrder) ? "Date" : "";
+            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                events = events.Where(e => e.Name.ToUpper().Contains(searchString.ToUpper())
+                                       || e.Address.ToUpper().Contains(searchString.ToUpper())
+                                       || e.City.ToUpper().Contains(searchString.ToUpper())
+                                       || e.State.ToUpper().Contains(searchString.ToUpper())
+                                       || e.ZipCode.Contains(searchString)
+                                       || e.Country.ToUpper().Contains(searchString.ToUpper())
+                                       || e.Description.ToUpper().Contains(searchString.ToUpper())
+                                       || e.OrganizationName.ToUpper().Contains(searchString.ToUpper()));
+            }
+
+
+            switch (sortOrder)
+            {
+                case "Date":
+                    events = events.OrderBy(e => e.DateTime);
+                    break;
+                case "date_desc":
+                    events = events.OrderByDescending(e => e.DateTime);
+                    break;
+                default:
+                    events = events.OrderBy(e => e.DateTime);
+                    break;
+            }
+            return View(events.ToList());
+        }
+
     }
 }
