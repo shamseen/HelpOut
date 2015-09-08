@@ -126,8 +126,8 @@ namespace HelpOut.Controllers
         [Authorize (Roles="Organization")]
         public ActionResult Create()
         {
-            ViewBag.OrganizationID = new SelectList(db2.Users, "Id", "Email");
-            return View();
+            var dto = new EventDetailDTO();
+            return View(dto);
         }
 
         // POST: Event/Create
@@ -135,19 +135,30 @@ namespace HelpOut.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "EventID,Name,DateTime,Address,City,State,ZipCode,Country,Description")] Event @event)
+        public ActionResult Create([Bind(Include = "Name,DateTime,Address,City,State,ZipCode,Country,Description")] EventDetailDTO dto)
         {
-            
+           
             if (ModelState.IsValid)
             {
+                Event @event = new Event()
+                {
+                    Name = dto.Name,
+                    DateTime = dto.DateTime,
+                    Address = dto.Address,
+                    City = dto.City,
+                    State = dto.State,
+                    ZipCode = dto.ZipCode,
+                    Country = dto.Country,
+                    Description = dto.Description
+                };
+
                 @event.OrganizationID = User.Identity.GetUserId();
                 db2.Events.Add(@event);
                 db2.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.OrganizationID = new SelectList(db2.Users, "Id", "Email", @event.OrganizationID);
-            return View(@event);
+            return View(dto);
         }
 
         // GET: Event/Edit/5
