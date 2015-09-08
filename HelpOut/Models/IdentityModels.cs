@@ -6,16 +6,25 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace HelpOut.Models
 {
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
-
+        [Required]
+        [StringLength(50)]
         public string FullName { get; set; }
+        
+        [StringLength(150)]
         public string Location { get; set; }
+
+        [StringLength(500)]
         public string Description { get; set; }
+       
+        [Url(ErrorMessage = "Please enter a valid url")]
+        [DisplayName("Website")]
         public string Website { get; set; }
 
         //navigation properties

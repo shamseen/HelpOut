@@ -31,9 +31,9 @@ namespace HelpOut.Migrations
                 c => new
                     {
                         Id = c.String(nullable: false, maxLength: 128),
-                        FullName = c.String(),
-                        Location = c.String(),
-                        Description = c.String(),
+                        FullName = c.String(nullable: false, maxLength: 50),
+                        Location = c.String(maxLength: 150),
+                        Description = c.String(maxLength: 500),
                         Website = c.String(),
                         Email = c.String(nullable: false, maxLength: 256),
                         EmailConfirmed = c.Boolean(nullable: false),
