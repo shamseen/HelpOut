@@ -11,7 +11,7 @@
 {
     <p>
         <b>
-            Search events by any fields: Name, Organization, Description and Location (City, State, ZIP Code) @Html.TextBox("SearchString")
+            Search events by any fields: Name, Organization, Description and Location (City, State, ZIP Code) @Html.TextBox("SearchString", null, new { maxlength = 50 })
             <input type="submit" value="Search" />
         </b>
     </p>
