@@ -28,63 +28,65 @@
     </div>
 </div>
 
-<table class="table table-hover" style="border:groove 1px">
-    <tr style="background-color: #81a326; text-transform: uppercase">
-        <th>
-            Organization
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.ActionLink("Date", "Index", new { sortOrder = ViewBag.DateSortParm })
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Address)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.City)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.State)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ZipCode)
-        </th>
+<div class="col-md-12" style="background-color:#b6e2a6;border:groove 1px; display: table">
+    <table class="table table-hover">
+        <tr style="text-transform: uppercase">
+            <th>
+                Organization
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.ActionLink("Date", "Index", new { sortOrder = ViewBag.DateSortParm })
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.City)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.State)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ZipCode)
+            </th>
 
 
-        @foreach (var item in Model)
-        {
-        <tr style="background-color:#b6e2a6">
-            <td>
-                @Html.DisplayFor(modelItem => item.OrganizationName)
-                @*@Html.ActionLink(item.OrganizationName, "Details", "User")*@
-            </td>
-            <td>
-                @Html.ActionLink(item.Name, "Details", new { id = item.EventID })
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateTime)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Address)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.City)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.State)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ZipCode)
-            </td>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrganizationName)
+                    @*@Html.ActionLink(item.OrganizationName, "Details", "User")*@
+                </td>
+                <td>
+                    @Html.ActionLink(item.Name, "Details", new { id = item.EventID })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.City)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.State)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ZipCode)
+                </td>
 
-            @*<td>
-                    @Html.ActionLink("Edit", "Edit", new { id=item.EventID }) |
-                        @Html.ActionLink("Details", "Details", new { id=item.EventID }) |
-                        @Html.ActionLink("Delete", "Delete", new { id=item.EventID })
-                </td>*@
-        </tr>
-        }
+                @*<td>
+                        @Html.ActionLink("Edit", "Edit", new { id=item.EventID }) |
+                            @Html.ActionLink("Details", "Details", new { id=item.EventID }) |
+                            @Html.ActionLink("Delete", "Delete", new { id=item.EventID })
+                    </td>*@
+            </tr>
+            }
 
-    </table>
+        </table>
+</div>
