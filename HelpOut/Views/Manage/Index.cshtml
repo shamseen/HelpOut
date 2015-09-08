@@ -13,12 +13,7 @@
             @if (ViewBag.Role == "Organization")
             {
                 <span>Organization: @ViewBag.FullName<br /></span>
-    <span>Email: @ViewBag.Email<br /><br /></span>
-    <span>Head Quarters: @ViewBag.Location<br /><br /></span>
-    <span>Mission Statement: @ViewBag.Description<br /><br /></span>
-    <span>Primary Contact Number: @ViewBag.PhoneNumber<br /><br /></span>
             }
-
             @if (ViewBag.Role == "Volunteer")
             {
                 <span> Volunteer: @ViewBag.FullName <br /></span>
@@ -26,11 +21,14 @@
         </strong>
     </h3>
     <br />
-
- Email: @ViewBag.Email<br /> <br />
-  @ViewBag.Location<br /> <br />
-  @ViewBag.Description<br /> <br />
- @ViewBag.PhoneNumber<br /> <br />
+@if (ViewBag.Role == "Organization")
+{
+    <span>Email: @ViewBag.Email<br /><br /></span>
+    <span>Head Quarters: @ViewBag.Location<br /><br /></span>
+    <span>Mission Statement: @ViewBag.Description<br /><br /></span>
+    <span>Primary Contact Number: @ViewBag.PhoneNumber<br /><br /></span>
+            }
+            
 
     @{
         if (ViewBag.Role == "Organization")
