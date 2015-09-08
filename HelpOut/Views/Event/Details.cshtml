@@ -23,8 +23,6 @@
         @if (Model.FilePaths.Any(f => f.FileType == FileType.Photo))
         {
 
-            @Model.FilePaths.FirstOrDefault(f => f.FileType == FileType.Photo).FileName
-            <br />
             <img src="~/Content/Images/@Model.FilePaths.FirstOrDefault(f => f.FileType == FileType.Photo).FileName"
                  style="height:200px; width:200px" alt="img" />
         }
