@@ -3,7 +3,7 @@ namespace HelpOut.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class intial : DbMigration
+    public partial class Intial : DbMigration
     {
         public override void Up()
         {
@@ -17,9 +17,8 @@ namespace HelpOut.Migrations
                         Description = c.String(maxLength: 500),
                         Address = c.String(maxLength: 50),
                         City = c.String(maxLength: 30),
-                        State = c.String(maxLength: 20),
+                        State = c.String(maxLength: 2),
                         ZipCode = c.String(maxLength: 9),
-                        Country = c.String(maxLength: 20),
                         OrganizationID = c.String(maxLength: 128),
                     })
                 .PrimaryKey(t => t.EventID)

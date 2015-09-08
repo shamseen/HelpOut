@@ -11,7 +11,7 @@
 {
     <p>
         <b>
-            Search events by any fields: Name, Organization, Description and Location (City, State, Country, ZIP Code) @Html.TextBox("SearchString")
+            Search events by any fields: Name, Organization, Description and Location (City, State, ZIP Code) @Html.TextBox("SearchString", null, new { maxlength = 50 })
             <input type="submit" value="Search" />
         </b>
     </p>
@@ -41,9 +41,7 @@
         <th>
             @Html.DisplayNameFor(model => model.ZipCode)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Country)
-        </th>
+
         <th>
             @Html.DisplayNameFor(model => model.Description)
         </th>
@@ -72,9 +70,6 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ZipCode)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Country)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Description)

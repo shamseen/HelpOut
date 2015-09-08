@@ -1,0 +1,34 @@
+﻿Merge branch 'master' into dummyfrontend
+
+Conflicts:
+	HelpOut/Views/Event/Index.cshtml
+#
+# It looks like you may be committing a merge.
+# If this is not correct, please remove the file
+#	.git/MERGE_HEAD
+# and try again.
+
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch dummyfrontend
+# All conflicts fixed but you are still merging.
+#
+# Changes to be committed:
+#	new file:   HelpOut/Content/Images/WIN_20150908_12_16_40_Pro.jpg
+#	modified:   HelpOut/Controllers/EventController.cs
+#	modified:   HelpOut/Controllers/HomeController.cs
+#	modified:   HelpOut/HelpOut.csproj
+#	renamed:    HelpOut/Migrations/201509080306074_intial.Designer.cs -> HelpOut/Migrations/201509081448292_Intial.Designer.cs
+#	renamed:    HelpOut/Migrations/201509080306074_intial.cs -> HelpOut/Migrations/201509081448292_Intial.cs
+#	renamed:    HelpOut/Migrations/201509080306074_intial.resx -> HelpOut/Migrations/201509081448292_Intial.resx
+#	modified:   HelpOut/Migrations/Configuration.cs
+#	modified:   HelpOut/Models/Event.cs
+#	modified:   HelpOut/Models/EventDTO.cs
+#	modified:   HelpOut/Views/Event/AdvancedSearch.cshtml
+#	modified:   HelpOut/Views/Event/Create.cshtml
+#	modified:   HelpOut/Views/Event/Delete.cshtml
+#	modified:   HelpOut/Views/Event/Edit.cshtml
+#	modified:   HelpOut/Views/Event/Index.cshtml
+#
+

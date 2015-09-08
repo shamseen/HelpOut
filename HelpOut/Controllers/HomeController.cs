@@ -28,7 +28,6 @@ namespace HelpOut.Controllers
                              Address = e.Address,
                              City = e.City,
                              State = e.State,
-                             Country = e.Country,
                              ZipCode = e.ZipCode,
                              Description = e.Description,
                              OrganizationName = e.Organization.FullName
