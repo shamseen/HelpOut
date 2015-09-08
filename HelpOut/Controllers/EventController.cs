@@ -29,7 +29,6 @@ namespace HelpOut.Controllers
                              Address = e.Address,
                              City = e.City,
                              State = e.State,
-                             Country = e.Country,
                              ZipCode = e.ZipCode,
                              Description = e.Description,
                              OrganizationName = e.Organization.FullName
@@ -45,7 +44,6 @@ namespace HelpOut.Controllers
                                        || e.City.ToUpper().Contains(searchString.ToUpper())
                                        || e.State.ToUpper().Contains(searchString.ToUpper())
                                        || e.ZipCode.Contains(searchString)
-                                       || e.Country.ToUpper().Contains(searchString.ToUpper())
                                        || e.OrganizationName.ToUpper().Contains(searchString.ToUpper()));
             }
 
@@ -135,7 +133,7 @@ namespace HelpOut.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "EventID,Name,DateTime,Address,City,State,ZipCode,Country,Description")] Event @event, HttpPostedFileBase upload)
+        public ActionResult Create([Bind(Include = "EventID,Name,DateTime,Address,City,State,ZipCode,Description")] Event @event, HttpPostedFileBase upload)
         {
             
             if (ModelState.IsValid)
@@ -191,7 +189,10 @@ namespace HelpOut.Controllers
             {
                 return HttpNotFound();
             }
-            //ViewBag.OrganizationID = new SelectList(db2.Users, "Id", "Email", @event.OrganizationID);
+            else if (@event.OrganizationID!=User.Identity.GetUserId())
+            {
+             return   RedirectToAction("Details", new { id = id });
+            }
             return View(@event);
         }
 
@@ -200,15 +201,15 @@ namespace HelpOut.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "EventID,Name,DateTime,Address,City,State,ZipCode,Country,Description,OrganizationID")] Event @event)
+        public ActionResult Edit([Bind(Include = "EventID,Name,DateTime,Address,City,State,ZipCode,Description")] Event @event)
         {
             if (ModelState.IsValid)
             {
+                @event.OrganizationID = User.Identity.GetUserId();
                 db2.Entry(@event).State = EntityState.Modified;
                 db2.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.OrganizationID = new SelectList(db2.Users, "Id", "Email", @event.OrganizationID);
             return View(@event);
         }
 
@@ -302,7 +303,6 @@ namespace HelpOut.Controllers
                              Address = e.Address,
                              City = e.City,
                              State = e.State,
-                             Country = e.Country,
                              ZipCode = e.ZipCode,
                              Description = e.Description,
                              OrganizationName = e.Organization.FullName
@@ -318,7 +318,6 @@ namespace HelpOut.Controllers
                                        || e.City.ToUpper().Contains(searchString.ToUpper())
                                        || e.State.ToUpper().Contains(searchString.ToUpper())
                                        || e.ZipCode.Contains(searchString)
-                                       || e.Country.ToUpper().Contains(searchString.ToUpper())
                                        || e.Description.ToUpper().Contains(searchString.ToUpper())
                                        || e.OrganizationName.ToUpper().Contains(searchString.ToUpper()));
             }

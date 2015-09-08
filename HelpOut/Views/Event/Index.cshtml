@@ -11,7 +11,7 @@
 {
     <p>
         <b>
-            Search by Event Name, Location, or Organization: @Html.TextBox("SearchString")
+            Search by Event Name, Location, or Organization: @Html.TextBox("SearchString", new { maxlength = 10 })
             <input type="submit" value="Search" />
         </b>
     </p>
@@ -47,10 +47,7 @@
         <th>
             @Html.DisplayNameFor(model => model.ZipCode)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Country)
-        </th>
-    </tr>
+
 
     @foreach (var item in Model)
     {
@@ -78,9 +75,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.ZipCode)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Country)
-            </td>
+
             @*<td>
                 @Html.ActionLink("Edit", "Edit", new { id=item.EventID }) |
                     @Html.ActionLink("Details", "Details", new { id=item.EventID }) |
