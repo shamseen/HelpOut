@@ -28,7 +28,13 @@
     <span>Mission Statement: @ViewBag.Description<br /><br /></span>
     <span>Primary Contact Number: @ViewBag.PhoneNumber<br /><br /></span>
             }
-            
+            @if (ViewBag.Role == "Organization")
+            {
+                <span>Email: @ViewBag.Email<br /><br /></span>
+                <span>Head Quarters: @ViewBag.Location<br /><br /></span>
+                <span>Mission Statement: @ViewBag.Description<br /><br /></span>
+                <span>Primary Contact Number: @ViewBag.PhoneNumber<br /><br /></span>
+            }
 
     @{
         if (ViewBag.Role == "Organization")
