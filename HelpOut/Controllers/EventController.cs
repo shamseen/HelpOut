@@ -133,7 +133,7 @@ namespace HelpOut.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "EventID,Name,DateTime,Address,City,State,ZipCode,Description")] Event @event, HttpPostedFileBase upload)
+        public ActionResult Create([Bind(Include = "EventID,Name,DateTime,Address,City,State,ZipCode,Description,")] Event @event, HttpPostedFileBase upload)
         {
             
             if (ModelState.IsValid)
@@ -201,12 +201,36 @@ namespace HelpOut.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "EventID,Name,DateTime,Address,City,State,ZipCode,Description")] Event @event)
+        public ActionResult Edit([Bind(Include = "EventID,Name,DateTime,Address,City,State,ZipCode,Description")] Event @event, HttpPostedFileBase upload)
         {
             if (ModelState.IsValid)
             {
                 @event.OrganizationID = User.Identity.GetUserId();
                 db2.Entry(@event).State = EntityState.Modified;
+                if (upload != null && upload.ContentLength > 0)
+                {
+                    //make an image path
+                    var photo = new FilePath
+                    {
+                        FileName = System.IO.Path.GetFileName(upload.FileName),
+                        FileType = FileType.Photo
+                    };
+                    //adding paths to event
+                    @event.FilePaths = new List<FilePath>();
+                    @event.FilePaths.Add(photo);
+                    //save image file to project directory
+                    try
+                    {
+                        string directory = Server.MapPath("/Content/Images/");
+                        var fileName = Path.GetFileName(upload.FileName);
+                        upload.SaveAs(Path.Combine(directory, fileName));
+                    }
+                    catch (Exception e)
+                    {
+                        return View("Error");
+                    }
+                }
+
                 db2.SaveChanges();
                 return RedirectToAction("Index");
             }
