@@ -26,6 +26,9 @@ namespace HelpOut.Models
         [Url(ErrorMessage = "Please enter a valid url")]
         [DisplayName("Website")]
         public string Website { get; set; }
+        [Required(ErrorMessage = "Phone Number Required")]
+        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Entered phone format is not valid.")]
+        public override string PhoneNumber { get; set; }
 
         //navigation properties
         public virtual ICollection<Event> EventsAttending { get; set; } //for volunteers
