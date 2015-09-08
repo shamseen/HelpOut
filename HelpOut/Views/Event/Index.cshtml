@@ -3,26 +3,31 @@
     ViewBag.Title = "Index";
 }
 
-<div>
-    <img class="img-responsive" src="~/Content/Images/NewEventSearch.png" alt="About Us" style="max-height: 100px; margin-top: 30px; margin-bottom: 30px">
+<div class="container" style="margin-top: 30px; margin-bottom: 30px">
+    <div class="col-md-6">
+        <img class="img-responsive" src="~/Content/Images/NewEventSearch.png" alt="About Us" style="max-height: 100px; margin-top: 30px; margin-bottom: 30px">
+    </div>
+
+    <div class="col-md-6" style="background-color:#b6e2a6;border:groove 1px; border-color:#e5f1c3">
+        @using (Html.BeginForm())
+        {
+            <p>
+                <b>
+                    Search by Event Name, Location, or Organization: @Html.TextBox("SearchString")
+                </b>
+            </p>
+            <p><input type="submit" value="Search" /></p>
+        }
+        <p>
+            @Html.ActionLink("Advanced Search", "AdvancedSearch")
+        </p>
+        <p>
+            @Html.ActionLink("Create New Event", "Create")
+        </p>
+    </div>
+
+
 </div>
-
-@using (Html.BeginForm())
-{
-    <p>
-        <b>
-            Search by Event Name, Location, or Organization: @Html.TextBox("SearchString")
-            <input type="submit" value="Search" />
-        </b>
-    </p>
-}
-
-<p>
-    @Html.ActionLink("Advanced Search", "AdvancedSearch")
-</p>
-<p>
-    @Html.ActionLink("Create New Event", "Create")
-</p>
 
 <table class="table table-hover">
     <tr style="background-color: #81a326; text-transform: uppercase">
@@ -54,13 +59,11 @@
 
     @foreach (var item in Model)
     {
-        <tr>
+        <tr style="background-color:#b6e2a6">
             <td>
                 @Html.DisplayFor(modelItem => item.OrganizationName)
-                @*@Html.ActionLink(item.OrganizationName, "Details", "User")*@
             </td>
             <td>
-                @*@Html.DisplayFor(modelItem => item.Name)*@
                 @Html.ActionLink(item.Name, "Details", new { id = item.EventID })
             </td>
             <td>
@@ -81,11 +84,6 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Country)
             </td>
-            @*<td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.EventID }) |
-                    @Html.ActionLink("Details", "Details", new { id=item.EventID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id=item.EventID })
-            </td>*@
         </tr>
     }
 
