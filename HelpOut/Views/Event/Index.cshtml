@@ -8,15 +8,6 @@
         <img class="img-responsive" src="~/Content/Images/NewEventSearch.png" alt="Find Events" style="max-height: 100px; margin-top: 30px; margin-bottom: 30px">
     </div>
 
-@using (Html.BeginForm())
-{
-    <p>
-        <b>
-            Search by Event Name, Location, or Organization: @Html.TextBox( "SearchString")
-            <input type="submit" value="Search" />
-        </b>
-    </p>
-}
     <div class="col-md-6" style="background-color:#b6e2a6;border:groove 1px">
         @using (Html.BeginForm())
         {
