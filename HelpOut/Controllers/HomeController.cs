@@ -35,15 +35,6 @@ namespace HelpOut.Controllers
                          };
 
 
-            ViewBag.numAttendees = (from e in db.Events.Include("Attendees")
-                               orderby e.DateTime descending
-                               select e.Attendees.Count).ToList();
-
-            //ViewBag.numAttendees = new List<int>();
-
-            //foreach (var list in listOfLists)
-            //    ViewBag.numAttendees.Add(list.Count);
-
             return View(events.ToList());
             
             //ApplicationUser user = new ApplicationUser();

@@ -10,8 +10,16 @@
     <ul class="nav navbar-nav navbar-right">
         <li>
             @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
-           
         </li>
+        
+        @if (User.IsInRole("Organization"))
+        {
+            <li>
+                @Html.ActionLink("Create an Event!", "Create", "Event")
+
+            </li>
+        }
+
         @*<li>
             @Html.ActionLink(User.Identity.GetUserName(), "userprofile", "Home", new { userid = User.Identity.GetUserId() }, null)
          </li>*@
