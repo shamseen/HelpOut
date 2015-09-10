@@ -32,7 +32,8 @@ namespace HelpOut.Controllers
                              Description = e.Description,
                              OrganizationName = e.Organization.FullName
                          };
-
+            ViewBag.numAttendees = (from e in db.Events
+                                    select e.Attendees.Count).ToList();
             return View(events.OrderByDescending(e => e.DateTime).ToList());
             
             //ApplicationUser user = new ApplicationUser();
