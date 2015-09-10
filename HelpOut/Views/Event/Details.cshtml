@@ -48,7 +48,7 @@
         @Html.AntiForgeryToken()
 
         ViewBag.rsvpText = ViewBag.Attending ? "Attending!" : "RSVP!";
-        <input type="submit" class="btn btn-default btn-block col-xs-12 col-md-6" value=@ViewBag.rsvpText style="border: groove 3px" />
+        <input type="submit" class="btn btn-default btn-block" value=@ViewBag.rsvpText style="border: groove 3px" />
         }
 
         @*-------------FACEBOOK CODE -------------------------------*@

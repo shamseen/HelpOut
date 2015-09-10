@@ -20,6 +20,7 @@ namespace HelpOut.Controllers
         public ActionResult Index()
         {
             var events = from e in db.Events
+                         orderby e.DateTime descending
                          select new EventDTO()
                          {
                              EventID = e.EventID,
@@ -32,9 +33,18 @@ namespace HelpOut.Controllers
                              Description = e.Description,
                              OrganizationName = e.Organization.FullName
                          };
-            ViewBag.numAttendees = (from e in db.Events
-                                    select e.Attendees.Count).ToList();
-            return View(events.OrderByDescending(e => e.DateTime).ToList());
+
+
+            ViewBag.numAttendees = (from e in db.Events.Include("Attendees")
+                               orderby e.DateTime descending
+                               select e.Attendees.Count).ToList();
+
+            //ViewBag.numAttendees = new List<int>();
+
+            //foreach (var list in listOfLists)
+            //    ViewBag.numAttendees.Add(list.Count);
+
+            return View(events.ToList());
             
             //ApplicationUser user = new ApplicationUser();
             //string currentUserID = User.Identity.GetUserId();
