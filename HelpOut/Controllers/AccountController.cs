@@ -70,6 +70,7 @@ namespace HelpOut.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
+            //if (returnUrl == "Home")
             if (!ModelState.IsValid)
             {
                 return View(model);
@@ -493,7 +494,7 @@ namespace HelpOut.Controllers
             {
                 return Redirect(returnUrl);
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Manage");
         }
 
         internal class ChallengeResult : HttpUnauthorizedResult

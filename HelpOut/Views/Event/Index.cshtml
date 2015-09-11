@@ -8,25 +8,25 @@
         <img class="img-responsive" src="~/Content/Images/NewEventSearch.png" alt="Find Events" style="max-height: 100px; margin-top: 30px; margin-bottom: 30px">
     </div>
 
-    <div class="col-md-8" style="background-color:#b6e2a6;border:groove 1px; padding-top:1%; padding-bottom:1%; margin-top:30px">
+    <div class="col-md-8" style="background-color:#b6e2a6;border:groove 1px; padding-top:1%; padding-bottom:1%; margin-top:30px; font-size:110%">
         @using (Html.BeginForm())
         {
             <p align="center">
                 <b>
                     Search by Event Name, Location, or Organization:     @Html.TextBox("SearchString", null, new { maxlength = 50 })
                 </b>
-                <input type="submit" value="Search" class="btn btn-default" style="max-height:27px; border: groove 1px; border-color: black;"/>
+                <input type="submit" value="Search" class="btn btn-default" style="max-height:27px; border: groove 1px; border-color: black; font-size:80%; align-content:center"/>
             </p>
         }
-        <p align="right" style="margin-right:8%">
+        <p align="center" style="margin-right:8%">
             @Html.ActionLink("Advanced Search", "AdvancedSearch")
         </p>
     </div>
 </div>
 
-<div class="col-md-12" style="background-color:#b6e2a6;border:groove 1px; display: table">
+<div class="col-md-12" style="background-color:#b6e2a6;border:groove 1px; display: table;">
     <table class="table table-hover">
-        <tr style="text-transform: uppercase">
+        <tr style="text-transform: uppercase; border-bottom: 2px solid black; font-size:120%; text-align:center" data-href="http://helpout.azurewebsites.net/Event/Index">
             <th>
                 Organization
             </th>
@@ -51,13 +51,13 @@
                 string time = item.DateTime.ToShortTimeString();
                 string location = item.Address + ", " + item.State;
 
-            @*<tr onclick="displayPage(http://helpout.azurewebsites.net/Event/@item.EventID)">*@
-            <tr>
+            <tr data-href="http://helpout.azurewebsites.net/Event/Details/@item.EventID">
                 <td>
                     @Html.DisplayFor(modelItem => item.OrganizationName)
                 </td>
                 <td>
-                    @Html.ActionLink(item.Name, "Details", new { id = item.EventID })
+                    @*@Html.ActionLink(item.Name, "Details", new { id = item.EventID })*@
+                    @Html.DisplayFor(modelItem => item.Name)
                 </td>
                 <td>
                     @date
@@ -74,8 +74,13 @@
     </table>
 </div>
 
-@*<script type="text/javascript">
-    document.getElementById("row").onclick = function () {
-        location.href = "www.yoursite.com";
-    };
-</script>*@
+<script>
+    var rows = document.getElementsByTagName('tr'), url;
+
+    for (var i = 0, len = rows.length; i < len; i++) {
+        rows[i].onclick = function () {
+            uri = this.getAttribute('data-href');
+            window.location = uri;
+        };
+    }
+</script>
