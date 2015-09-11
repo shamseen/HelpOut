@@ -156,15 +156,15 @@
         </p>
                 @if (Model.Attendees.Count > 0)
                 {
-                foreach (var u in Model.Attendees)
-                {
-                        @u.FullName
+                    foreach (var u in Model.Attendees)
+                    {
+                        <p>@u.FullName</p>
 
                     }
                 }
                 else
                 {
-                    <text>No registered attendees</text>
+                    <text>No registered attendees.</text>
                 }
 
 
