@@ -9,7 +9,6 @@
 <div class="col-md-12" style="background-color:rgba(249,208,176, .5); border:groove 3px; margin-bottom: 30px; margin-top: 20px; text-align: center; padding-bottom: 1%">
     <h1><strong>Welcome! @ViewBag.FullName</strong></h1>
 </div>
-<div style="margin-bottom:5px; align-self: center">@Html.ActionLink("Edit Your Profile", "Edit") </div>
 <hr />
 
 @*---------------------------Profile Info---------------------------------*@
@@ -30,7 +29,7 @@
         <br />
         @if (ViewBag.Role == "Organization")
         {
-            <span><b>Mission Statement:</b> <br/>@ViewBag.Description<br /><br /></span>
+            <span><b>Mission Statement:</b> <br />@ViewBag.Description<br /><br /></span>
             <span><b>Head Quarters:</b> @ViewBag.Location<br /><br /></span>
             <span><b>Primary Contact Number:</b> @String.Format("{0: (###) ###-####}", Convert.ToInt64(ViewBag.PhoneNumber))<br /><br /></span>
             <span><b>Email:</b> @ViewBag.Email<br /><br /></span>
@@ -39,10 +38,10 @@
         {
             <span><b>Primary Phone Number:</b>@String.Format("{0: (###) ###-####}", Convert.ToInt64(ViewBag.PhoneNumber))<br /><br /></span>
             <span><b>Email:</b> @ViewBag.Email<br /><br /></span>
-            <span ><b>Interests:</b><br/> @ViewBag.Description<br /><br /></span>
+            <span><b>Interests:</b><br /> @ViewBag.Description<br /><br /></span>
             <span><b>Primary Address:</b> @ViewBag.Location<br /><br /></span>
-            
-            
+
+
         }
     </div>
 </div>
@@ -50,120 +49,124 @@
 @*-----------------------List of Events----------------------------*@
 <div class="col-md-6">
     @{if (ViewBag.Role == "Organization")
-    {
-        @*-------------Upcoming Created----------------*@
-        <div style="background-color:#b6e2a6;border:groove 1px; display: table; max-height: 300px; width: 100%;text-align:center; font-size:110%">
-            <h2><b>Scheduled to Host:</b></h2>
+        {
+            @*-------------Upcoming Created----------------*@
+            <div style="background-color:#b6e2a6;border:groove 3px; display: table; max-height: 300px; width: 100%;text-align:center; font-size:110%">
+                <h2><b>Scheduled to Host:</b></h2>
 
-            <table class="table table-hover">
-                @if (ViewBag.EventsCreated.Count > 0)
+                <table class="table table-hover">
+                    @if (ViewBag.EventsCreated.Count > 0)
                 {
-
+                    int counter = 0;
                     foreach (Event e in ViewBag.EventsCreated)
                     {
                         if (e.DateTime.CompareTo(DateTime.Now) <= 0)
                         {
-                            <tr data-href="http://helpout.azurewebsites.net/Event/Details/@e.EventID"> <td>@e.Name </td> </tr>
+                            counter++;
+                                <tr data-href="http://helpout.azurewebsites.net/Event/Details/@e.EventID"> <td>@e.Name </td> </tr>
+                            }
+                        }
+                        if (counter == 0)
+                        {
+                            <tr data-href="http://helpout.azurewebsites.net/Event/Create/"> <td>No upcoming events. Schedule some!</td> </tr>
                         }
                     }
-                }
-                else
-                {
-                    <tr data-href="http://helpout.azurewebsites.net/Event/Create/"> <td>No upcoming events. Schedule some!</td> </tr>
-                }
-            </table>
-        </div>
-        @*-------------------Past Created--------------------*@
-        <div style="background-color:#b6e2a6;border: groove 1px; display: table; max-height: 300px; width: 100%; text-align:center; font-size:110%; margin-top:10px">
-            <h2><b>Past Events Hosted:</b></h2>
+                    else
+                    {
+                        <tr data-href="http://helpout.azurewebsites.net/Event/Create/"> <td>No upcoming events. Schedule some!</td> </tr>
+                    }
+                </table>
+            </div>
+            @*-------------------Past Created--------------------*@
+            <div style="background-color:#b6e2a6;border: groove 3px; display: table; max-height: 300px; width: 100%; text-align:center; font-size:110%; margin-top:10px">
+                <h2><b>Past Events Hosted:</b></h2>
 
-            <table class="table table-hover">
-                @foreach (Event e in ViewBag.EventsCreated)
+                <table class="table table-hover">
+                    @foreach (Event e in ViewBag.EventsCreated)
                 {
                     if (e.DateTime.CompareTo(DateTime.Now) > 0)
                     {
-                        <tr data-href="http://helpout.azurewebsites.net/Event/Details/@e.EventID"> <td>@e.Name</td> </tr>
+                            <tr data-href="http://helpout.azurewebsites.net/Event/Details/@e.EventID"> <td>@e.Name</td> </tr>
+                        }
                     }
-                }
-            </table>
-        </div>
-    }
+                </table>
+            </div>
+        }
 
-    else
-    {
-        @*-------------Upcoming Attending----------------*@
-        <div  style="background-color:#b6e2a6; border:groove 1px; display: table; max-height: 300px; width:100%; text-align:center; font-size:110%; padding-right:5%; padding-left:5%;">
-            <h2><b>Scheduled to Help Out:</b></h2>
+        else
+        {
+            @*-------------Upcoming Attending----------------*@
+            <div style="background-color:#b6e2a6; border:groove 3px; display: table; max-height: 300px; width:100%; text-align:center; font-size:110%; padding-right:5%; padding-left:5%;">
+                <h2><b>Scheduled to Help Out:</b></h2>
 
-            <table class="table table-hover">
-                @if (ViewBag.EventsAttending.Count > 0)
+                <table class="table table-hover">
+                    @if (ViewBag.EventsAttending.Count > 0)
                 {
+                    int counter = 0;
 
                     foreach (Event e in ViewBag.EventsAttending)
                     {
                         if (e.DateTime.CompareTo(DateTime.Now) <= 0)
                         {
-                            <tr data-href="http://helpout.azurewebsites.net/Event/Details/@e.EventID"> <td>@e.Name </td> </tr>
+                            counter++;
+                                <tr data-href="http://helpout.azurewebsites.net/Event/Details/@e.EventID"> <td>@e.Name </td> </tr>
+                            }
+                        }
+
+                        if (counter == 0)
+                        {
+                            <tr data-href="http://helpout.azurewebsites.net/Event/Index/"> <td>No upcoming events. Go Help Out!</td> </tr>
                         }
                     }
-                }
-                else
-                {
-                    <tr data-href="http://helpout.azurewebsites.net/Event/Index/"> <td>No upcoming events. Go Help Out!</td> </tr>
-                }
-            </table>
-        </div>
-        @*-------------------Past Attended--------------------*@
-        <div  style="background-color:#b6e2a6; border:groove 1px; display: table; max-height: 300px; width:100%; text-align:center; font-size:110%; padding-right:5%; padding-left:5%; margin-top: 10px">
-            <h2><b>Past Events Attended:</b></h2>
+                    else
+                    {
+                        <tr data-href="http://helpout.azurewebsites.net/Event/Index/"> <td>No upcoming events. Go Help Out!</td> </tr>
+                    }
+                </table>
+            </div>
+            @*-------------------Past Attended--------------------*@
+            <div style="background-color:#b6e2a6; border:groove 3px; display: table; max-height: 300px; width:100%; text-align:center; font-size:110%; padding-right:5%; padding-left:5%; margin-top: 10px">
+                <h2><b>Past Events Attended:</b></h2>
 
-            <table class="table table-hover">
-                @foreach (Event e in ViewBag.EventsAttending)
+                <table class="table table-hover">
+                    @foreach (Event e in ViewBag.EventsAttending)
                 {
                     if (e.DateTime.CompareTo(DateTime.Now) > 0)
                     {
-                        <tr data-href="http://helpout.azurewebsites.net/Event/Details/@e.EventID"> <td>@e.Name</td> </tr>
+                            <tr data-href="http://helpout.azurewebsites.net/Event/Details/@e.EventID"> <td>@e.Name</td> </tr>
+                        }
                     }
-                }
-            </table>
-        </div>
+                </table>
+            </div>
+        }
     }
-}
 </div>
 
 
 <hr />
-<div class="col-xs-12">
-    <dl>
-        <dt>Password:</dt>
-        <dd>
-            [
-            @if (Model.HasPassword)
-            {
+<row>
+    <div class="col-md-6" style="margin-bottom: 5px; background-color:#b6e2a6; border:groove 3px;  font-size: 110%; padding-left: 5%; padding-right: 5%; text-align: center; margin-top: 10px; margin-left:10px; margin-right: 10px">
+        <h2><strong>Edit:</strong></h2>
+        <dl>
+            <dt>@Html.ActionLink("Edit Your Profile", "Edit")</dt>
+            <dt>
                 @Html.ActionLink("Change your password", "ChangePassword")
-            }
-            else
-            {
-                @Html.ActionLink("Create", "SetPassword")
-            }
-            ]
-        </dd>
-        <dt>External Logins:</dt>
-        <dd>
-            @Model.Logins.Count [
-            @Html.ActionLink("Manage", "ManageLogins") ]
-        </dd>
-    </dl>
-</div>
+            </dt>
 
-<script>
-    var rows = document.getElementsByTagName('tr'), url;
+            <dt>@Html.ActionLink("Manage External Logins", "ManageLogins") <text>[@Model.Logins.Count]</text></dt>
 
-    for (var i = 0, len = rows.length; i < len; i++) {
-        rows[i].onclick = function () {
-            uri = this.getAttribute('data-href');
-            window.location = uri;
-        };
-    }
-</script>
+            </dl>
+        </div>
 
+    </row>
+
+    <script>
+        var rows = document.getElementsByTagName('tr'), url;
+
+        for (var i = 0, len = rows.length; i < len; i++) {
+            rows[i].onclick = function () {
+                uri = this.getAttribute('data-href');
+                window.location = uri;
+            };
+        }
+    </script>
