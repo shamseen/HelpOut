@@ -58,13 +58,18 @@
             <table class="table table-hover">
                 @if (ViewBag.EventsCreated.Count > 0)
                 {
-
+                    int counter = 0;
                     foreach (Event e in ViewBag.EventsCreated)
                     {
                         if (e.DateTime.CompareTo(DateTime.Now) <= 0)
                         {
+                            counter++;
                             <tr data-href="http://helpout.azurewebsites.net/Event/Details/@e.EventID"> <td>@e.Name </td> </tr>
                         }
+                    }
+                    if (counter == 0)
+                    {
+                        <tr data-href="http://helpout.azurewebsites.net/Event/Create/"> <td>No upcoming events. Schedule some!</td> </tr>
                     }
                 }
                 else
@@ -98,13 +103,20 @@
             <table class="table table-hover">
                 @if (ViewBag.EventsAttending.Count > 0)
                 {
+                    int counter = 0;
 
                     foreach (Event e in ViewBag.EventsAttending)
                     {
                         if (e.DateTime.CompareTo(DateTime.Now) <= 0)
                         {
+                            counter++;
                             <tr data-href="http://helpout.azurewebsites.net/Event/Details/@e.EventID"> <td>@e.Name </td> </tr>
                         }
+                    }
+
+                    if (counter == 0)
+                    {
+                        <tr data-href="http://helpout.azurewebsites.net/Event/Index/"> <td>No upcoming events. Go Help Out!</td> </tr>
                     }
                 }
                 else
