@@ -60,7 +60,7 @@ namespace HelpOut.Controllers
                     events = events.OrderBy(e => e.DateTime);
                     break;
             }
-           return View(events.ToList());
+            return View(events.ToList());
         }
 
         // GET: Event/Details/5
@@ -70,7 +70,7 @@ namespace HelpOut.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            
+
             var @event = (from e in db2.Events
                           where e.EventID == id
                           select e).Include("Organization").Include("Attendees").Single();
@@ -89,40 +89,56 @@ namespace HelpOut.Controllers
                 ViewBag.Attending = false;
             else
                 ViewBag.Attending = true;
-                    
+
             ViewBag.rsvpText = "";
             return View(@event);
         }
 
-        
+
         [HttpPost, ActionName("Details")]
         [Authorize(Roles = "Volunteer")]
         [ValidateAntiForgeryToken]
         public ActionResult UpdateSignups(int eventID, string volunteerID)
         {
             ApplicationUser volunteer = (from u in db2.Users
-                             where u.Id == volunteerID
-                             select u).Include("EventsAttending").Single();
+                                         where u.Id == volunteerID
+                                         select u).Include("EventsAttending").Single();
 
 
             Event @event = (from e in db2.Events
                             where e.EventID == eventID
                             select e).Include("Attendees").Include("Organization").Single();
-            
-            //adding to respective lists ==> automatically updates signup table
-            volunteer.EventsAttending.Add(@event);
-            @event.Attendees.Add(volunteer);
 
-            //changing RSVP btn text to "Attending!"
-            ViewBag.Attending = true;
+            //if user is attending and clicked button, will remove from signups
+            if (volunteer.EventsAttending.Contains(@event))
+            {
+                //removing from respective lists ==> automatically updates signup table
+                volunteer.EventsAttending.Remove(@event);
+                @event.Attendees.Remove(volunteer);
+
+                //changing RSVP btn text to "RSVP!"
+                ViewBag.Attending = false;
+            }
+
+            //if user isn't attending and clicked button, will add to signups
+            else
+            {
+                //adding to respective lists ==> automatically updates signup table
+                volunteer.EventsAttending.Add(@event);
+                @event.Attendees.Add(volunteer);
+
+                //changing RSVP btn text to "Attending!"
+                ViewBag.Attending = true;
+            }
             db2.SaveChanges();
+
 
             return View(@event);
 
         }
 
         // GET: Event/Create
-        [Authorize (Roles="Organization")]
+        [Authorize(Roles = "Organization")]
         public ActionResult Create()
         {
             return View();
@@ -135,7 +151,7 @@ namespace HelpOut.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "EventID,Name,DateTime,Address,City,State,ZipCode,Description,")] Event @event, HttpPostedFileBase upload)
         {
-            
+
             if (ModelState.IsValid)
             {
                 @event.OrganizationID = User.Identity.GetUserId();
@@ -144,10 +160,10 @@ namespace HelpOut.Controllers
                 {
                     //make an image path
                     var photo = new FilePath
-                   {
-                       FileName = System.IO.Path.GetFileName(upload.FileName),
-                       FileType = FileType.Photo
-                   };
+                    {
+                        FileName = System.IO.Path.GetFileName(upload.FileName),
+                        FileType = FileType.Photo
+                    };
                     //adding paths to event
                     @event.FilePaths = new List<FilePath>();
                     @event.FilePaths.Add(photo);
@@ -189,9 +205,9 @@ namespace HelpOut.Controllers
             {
                 return HttpNotFound();
             }
-            else if (@event.OrganizationID!=User.Identity.GetUserId())
+            else if (@event.OrganizationID != User.Identity.GetUserId())
             {
-             return   RedirectToAction("Details", new { id = id });
+                return RedirectToAction("Details", new { id = id });
             }
             return View(@event);
         }
