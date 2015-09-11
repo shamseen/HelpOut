@@ -182,7 +182,8 @@ namespace HelpOut.Controllers
                 //add event to dbcontext and save to DB
                 db2.Events.Add(@event);
                 db2.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", new { id = @event.EventID });
+                //return RedirectToAction("Index");
             }
 
             return View(@event);

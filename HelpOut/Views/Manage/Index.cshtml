@@ -1,78 +1,140 @@
 ﻿@using HelpOut.Models
 @model HelpOut.Models.IndexViewModel
 
-<h2>User Profile</h2>
-@Html.ActionLink("Edit Your Profile", "Edit")
+@{
+    ViewBag.Title = "Profile - " + ViewBag.FullName;
 
-<p class="text-success">@ViewBag.StatusMessage</p>
-<div>
-    <hr />
-
-    <h3>
-        <strong>
-            @if (ViewBag.Role == "Organization")
-            {
-                <span>Organization: @ViewBag.FullName<br /></span>
-            }
-            @if (ViewBag.Role == "Volunteer")
-            {
-                <span> Volunteer: @ViewBag.FullName <br /></span>
-            }
-        </strong>
-    </h3>
-    <br />
-@if (ViewBag.Role == "Organization")
-{
-    <span><b>Email:</b> @ViewBag.Email<br /><br /></span>
-    <span><b>Head Quarters:</b> @ViewBag.Location<br /><br /></span>
-    <span><b>Mission Statement:</b> @ViewBag.Description<br /><br /></span>
-    <span><b>Primary Contact Number:</b> @ViewBag.PhoneNumber<br /><br /></span>
 }
- @if (ViewBag.Role == "Volunteer")
- {
-     <span><b>Email:</b> @ViewBag.Email<br /><br /></span>
-    <span><b>Primary Address:</b> @ViewBag.Location<br /><br /></span>
-    <span><b>Interests:</b> @ViewBag.Description<br /><br /></span>
-    <span><b>Primary Phone Number:</b> @ViewBag.PhoneNumber<br /><br /></span>
- }
 
-    @{
-        if (ViewBag.Role == "Organization")
+<div class="col-md-12" style="background-color:rgba(249,208,176, .5); border:groove 3px; margin-bottom: 30px; margin-top: 20px; text-align: center; padding-bottom: 1%">
+    <h1><strong>Welcome! @ViewBag.FullName</strong></h1>
+</div>
+<div style="margin-bottom:5px; align-self: center">@Html.ActionLink("Edit Your Profile", "Edit") </div>
+<hr />
+
+@*---------------------------Profile Info---------------------------------*@
+<div class="col-md-6" style="margin-bottom: 5px;">
+    <div style="background-color:#b6e2a6; border:groove 3px;  font-size: 110%; padding-left: 5%; padding-right: 5%">
+        <h3>
+            <strong>
+                @if (ViewBag.Role == "Organization")
+                {
+                    <span>Organization<br /></span>
+                }
+                @if (ViewBag.Role == "Volunteer")
+                {
+                    <span> Volunteer<br /></span>
+                }
+            </strong>
+        </h3>
+        <br />
+        @if (ViewBag.Role == "Organization")
         {
-            <h2>Events Created:</h2>
-
-            if (ViewBag.EventsCreated.Count > 0)
-            {
-                <ul>
-                    @foreach (Event e in ViewBag.EventsCreated)
-                    {
-                        <li>@Html.ActionLink(e.Name, "Details", new { controller = "Event", id = e.EventID }) </li>
-                    }
-                </ul>
-            }
+            <span><b>Mission Statement:</b> <br/>@ViewBag.Description<br /><br /></span>
+            <span><b>Head Quarters:</b> @ViewBag.Location<br /><br /></span>
+            <span><b>Primary Contact Number:</b> @String.Format("{0: (###) ###-####}", Convert.ToInt64(ViewBag.PhoneNumber))<br /><br /></span>
+            <span><b>Email:</b> @ViewBag.Email<br /><br /></span>
         }
-
-        else if (ViewBag.Role == "Volunteer")
+        @if (ViewBag.Role == "Volunteer")
         {
-            <h2>Events Attending:</h2>
-
-            if (ViewBag.EventsAttending.Count > 0)
-            {
-                <ul>
-                    @foreach (Event e in ViewBag.EventsAttending)
-                    {
-                        <li>@Html.ActionLink(e.Name, "Details", new { controller = "Event", id = e.EventID }) </li>
-                    }
-                </ul>
-            }
+            <span><b>Primary Phone Number:</b>@String.Format("{0: (###) ###-####}", Convert.ToInt64(ViewBag.PhoneNumber))<br /><br /></span>
+            <span><b>Email:</b> @ViewBag.Email<br /><br /></span>
+            <span ><b>Interests:</b><br/> @ViewBag.Description<br /><br /></span>
+            <span><b>Primary Address:</b> @ViewBag.Location<br /><br /></span>
+            
+            
         }
+    </div>
+</div>
+
+@*-----------------------List of Events----------------------------*@
+<div class="col-md-6">
+    @{if (ViewBag.Role == "Organization")
+    {
+        @*-------------Upcoming Created----------------*@
+        <div style="background-color:#b6e2a6;border:groove 1px; display: table; max-height: 300px; width: 100%;text-align:center; font-size:110%">
+            <h2><b>Scheduled to Host:</b></h2>
+
+            <table class="table table-hover">
+                @if (ViewBag.EventsCreated.Count > 0)
+                {
+
+                    foreach (Event e in ViewBag.EventsCreated)
+                    {
+                        if (e.DateTime.CompareTo(DateTime.Now) <= 0)
+                        {
+                            <tr data-href="http://helpout.azurewebsites.net/Event/Details/@e.EventID"> <td>@e.Name </td> </tr>
+                        }
+                    }
+                }
+                else
+                {
+                    <tr data-href="http://helpout.azurewebsites.net/Event/Create/"> <td>No upcoming events. Schedule some!</td> </tr>
+                }
+            </table>
+        </div>
+        @*-------------------Past Created--------------------*@
+        <div style="background-color:#b6e2a6;border: groove 1px; display: table; max-height: 300px; width: 100%; text-align:center; font-size:110%; margin-top:10px">
+            <h2><b>Past Events Hosted:</b></h2>
+
+            <table class="table table-hover">
+                @foreach (Event e in ViewBag.EventsCreated)
+                {
+                    if (e.DateTime.CompareTo(DateTime.Now) > 0)
+                    {
+                        <tr data-href="http://helpout.azurewebsites.net/Event/Details/@e.EventID"> <td>@e.Name</td> </tr>
+                    }
+                }
+            </table>
+        </div>
     }
 
-    <hr/>
-    <div></div>
+    else
+    {
+        @*-------------Upcoming Attending----------------*@
+        <div  style="background-color:#b6e2a6; border:groove 1px; display: table; max-height: 300px; width:100%; text-align:center; font-size:110%; padding-right:5%; padding-left:5%;">
+            <h2><b>Scheduled to Help Out:</b></h2>
+
+            <table class="table table-hover">
+                @if (ViewBag.EventsAttending.Count > 0)
+                {
+
+                    foreach (Event e in ViewBag.EventsAttending)
+                    {
+                        if (e.DateTime.CompareTo(DateTime.Now) <= 0)
+                        {
+                            <tr data-href="http://helpout.azurewebsites.net/Event/Details/@e.EventID"> <td>@e.Name </td> </tr>
+                        }
+                    }
+                }
+                else
+                {
+                    <tr data-href="http://helpout.azurewebsites.net/Event/Index/"> <td>No upcoming events. Go Help Out!</td> </tr>
+                }
+            </table>
+        </div>
+        @*-------------------Past Attended--------------------*@
+        <div  style="background-color:#b6e2a6; border:groove 1px; display: table; max-height: 300px; width:100%; text-align:center; font-size:110%; padding-right:5%; padding-left:5%; margin-top: 10px">
+            <h2><b>Past Events Attended:</b></h2>
+
+            <table class="table table-hover">
+                @foreach (Event e in ViewBag.EventsAttending)
+                {
+                    if (e.DateTime.CompareTo(DateTime.Now) > 0)
+                    {
+                        <tr data-href="http://helpout.azurewebsites.net/Event/Details/@e.EventID"> <td>@e.Name</td> </tr>
+                    }
+                }
+            </table>
+        </div>
+    }
+}
+</div>
 
 
-    <dl class="dl-horizontal">
+<hr />
+<div class="col-xs-12">
+    <dl>
         <dt>Password:</dt>
         <dd>
             [
@@ -91,57 +153,17 @@
             @Model.Logins.Count [
             @Html.ActionLink("Manage", "ManageLogins") ]
         </dd>
-        @*
-            Phone Numbers can used as a second factor of verification in a two-factor authentication system.
-
-             See <a href="http://go.microsoft.com/fwlink/?LinkId=403804">this article</a>
-                for details on setting up this ASP.NET application to support two-factor authentication using SMS.
-
-             Uncomment the following block after you have set up two-factor authentication
-        *@
-        @*
-            <dt>Phone Number:</dt>
-            <dd>
-                @(Model.PhoneNumber ?? "None") [
-                @if (Model.PhoneNumber != null)
-                {
-                    @Html.ActionLink("Change", "AddPhoneNumber")
-                    @: &nbsp;|&nbsp;
-                    @Html.ActionLink("Remove", "RemovePhoneNumber")
-                }
-                else
-                {
-                    @Html.ActionLink("Add", "AddPhoneNumber")
-                }
-                ]
-            </dd>
-        *@
-        @*<dt>Two-Factor Authentication:</dt>
-            <dd>
-                <p>
-                    There are no two-factor authentication providers configured. See <a href="http://go.microsoft.com/fwlink/?LinkId=403804">this article</a>
-                    for details on setting up this ASP.NET application to support two-factor authentication.
-                </p>*@
-        @*@if (Model.TwoFactor)
-            {
-                using (Html.BeginForm("DisableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                {
-                    @Html.AntiForgeryToken()
-                    <text>Enabled
-                    <input type="submit" value="Disable" class="btn btn-link" />
-                    </text>
-                }
-            }
-            else
-            {
-                using (Html.BeginForm("EnableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                {
-                    @Html.AntiForgeryToken()
-                    <text>Disabled
-                    <input type="submit" value="Enable" class="btn btn-link" />
-                    </text>
-                }
-            }
-        </dd>*@
     </dl>
 </div>
+
+<script>
+    var rows = document.getElementsByTagName('tr'), url;
+
+    for (var i = 0, len = rows.length; i < len; i++) {
+        rows[i].onclick = function () {
+            uri = this.getAttribute('data-href');
+            window.location = uri;
+        };
+    }
+</script>
+
